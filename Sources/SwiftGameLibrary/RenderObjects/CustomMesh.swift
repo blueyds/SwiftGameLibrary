@@ -27,12 +27,12 @@ open class CustomMesh: GameNode, Renderable{
 	
 	open var vertices: [Vertex] = []
 
-	public init(named : String, x: Float, y: Float, z: Float){
+	public init(named : String, x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
 		self.name = named
 		self.position = simd_float3(x, y, z)
-		createVertices()
+		createVertices(r: r, g: g, b: b, a: a)
 	}
-	open func createVertices(){ }
+	open func createVertices(r: Float, g: Float, b: Float){ }
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder) {
 		encoder.setVertexBytes(vertices, length: vertices.count * Vertex.stride(), index: 0)
 		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
