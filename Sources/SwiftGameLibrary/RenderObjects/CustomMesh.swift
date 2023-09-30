@@ -32,7 +32,7 @@ open class CustomMesh: GameNode, Renderable{
 		self.position = simd_float3(x, y, z)
 		createVertices(r: r, g: g, b: b, a: a)
 	}
-	open func createVertices(r: Float, g: Float, b: Float, a: Float{ }
+	open func createVertices(r: Float, g: Float, b: Float, a: Float){ }
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder) {
 		encoder.setVertexBytes(vertices, length: vertices.count * Vertex.stride(), index: 0)
 		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
