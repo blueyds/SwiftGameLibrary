@@ -11,7 +11,7 @@ extension SimpleCustomMesh{
         vertices.count
     }
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder) {
-		encoder.setVertexBytes(vertices, length: vertexCount * Vertex.stride(), index: 0)
+		encoder.setVertexBytes(vertices, length: vertexCount * Vertex.stride(), index: BufferIndex.Vertex)
 		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
 	}
 }

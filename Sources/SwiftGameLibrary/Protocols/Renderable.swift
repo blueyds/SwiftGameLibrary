@@ -13,7 +13,7 @@ public protocol Renderable: Nameable , Transformable{
 extension Renderable{
     public func getPipelineState() -> MTLRenderPipelineState? { nil }
 	public func assignModelConstants(to encoder: MTLRenderCommandEncoder){
-		encoder.setVertexBytes(&modelMatrix, length: simd_float4x4.stride(), index: 1)
+		encoder.setVertexBytes(&modelMatrix, length: simd_float4x4.stride(), index: BufferIndex.ModelMatrix)
 
 	}
 	public func render(using encoder:MTLRenderCommandEncoder) -> Bool{
