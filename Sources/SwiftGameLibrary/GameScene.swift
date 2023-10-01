@@ -48,7 +48,7 @@ extension GameScene{
 
             if let renderedObject = $0 as? Renderable {
 				encoder.pushDebugGroup($0.name)
-				renderedObject.assignModelMatrix(to: encoder)
+				renderedObject.assignModelConstants(to: encoder)
                 if !renderedObject.render(using: encoder){
                     encoder.setRenderPipelineState(pipelines[0])
                 }
