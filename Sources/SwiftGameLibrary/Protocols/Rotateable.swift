@@ -3,11 +3,30 @@ import simd
 public protocol Rotatable: AnyObject{
     var rotation: simd_float3 { get set }
 }
-
+extension Rotatable{
+	public func rotateXby(degrees angle: Float){
+        rotation.x += angle.fromDegrees   
+    }
+    public func rotateYby(degrees angle: Float){
+        rotation.y += angle.fromDegrees
+    }
+    public func rotateZby(degrees angle: Float){
+        rotation.z += angle.fromDegrees
+	 }
+	 public func rotateXby(radians angle: Float){
+        rotation.x += angle
+    }
+    public func rotateYby(radians angle: Float){
+        rotation.y += angle
+    }
+    public func rotateZby(radians angle: Float){
+        rotation.z += angle
+	 }
+}
 
 extension Rotatable{
 
-    public func rotateXModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixXRotationModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
         var result = matrix_identity_float4x4
         let x: Float = 1
         let y: Float = 0
@@ -36,7 +55,7 @@ extension Rotatable{
         return matrix_multiply(from, result)
     }
     
-    public func rotateYModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixYRotationModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
         var result = matrix_identity_float4x4
         let x: Float = 0
         let y: Float = 1
@@ -65,7 +84,7 @@ extension Rotatable{
         return matrix_multiply(from, result)
     }
     
-    public func rotateZModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixZRotationModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
         var result = matrix_identity_float4x4
         let x: Float = 0
         let y: Float = 0
