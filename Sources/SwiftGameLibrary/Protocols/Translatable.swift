@@ -6,7 +6,7 @@ public protocol Translatable: AnyObject{
 }
 
 extension Translatable{
-    public func translateModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixTranslationModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
         var result = matrix_identity_float4x4
         result.columns = (
             simd_float4(1, 0, 0, 0),
@@ -21,7 +21,7 @@ extension Translatable{
         return matrix_multiply(from, result)
     }
     
-    public func translateView(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixTranslationView(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
         var result = matrix_identity_float4x4
         result.columns = (
             simd_float4(1, 0, 0, 0),
