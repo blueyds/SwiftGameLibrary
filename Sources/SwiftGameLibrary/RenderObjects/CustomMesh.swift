@@ -13,7 +13,7 @@ open class CustomMesh: GameNode, Renderable{
 
 	public var name: String
 	
-	public var parent: (any GameNode)?
+	//public var parent: (any GameNode)?
 
 	public var children: [any GameNode] = []
 
