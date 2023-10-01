@@ -1,5 +1,3 @@
-import SwiftGameLibrary
-
 public class Triangle: CustomMesh{
 	public override func createVertices(r: Float, g: Float, b: Float, a: Float) {
 		vertices = [
