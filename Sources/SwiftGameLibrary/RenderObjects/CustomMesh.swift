@@ -8,7 +8,7 @@
 import simd
 import Metal
 
-open class CustomMesh: GameNode, Renderable{
+open class CustomMesh: GameNode, Renderable, Translatable, Rotatable, Scalable{
 	public var id = Int.NextID()
 
 	public var name: String
@@ -33,8 +33,16 @@ open class CustomMesh: GameNode, Renderable{
 		createVertices(r: r, g: g, b: b, a: a)
 	}
 	open func createVertices(r: Float, g: Float, b: Float, a: Float){ }
+    public func render(using encoder: MTLRenderCommandEncoder, pipelineChanged: inout Bool){
+        pipelineChanged = false
+        if pipeline = self as? CustomRenderPipeline {
+            pipeline.assignPipeline(to: encoder)
+            pipelineChanged = true
+        }
+        drawPrimitives(using: encoder)
+    }
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder) {
-		encoder.setVertexBytes(vertices, length: vertices.count * Vertex.stride(), index: 0)
+		encoder.setVertexBytes(vertices, length: vertices.count * Vertex.stride(), index: BufferIndex.Vertex)
 		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
 	}
 }

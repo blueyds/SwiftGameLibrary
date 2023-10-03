@@ -18,9 +18,7 @@ extension GameNode{
             updateMe.doUpdate()
         }
         children.forEach(){
-            if let child = $0 as? Updateable {
-                child.doUpdate()
-            }
+            updateMeAndChildren()
         }
     }
     
