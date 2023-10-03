@@ -6,17 +6,6 @@ public protocol Scaleable: AnyObject {
 
 extension Scaleable {
     
-    public func matrixScaleModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
-        var result: matrix_float4x4 = matrix_identity_float4x4
-        result.columns = (
-            simd_float4(scale.x, 0, 0, 0),
-            simd_float4(0, scale.y, 0, 0),
-            simd_float4(0, 0, scale.z, 0),
-            simd_float4(0, 0, 0, 1)
-        )
-        return matrix_multiply(from, result)
-    }
-    
     
     public func scaleX(by delta: Float){
         scale.x *= delta
