@@ -45,17 +45,24 @@ extension GameScene{
         encoder.pushDebugGroup(name)
         encoder.setRenderPipelineState(pipelines[0])
         children.forEach(){
-
             if let renderedObject = $0 as? Renderable {
 				encoder.pushDebugGroup($0.name)
-				renderedObject.assignModelConstants(to: encoder)
-                if !renderedObject.render(using: encoder){
-                    encoder.setRenderPipelineState(pipelines[0])
-                }
+                var changed = false
+				renderedObject.render(using: encoder, pipelineChanged: &changed)
+                if changed {encoder.setRenderPipelineState(pipelines[0])}
 				encoder.popDebugGroup()
             }
         }
         encoder.popDebugGroup()
     }
-	
+    
+    // adding a new camera will remove the old camera
+    // camera object should always be the first child
+	public func add(camera: Camera){
+	    if let cam = children.first as? Camera {
+	        children.remove(1)
+	    }
+	    children.insert(camera, at: 0)
+	    
+	}
 }
