@@ -1,11 +1,11 @@
 import simd
 
 public protocol Transformable{
-    var modelMatrix: simd_float4x4 { get set }
+    var modelMatrix: Matrix { get set }
 }
 
 extension Transformable{
-    public func calculateModelMatrix(parent: simd_float4x4 = matrix_identity_float4x4)-> simd_float4x4{
+    public func calculateModelMatrix(parent: Matrix = matrix_identity_float4x4)-> Matrix{
         var result = matrix_identity_float4x4
         if let translate = self as? Translatable{
             result.translateModel(translate.position)

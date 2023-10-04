@@ -11,7 +11,7 @@ public protocol Camera: GameNode, Renderable{
 }
 
 extension Camera{
-    public var viewMatrix: matrix_float4x4 {
+    public var viewMatrix: Matrix {
         modelMatrix
     }
     private func assignViewConstants(to encoder: MTLRenderCommandEncoder){
@@ -22,7 +22,7 @@ extension Camera{
     
     
     
-    public func  projectionMatrix() -> matrix_float4x4 {
+    public func  projectionMatrix() -> Matrix {
         var result = matrix_identity_float4x4
         let t: Float = tan(fov / 2)
         result.columns = (
