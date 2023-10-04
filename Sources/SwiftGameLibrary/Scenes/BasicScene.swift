@@ -9,7 +9,7 @@ open class BasicScene: GameScene{
     
 
     
-    init(named: String, using engine: MainEngine){
+    public init(named: String, using engine: MainEngine){
         self.name = named
         buildPipelines(using: engine)
         buildScene(using: engine)
