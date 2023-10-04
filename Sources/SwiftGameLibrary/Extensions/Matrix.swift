@@ -1,5 +1,5 @@
 import simd
-typealias Matrix = simd_float4x4
+public typealias Matrix = simd_float4x4
 
 extension Matrix{
     public mutating func translateModel(_ v3: simd_float3){
