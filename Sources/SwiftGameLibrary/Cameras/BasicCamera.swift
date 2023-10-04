@@ -12,7 +12,7 @@ public class BasicCamera: Camera{
     public var rotation = simd_float3.Zero
     public var scale = simd_float3.One
     public var modelMatrix = matrix_identity_float4x4
-    
+    public var children: [any GameNode] = []
     public init(name: String, fov: Float, aspectRatio: Float, near: Float, far: Float){
         self.name = name
         self.fov = fov
