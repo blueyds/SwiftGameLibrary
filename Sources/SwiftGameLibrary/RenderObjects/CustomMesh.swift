@@ -8,7 +8,7 @@
 import simd
 import Metal
 
-open class CustomMesh: GameNode, Renderable, Translatable, Rotatable, Scaleable{
+open class CustomMesh: GameNode, Renderable, Translatable, Rotatable, Scaleable, Transformable{
 	public var id = Int.NextID()
 
 	public var name: String
@@ -42,7 +42,8 @@ open class CustomMesh: GameNode, Renderable, Translatable, Rotatable, Scaleable{
         drawPrimitives(using: encoder)
     }
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder) {
-		encoder.setVertexBytes(vertices, length: vertices.count * Vertex.stride(), index: BufferIndex.Vertex)
+		encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: BufferIndex.Vertex)
+        encoder.setVertexBytes(modelMatrix, length: simd_float4x4.stride(), index: BufferIndex.ModelMatrix)
 		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
 	}
 }
