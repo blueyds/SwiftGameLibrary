@@ -59,7 +59,7 @@ extension GameScene{
     // adding a new camera will remove the old camera
     // camera object should always be the first child
 	public func add(camera: any Camera){
-	    if let cam = children.first as? Camera {
+	    if let _ = children.first as? (any Camera) {
 	        children.remove(at: 0)
 	    }
 	    children.insert(camera, at: 0)

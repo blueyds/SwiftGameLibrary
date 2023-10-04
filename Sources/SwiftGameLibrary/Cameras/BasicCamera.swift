@@ -17,18 +17,18 @@ public class BasicCamera: Camera{
         self.name = name
         self.fov = fov
         self.aspectRatio = aspectRatio
-        self.near = near
+        self.near = near 
         self.far = far
     }
     public init(name: String){
         self.name = name
     }
-    public func render(using encoder: MTLRenderCommandEncoder)-> Bool{
+    public func render(using encoder: MTLRenderCommandEncoder,pipelineChanged: inout Bool){
         modelMatrix.translateView(position)
         encoder.setVertexBytes(&modelMatrix, length: matrix_float4x4.stride(), index: BufferIndex.ViewMatrix)
         var projection = projectionMatrix()
         encoder.setVertexBytes(&projection, length: matrix_float4x4.stride(), index: BufferIndex.ProjectionMatrix)
-        return true
+        pipelineChanged = false
     }
     
 }

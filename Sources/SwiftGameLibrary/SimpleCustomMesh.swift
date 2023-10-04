@@ -5,7 +5,7 @@ public protocol SimpleCustomMesh: Renderable{
     var vertices: [Vertex] { get }
     //    func createVertices()
     //    func createBuffer()
-    public func drawPrimitives(using: MTLRenderCommandEncoder)
+    func drawPrimitives(using: MTLRenderCommandEncoder)
 }
 extension SimpleCustomMesh{
     public var vertexCount: Int{
