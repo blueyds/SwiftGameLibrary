@@ -1,4 +1,3 @@
-import SwiftGameLibrary
 import simd
 import Metal
 
@@ -23,7 +22,7 @@ extension Camera{
     
     
     
-    private func  projectionMatrix() -> matrix_float4x4 {
+    public func  projectionMatrix() -> matrix_float4x4 {
         var result = matrix_identity_float4x4
         let t: Float = tan(fov / 2)
         result.columns = (

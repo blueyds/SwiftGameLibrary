@@ -4,7 +4,7 @@ import Metal
 
 
 public protocol GameNode: AnyObject, Transformable, Identifiable, Nameable {
-    var name: String { get }
+    //var name: String { get }
     //var parent: (any GameNode)? { get set }
     var children: [any GameNode] { get set }
 }
@@ -18,7 +18,7 @@ extension GameNode{
             updateMe.doUpdate()
         }
         children.forEach(){
-            updateMeAndChildren()
+            $0.updateMeAndChildren()
         }
     }
     

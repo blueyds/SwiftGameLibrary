@@ -18,9 +18,9 @@ open class BasicScene: GameScene{
     
     open func buildPipelines(using: MainEngine){}
     
-    open func buildScene(using: engine){}
+    open func buildScene(using: MainEngine){}
     
-    open func buildCamera(using: engine) {}
+    open func buildCamera(using: MainEngine) {}
     
     
 }

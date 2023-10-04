@@ -1,3 +1,5 @@
+import Metal
+
 public protocol CustomRenderPipeline{
     var renderPipeline: MTLRenderPipeline { get set }
 }

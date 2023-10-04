@@ -8,7 +8,7 @@
 import simd
 import Metal
 
-open class CustomMesh: GameNode, Renderable, Translatable, Rotatable, Scalable{
+open class CustomMesh: GameNode, Renderable, Translatable, Rotatable, Scaleable{
 	public var id = Int.NextID()
 
 	public var name: String
@@ -35,7 +35,7 @@ open class CustomMesh: GameNode, Renderable, Translatable, Rotatable, Scalable{
 	open func createVertices(r: Float, g: Float, b: Float, a: Float){ }
     public func render(using encoder: MTLRenderCommandEncoder, pipelineChanged: inout Bool){
         pipelineChanged = false
-        if pipeline = self as? CustomRenderPipeline {
+        if let pipeline = self as? CustomRenderPipeline {
             pipeline.assignPipeline(to: encoder)
             pipelineChanged = true
         }

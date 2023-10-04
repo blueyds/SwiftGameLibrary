@@ -1,6 +1,9 @@
+import simd
+import Metal
+
 public class BasicCamera: Camera{
     public var name: String
-    public var id: Int = Int.nextID
+    public var id: Int = Int.NextID()
     public var fov: Float = 90
     public var aspectRatio: Float = 1
     public var near: Float = 1
@@ -20,8 +23,8 @@ public class BasicCamera: Camera{
     public init(name: String){
         self.name = name
     }
-    public render(using encoder: MTLRenderCommandEncoder)-> Bool{
-        modelMatrix = matrixTranslationView(from: matrix_identity_float4x4)
+    public func render(using encoder: MTLRenderCommandEncoder)-> Bool{
+        modelMatrix.translateView(position)
         encoder.setVertexBytes(&modelMatrix, length: matrix_float4x4.stride(), index: BufferIndex.ViewMatrix)
         var projection = projectionMatrix()
         encoder.setVertexBytes(&projection, length: matrix_float4x4.stride(), index: BufferIndex.ProjectionMatrix)

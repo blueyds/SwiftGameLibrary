@@ -13,7 +13,7 @@ extension Matrix{
         self = matrix_multiply(self, result)
     }
     public mutating func translateView(_ position: simd_float3){
-        translateModel(position: -position)
+        translateModel(-position)
     }
     
     public mutating func scale(_ v3: simd_float3){
@@ -32,7 +32,7 @@ extension Matrix{
         rotate(v3.z, onZ: true)
     }
     
-    private mutating func rotate(amount: Float, onX: Bool = false, onY: Bool = false, onZ: Bool = false){
+    private mutating func rotate(_ amount: Float, onX: Bool = false, onY: Bool = false, onZ: Bool = false){
         var result = matrix_identity_float4x4
         var x: Float = 0
         var y: Float = 0
@@ -43,8 +43,8 @@ extension Matrix{
         else if onZ { z = 1 }
         else { return }
         
-        let c: Float = cos(rotation.x)
-        let s: Float = sin(rotation.x)
+        let c: Float = cos(amount)
+        let s: Float = sin(amount)
         
         let mc: Float = (1 - c)   
         
@@ -63,7 +63,7 @@ extension Matrix{
                         0),
             simd_float4(0,0,0,1)
         )
-        return matrix_multiply(from, result)
+        self = matrix_multiply(self, result)
     }
     
     
