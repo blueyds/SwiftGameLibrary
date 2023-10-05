@@ -34,7 +34,7 @@ open class CustomMesh: GameNode, VertexCollection{
 	}
 	open func createVertices(r: Float, g: Float, b: Float, a: Float){ }
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder) {
-		encoder.setVertexBytes(vertices, length: Vertex.stride(at: vertices.count), index: 0)
+		encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: 0)
 		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
 	}
 }
