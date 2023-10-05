@@ -35,7 +35,7 @@ extension Rotatable{
         let c: Float = cos(rotation.x)
         let s: Float = sin(rotation.x)
         
-        let mc: Float = (1 - c)   
+        let mc: Float = 1 - c   
         
         result.columns = (
             simd_float4(x * x * mc + c,
