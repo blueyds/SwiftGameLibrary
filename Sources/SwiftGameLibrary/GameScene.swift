@@ -23,24 +23,19 @@ public protocol GameScene: AnyObject, Nameable{
 
 extension GameScene{
     public func updateScene(){
-        updateMeAndChildren()
-        updateMatrices()
-    }
-    public  func updateMeAndChildren(){
         if let updateMe = self as? Updateable {
             updateMe.doUpdate()
         }
-        for i in children.indices{
-            children[i].updateMeAndChildren()
+        children.forEach(){
+            $0.updateMeAndChildren()
         }
-    }
-    public  func updateMatrices(){
         for i in children.indices{
             children[i].modelMatrix = children[i].calculateModelMatrix()
             //print(children[i].modelMatrix)
-            children[i].updateChildrenMatrices()
+            children[i].updateMatrices(parent: matrix_identity_float4x4)
         }
     }
+
     public func renderScene(using encoder: MTLRenderCommandEncoder){
         encoder.pushDebugGroup(name)
         encoder.setRenderPipelineState(pipelines[0])

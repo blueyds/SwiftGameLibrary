@@ -4,8 +4,6 @@ import Metal
 
 
 public protocol GameNode: AnyObject, Transformable, Identifiable, Nameable {
-    var name: String { get }
-    //var parent: (any GameNode)? { get set }
     var children: [any GameNode] { get set }
 }
 extension GameNode{
@@ -18,16 +16,14 @@ extension GameNode{
             updateMe.doUpdate()
         }
         children.forEach(){
-            if let child = $0 as? Updateable {
-                child.doUpdate()
-            }
+            $0.updateMeAndChildren()
         }
     }
     
-    public func updateChildrenMatrices(){
-        for i in children.indices{
-            children[i].modelMatrix = children[i].calculateModelMatrix(parent: modelMatrix)
-            children[i].updateChildrenMatrices()
+    public func updateMatrices(parent: Matrix){
+        self.modelMatrix = calculateModelMatrix(parent: modelMatrix)
+        children.forEach(){
+            $0.updateMatrices(parent: modelMatrix)
         }
     }
 }
