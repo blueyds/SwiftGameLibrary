@@ -4,7 +4,7 @@ public typealias matrix = simd_float4x4
 
 extension matrix{
     public static var identity: matrix { 
-        matrix_identity_float
+        matrix_identity_float4x4
     }
     public mutating func translateModel(_ v3: float3){
         var result = matrix.identity
