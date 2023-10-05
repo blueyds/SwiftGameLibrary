@@ -18,7 +18,7 @@ public protocol GameScene: AnyObject, Nameable{
     /// was used going into a render function in case
     /// that object changed the pipeline
     func renderScene(using : MTLRenderCommandEncoder)
-    func updateScene()
+    //func updateScene()
 }
 
 extension GameScene{
@@ -29,10 +29,8 @@ extension GameScene{
         children.forEach(){
             $0.updateMeAndChildren()
         }
-        for i in children.indices{
-            children[i].modelMatrix = children[i].calculateModelMatrix()
-            //print(children[i].modelMatrix)
-            children[i].updateMatrices(parent: matrix_identity_float4x4)
+        children.forEach(){
+            $0.updateMatrices(parent: matrix.identity)
         }
     }
 
