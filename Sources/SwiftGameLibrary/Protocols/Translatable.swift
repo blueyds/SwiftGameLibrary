@@ -1,12 +1,12 @@
 import simd
 
 public protocol Translatable: AnyObject{
-    var position: simd_float3 { get set }
+    var position: float3 { get set }
     
 }
 
 extension Translatable{
-    public func matrixTranslationModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixTranslationModel(from: matrix = matrix_identity_float4x4)-> matrix{
         var result = matrix_identity_float4x4
         result.columns = (
             simd_float4(1, 0, 0, 0),
@@ -21,7 +21,7 @@ extension Translatable{
         return matrix_multiply(from, result)
     }
     
-    public func matrixTranslationView(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixTranslationView(from: matrix = matrix_identity_float4x4)-> matrix{
         var result = matrix_identity_float4x4
         result.columns = (
             simd_float4(1, 0, 0, 0),

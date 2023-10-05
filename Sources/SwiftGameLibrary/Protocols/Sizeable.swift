@@ -22,8 +22,8 @@ extension sizeable{
         stride() * count
     }
 }
-extension simd_float3: sizeable{}
-extension simd_float4: sizeable{}
+extension float3: sizeable{}
+extension float4: sizeable{}
 extension Vertex: sizeable {}
-extension simd_float4x4: sizeable {}
+extension matrix: sizeable {}
 

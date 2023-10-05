@@ -1,13 +1,13 @@
 import simd
 
 public protocol Scaleable: AnyObject {
-    var scale: simd_float3 { get set }
+    var scale: float3 { get set }
 }
 
 extension Scaleable {
     
-    public func matrixScaleModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
-        var result: matrix_float4x4 = matrix_identity_float4x4
+    public func matrixScaleModel(from: matrix = matrix_identity_float4x4)-> matrix{
+        var result: matrix = matrix_identity_float4x4
         result.columns = (
             simd_float4(scale.x, 0, 0, 0),
             simd_float4(0, scale.y, 0, 0),

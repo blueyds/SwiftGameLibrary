@@ -2,11 +2,11 @@ import simd
 import Metal
 
 public protocol Transformable: Translatable, Rotatable, Scaleable{
-    var modelMatrix: simd_float4x4 { get set }
+    var modelMatrix: matrix { get set }
 }
 
 extension Transformable{
-    public func calculateModelMatrix(parent: simd_float4x4 = matrix_identity_float4x4)-> simd_float4x4{
+    public func calculateModelMatrix(parent: matrix = matrix_identity_float4x4)-> matrix{
         var result = matrix_identity_float4x4
         result = matrixTranslationModel(from: result)
         result = matrixXRotationModel  (from: result)

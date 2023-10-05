@@ -1,7 +1,7 @@
 import simd
 
 public protocol Rotatable: AnyObject{
-    var rotation: simd_float3 { get set }
+    var rotation: float3 { get set }
 }
 extension Rotatable{
 	public func rotateXby(degrees angle: Float){
@@ -26,7 +26,7 @@ extension Rotatable{
 
 extension Rotatable{
 
-    public func matrixXRotationModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixXRotationModel(from: matrix = matrix_identity_float4x4)-> matrix{
         var result = matrix_identity_float4x4
         let x: Float = 1
         let y: Float = 0
@@ -55,7 +55,7 @@ extension Rotatable{
         return matrix_multiply(from, result)
     }
     
-    public func matrixYRotationModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixYRotationModel(from: matrix = matrix_identity_float4x4)-> matrix
         var result = matrix_identity_float4x4
         let x: Float = 0
         let y: Float = 1
@@ -84,7 +84,7 @@ extension Rotatable{
         return matrix_multiply(from, result)
     }
     
-    public func matrixZRotationModel(from: matrix_float4x4 = matrix_identity_float4x4)-> matrix_float4x4{
+    public func matrixZRotationModel(from: matrix = matrix_identity_float4x4)-> matrix{
         var result = matrix_identity_float4x4
         let x: Float = 0
         let y: Float = 0
