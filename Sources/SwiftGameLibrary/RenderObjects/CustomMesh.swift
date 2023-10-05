@@ -8,7 +8,7 @@
 import simd
 import Metal
 
-open class CustomMesh: GameNode, VertexCollection{
+open class CustomMesh: GameNode, Rotatable, Scaleable, Translatable, VertexCollection{
 	public var id = Int.NextID()
 
 	public var name: String
