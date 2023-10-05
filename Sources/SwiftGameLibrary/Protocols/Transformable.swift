@@ -7,13 +7,16 @@ public protocol Transformable: AnyObject{
 extension Transformable{
     public func calculateModelMatrix(parent: matrix = matrix.identity){
         var result = matrix.identity
-        result = matrixTranslationModel(from: result)
-        result = matrixXRotationModel  (from: result)
-        result = matrixYRotationModel  (from: result)
-        result = matrixZRotationModel  (from: result)
-		result = matrixScaleModel      (from: result)
-		modelMatrix = matrix_multiply(parent, result)
-//		return result
+        if let translate = self as? Translatable{
+            result.translateModel(translate.position)
+        }
+        if let rotate = self as? Rotatable {
+            result.rotate(rotate.rotation)
+        }
+        if let scale = self as? Scaleable {
+            result.scale(scale.scale)
+        }
+        modelMatrix = matrix_multiply(parent, result)
     }
 
 }
