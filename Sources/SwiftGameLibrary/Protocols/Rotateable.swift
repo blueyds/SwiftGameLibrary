@@ -35,27 +35,27 @@ extension Rotatable{
         let c: Float = cos(rotation.x)
         let s: Float = sin(rotation.x)
         
-        let mc: Float = 1 - c   
+        let mc: Float = (1 - c)   
         
         result.columns = (
-            simd_float4(x * x * mc + c,
-                        x * y * mc + z * s,
-                        x * z * mc - y * s,
-                        0),
-            simd_float4(y * x * mc - z * s,
-                        y * y * mc + c,
-                        y * z * mc + x * s,
-                        0),
-            simd_float4(z * x * mc + y * s,
-                        z * y * mc - x * s,
-                        z * z * mc + c,
-                        0),
-            simd_float4(0,0,0,1)
+            float4(x * x * mc + c,
+                    x * y * mc + z * s,
+                    x * z * mc - y * s,
+                    0),
+            float4(y * x * mc - z * s,
+                    y * y * mc + c,
+                    y * z * mc + x * s,
+                    0),
+            float4(z * x * mc + y * s,
+                    z * y * mc - x * s,
+                    z * z * mc + c,
+                    0),
+            float4(0,0,0,1)
         )
         return matrix_multiply(from, result)
     }
     
-    public func matrixYRotationModel(from: matrix = matrix_identity_float4x4)-> matrix
+    public func matrixYRotationModel(from: matrix = matrix_identity_float4x4)-> matrix{
         var result = matrix_identity_float4x4
         let x: Float = 0
         let y: Float = 1
@@ -67,19 +67,19 @@ extension Rotatable{
         let mc: Float = (1 - c)   
         
         result.columns = (
-            simd_float4(x * x * mc + c,
-                        x * y * mc + z * s,
-                        x * z * mc - y * s,
-                        0),
-            simd_float4(y * x * mc - z * s,
-                        y * y * mc + c,
-                        y * z * mc + x * s,
-                        0),
-            simd_float4(z * x * mc + y * s,
-                        z * y * mc - x * s,
-                        z * z * mc + c,
-                        0),
-            simd_float4(0,0,0,1)
+            float4( x * x * mc + c,
+                    x * y * mc + z * s,
+                    x * z * mc - y * s,
+                    0),
+            float4( y * x * mc - z * s,
+                    y * y * mc + c,
+                    y * z * mc + x * s,
+                    0),
+            float4( z * x * mc + y * s,
+                    z * y * mc - x * s,
+                    z * z * mc + c,
+                    0),
+            float4(0,0,0,1)
         )
         return matrix_multiply(from, result)
     }
@@ -96,19 +96,19 @@ extension Rotatable{
         let mc: Float = (1 - c)   
         
         result.columns = (
-            simd_float4(x * x * mc + c,
-                        x * y * mc + z * s,
-                        x * z * mc - y * s,
-                        0),
-            simd_float4(y * x * mc - z * s,
-                        y * y * mc + c,
-                        y * z * mc + x * s,
-                        0),
-            simd_float4(z * x * mc + y * s,
-                        z * y * mc - x * s,
-                        z * z * mc + c,
-                        0),
-            simd_float4(0,0,0,1)
+            float4( x * x * mc + c,
+                    x * y * mc + z * s,
+                    x * z * mc - y * s,
+                    0),
+            float4( y * x * mc - z * s,
+                    y * y * mc + c,
+                    y * z * mc + x * s,
+                    0),
+            float4( z * x * mc + y * s,
+                    z * y * mc - x * s,
+                    z * z * mc + c,
+                    0),
+            float4(0,0,0,1)
         )
         return matrix_multiply(from, result)
     }
