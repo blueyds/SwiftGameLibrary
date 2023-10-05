@@ -21,7 +21,7 @@ extension GameNode{
     }
     
     public func updateMatrices(parent: matrix){
-        calculateModelMatrix(parent: matrix)
+        calculateModelMatrix(parent: parent)
         children.forEach(){
             $0.updateMatrices(parent: modelMatrix)
         }

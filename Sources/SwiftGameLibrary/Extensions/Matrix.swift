@@ -2,8 +2,8 @@ import simd
 
 public typealias matrix = simd_float4x4
 
-extension Matrix{
-    public static var identity { 
+extension matrix{
+    public static var identity: matrix { 
         matrix_identity_float
     }
     public mutating func translateModel(_ v3: float3){
