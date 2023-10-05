@@ -1,7 +1,7 @@
 import simd
 import Metal
 
-public class BasicCamera: Camera{
+public class BasicCamera: Camera, Translatable{
     public var name: String
     public var id: Int = Int.NextID()
     public var fov: Float = 90
@@ -9,8 +9,7 @@ public class BasicCamera: Camera{
     public var near: Float = 1
     public var far: Float = 1000
     public var position = float3.Zero
-    public var rotation = float3.Zero
-    public var scale = float3.One
+    
     public var modelMatrix = matrix_identity_float4x4
     public var children: [any GameNode] = []
     public init(name: String, fov: Float, aspectRatio: Float, near: Float, far: Float){
