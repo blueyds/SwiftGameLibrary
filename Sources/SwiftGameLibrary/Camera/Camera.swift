@@ -1,26 +1,18 @@
 import simd
 import Metal
 
-public protocol Camera: GameNode, Renderable{
-    var fov: Float { get set }
-    var aspectRatio: Float { get set }
-    var near: Float { get set }
-    var far: Float { get set }
+public struct Camerae{
+    var fov: Float 
+    var aspectRatio: Float
+    var near: Float
+    var far: Float 
+    
+    
     // use render function to assign viewMatrix and 
     // projectionMatrix 
 }
 
 extension Camera{
-    public var viewMatrix: Matrix {
-        modelMatrix
-    }
-    private func assignViewConstants(to encoder: MTLRenderCommandEncoder){
-        
-    }
-    
-    public func drawPrimitives(using: MTLRenderCommandEncoder) { }
-    
-    
     
     public func  projectionMatrix() -> Matrix {
         var result = matrix_identity_float4x4
