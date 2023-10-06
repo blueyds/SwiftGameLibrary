@@ -1,7 +1,7 @@
 import simd
 import Metal
 
-public struct Camerae{
+public struct Camera{
     var fov: Float 
     var aspectRatio: Float
     var near: Float
