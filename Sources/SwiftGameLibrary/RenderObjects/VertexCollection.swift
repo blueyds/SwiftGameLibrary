@@ -14,6 +14,6 @@ extension VertexCollection{
 		encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertexCount), index: BufferIndex.Vertex)
         encoder.setVertexBytes(&transforms.matrix, length: Matrix.stride(), index: BufferIndex.ModelMatrix)
 		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
-        pipeliineChanged = false
+        pipelineChanged = false
 	}
 }
