@@ -25,5 +25,5 @@ extension sizeable{
 extension float3: sizeable{}
 extension float4: sizeable{}
 extension Vertex: sizeable {}
-extension matrix: sizeable {}
+extension Matrix: sizeable {}
 

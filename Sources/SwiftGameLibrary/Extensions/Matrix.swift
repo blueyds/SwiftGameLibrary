@@ -1,13 +1,13 @@
 import simd
 
-public typealias matrix = simd_float4x4
+public typealias Matrix = simd_float4x4
 
-extension matrix{
-    public static var identity: matrix { 
+extension Matrix{
+    public static var identity: Matrix { 
         matrix_identity_float4x4
     }
     public mutating func translateModel(_ v3: float3){
-        var result = matrix.identity
+        var result = Matrix.identity
         result.columns = (
             simd_float4(1,      0,      0,      0),
             simd_float4(0,      1,      0,      0),
@@ -37,7 +37,7 @@ extension matrix{
     }
     
     private mutating func rotate(_ amount: Float, onX: Bool = false, onY: Bool = false, onZ: Bool = false){
-        var result = matrix.identity
+        var result = Matrix.identity
         var x: Float = 0
         var y: Float = 0
         var z: Float = 0
