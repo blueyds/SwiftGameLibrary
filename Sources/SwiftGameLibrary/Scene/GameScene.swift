@@ -45,7 +45,7 @@ extension GameScene{
         encoder.setVertexBytes(&transforms.matrix, length: Matrix.stride(), index: BufferIndex.ViewMatrix)
 		encoder.setVertexBytes(&camera.matrix, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
 		
-        children.forEach() { $0.renderAll(with: encoder, currentState; pipelines[0])}
+        children.forEach() { $0.renderAll(with: encoder, currentState: pipelines[0])}
         
         encoder.popDebugGroup()
     }
