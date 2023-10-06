@@ -2,10 +2,10 @@ import simd
 import Metal
 
 public struct Camera{
-    var fov: Float 
-    var aspectRatio: Float
-    var near: Float
-    var far: Float 
+    var fov: Float = 90
+    var aspectRatio: Float = 1
+    var near: Float = 1
+    var far: Float = 1000
     
     var matrix = Matrix.identity
     // use render function to assign viewMatrix and 
