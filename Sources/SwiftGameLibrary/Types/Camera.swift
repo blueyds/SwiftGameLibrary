@@ -7,14 +7,14 @@ public struct Camera{
     var near: Float
     var far: Float 
     
-    
+    var matrix = Matrix.identity
     // use render function to assign viewMatrix and 
     // projectionMatrix 
 }
 
 extension Camera{
     
-    public func  projectionMatrix() -> Matrix {
+    public mutating func  projectionMatrix() {
         var result = matrix_identity_float4x4
         let t: Float = tan(fov / 2)
         result.columns = (
@@ -35,8 +35,7 @@ extension Camera{
                         -((2 * far * near) / (far - near)),
                         0)
         )
-        return result
-        
+        matrix = result
     }
 }
 

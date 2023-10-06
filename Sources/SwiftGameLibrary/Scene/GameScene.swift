@@ -1,8 +1,9 @@
 import Metal
 import simd
 
-public protocol GameScene: AnyObject, Transformable, Nameable{
+public protocol GameScene: AnyObject, Transformable, Projectable, Nameable{
     var children: [any GameNode] { get set }
+    
     /// pipelines should contain at least one reference
     /// the first pipeline will be used by the 
     /// default renderer. If a scene has custom
@@ -19,6 +20,7 @@ public protocol GameScene: AnyObject, Transformable, Nameable{
     /// that object changed the pipeline
     func renderScene(using : MTLRenderCommandEncoder)
     //func updateScene()
+    
 }
 
 extension GameScene{
@@ -27,6 +29,7 @@ extension GameScene{
             updateMe.doUpdate()
         }
         calculateViewMatrix()
+        camera.projectionMatrix()
         children.forEach(){
             $0.updateMeAndChildren()
         }
@@ -40,7 +43,7 @@ extension GameScene{
         encoder.setRenderPipelineState(pipelines[0])
         
         encoder.setVertexBytes(&transforms.matrix, length: Matrix.stride(), index: BufferIndex.ViewMatrix)
-		
+		encoder.setVertexBytes(&camera.matrix, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
         children.forEach(){
             if let renderedObject = $0 as? Renderable {
 				encoder.pushDebugGroup($0.name)
@@ -54,4 +57,5 @@ extension GameScene{
         }
         encoder.popDebugGroup()
     }
+
 }
