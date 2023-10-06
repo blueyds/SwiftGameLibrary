@@ -9,7 +9,7 @@ extension Transformable{
         var result = Matrix.identity
         result.translateModel(transforms.position)
         result.rotate(transforms.rotation)
-        result.scale(scale.scale)
+        result.scale(transforms.scale)
         transforms.matrix = matrix_multiply(parent, result)
     }
 }
@@ -55,7 +55,7 @@ extension Transformable {
     }
     public func scaleAll(by delta: Float){
         scaleX(by: delta)
-        scaleY(by: sdelta)
+        scaleY(by: delta)
         scaleZ(by: delta)
     }
 }

@@ -21,7 +21,7 @@ extension Matrix{
     }
     
     public mutating func scale(_ v3: float3){
-        var result = matrix.identity
+        var result = Matrix.identity
         result.columns = (
             simd_float4(v3.x, 0, 0, 0),
             simd_float4(0, v3.y, 0, 0),

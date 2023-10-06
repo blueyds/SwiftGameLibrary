@@ -10,9 +10,10 @@ extension VertexCollection{
     public var vertexCount: Int{
         vertices.count
     }
-	public func render(using encoder: MTLRenderCommandEncoder) {
+	public func render(using encoder: MTLRenderCommandEncoder, pipelineChanged: inout Bool) {
 		encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertexCount), index: BufferIndex.Vertex)
         encoder.setVertexBytes(&transforms.matrix, length: Matrix.stride(), index: BufferIndex.ModelMatrix)
 		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
+        pipeliineChanged = false
 	}
 }
