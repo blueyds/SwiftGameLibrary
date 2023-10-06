@@ -33,7 +33,7 @@ extension GameNode{
     }
      func tryToRenderMe(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
         if let renderedObject = self as? Renderable {
-				encoder.pushDebugGroup($0.name)
+				encoder.pushDebugGroup(name)
 				renderedObject.render(using: encoder, currentState: currentState)
 				encoder.popDebugGroup()
             }
