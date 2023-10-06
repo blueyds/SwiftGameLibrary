@@ -41,8 +41,9 @@ extension GameScene{
 
             if let renderedObject = $0 as? Renderable {
 				encoder.pushDebugGroup($0.name)
-				renderedObject.assignModelConstants(to: encoder)
-                if !renderedObject.render(using: encoder){
+                var changed: Bool = false
+				renderedObject.render(using: encoder, pipelineChanged: &changed)
+                if changed {
                     encoder.setRenderPipelineState(pipelines[0])
                 }
 				encoder.popDebugGroup()
@@ -50,5 +51,4 @@ extension GameScene{
         }
         encoder.popDebugGroup()
     }
-	
 }
