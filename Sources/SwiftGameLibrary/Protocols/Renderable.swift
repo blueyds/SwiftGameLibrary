@@ -3,7 +3,9 @@ import Metal
 import simd
 
 public protocol Renderable: Nameable , Transformable{
-    func render(using: MTLRenderCommandEncoder, pipelineChanged: inout Bool)
+// when you call render on a child node pass your current stte to that node
+// all nodes should reset the state when they exit if they change.
+    func render(using: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState)
 }
 
 extension Renderable{

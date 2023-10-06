@@ -26,4 +26,16 @@ extension GameNode{
             $0.updateMatrices(parent: transforms.matrix)
         }
     }
-}
+    
+    public func renderAll(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+        tryToRenderMe(with: encoder, currentState: currentState)
+        children.forEach(){ $0.renderAll( with: encoder, currentState: currentState) }
+    }
+     func tryToRenderMe(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+        if let renderedObject = self as? Renderable {
+				encoder.pushDebugGroup($0.name)
+				renderedObject.render(using: encoder, currentState: currentState)
+				encoder.popDebugGroup()
+            }
+    }
+} 

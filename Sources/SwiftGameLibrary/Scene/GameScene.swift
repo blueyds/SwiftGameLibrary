@@ -44,17 +44,9 @@ extension GameScene{
         
         encoder.setVertexBytes(&transforms.matrix, length: Matrix.stride(), index: BufferIndex.ViewMatrix)
 		encoder.setVertexBytes(&camera.matrix, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
-        children.forEach(){
-            if let renderedObject = $0 as? Renderable {
-				encoder.pushDebugGroup($0.name)
-                var changed: Bool = false
-				renderedObject.render(using: encoder, pipelineChanged: &changed)
-                if changed {
-                    encoder.setRenderPipelineState(pipelines[0])
-                }
-				encoder.popDebugGroup()
-            }
-        }
+		
+        children.forEach() { $0.renderAll(with: encoder, currentState; pipelines[0])}
+        
         encoder.popDebugGroup()
     }
 
