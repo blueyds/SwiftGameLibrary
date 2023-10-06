@@ -6,7 +6,7 @@ open class BasicScene: GameScene{
     public var name: String
     public var children: [any GameNode] = []
     public var pipelines: [MTLRenderPipelineState] = []
-    
+    public var transforms = Transforms()
 
     
     public init(named: String, using engine: MainEngine){
