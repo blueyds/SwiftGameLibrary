@@ -30,7 +30,7 @@ extension GameScene{
             $0.updateMeAndChildren()
         }
         children.forEach(){
-            $0.updateMatrices(parent: matrix.identity)
+            $0.updateMatrices(parent: Matrix.identity)
         }
     }
 
