@@ -33,7 +33,7 @@ public class Cube: CustomMesh{
         add(vertex: Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a))
         add(vertex: Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a))
         add(vertex: Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a))
-        add(vertex: vertices.append(vert)
+
     }
     private func createBottom(r: Float, g: Float, b: Float, a: Float){
     //bottom
