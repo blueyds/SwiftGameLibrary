@@ -7,7 +7,7 @@ public class Cube: CustomMesh{
         createBack(r: r, g: g, b: b, a: a)
         createFront(r: r, g: g, b: b, a: a)
     }
-    private func creatLeft(r: Float, g: Float, b: Float, a: Float){
+    private func createLeft(r: Float, g: Float, b: Float, a: Float){
       // TODO: rewrite all calls like the add vertex below. this shouldelaimate other err
         add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a))
         add(vertex: Vertex(x: -1, y: -1, z: 1, r: r, g: g, b: b, a: a))
@@ -68,7 +68,7 @@ public class Cube: CustomMesh{
             createLeft(r: left.r, g: left.g, b: left.b, a: left.a)
             createRight(r: right.r, g: right.g, b: right.b, a: right.a)
             createTop(r: top.r, g: top.g, b: top.b, a: top.a)
-            createBottom(r: bottom.r, g: bottom.g, b: bottom.b, a: botton.a)
+            createBottom(r: bottom.r, g: bottom.g, b: bottom.b, a: bottom.a)
             createBack(r: back.r, g: back.g, b: back.b, a: back.a)
             createFront(r: front.r, g: front.g, b: front.b, a: front.a)
     }
