@@ -7,7 +7,10 @@ public struct Color{
     public var a: Float
     
     init(_ r: Float, _ g: Float, _ b: Float, _ a:Float ){
-        color
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
     }
     public var vector: float4 {
         float4(r, g, b, a)
