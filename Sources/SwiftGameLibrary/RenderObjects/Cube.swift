@@ -63,8 +63,8 @@ public class Cube: CustomMesh{
         add(vertex: Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a))
     }
     public init(named: String, position: float3, left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
-            self.name = named
-            self.transforms.position = position
+        super.init(named: named, x: position.x, y: position.y, z: position.z, r: left.r, g: left.g, b: left.b, a: left.a)
+        vertices = []
             createLeft(r: left.r, g: left.g, b: left.b, a: left.a)
             createRight(r: right.r, g: right.g, b: right.b, a: right.a)
             createTop(r: top.r, g: top.g, b: top.b, a: top.a)
