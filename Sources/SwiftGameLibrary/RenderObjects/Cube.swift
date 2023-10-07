@@ -1,82 +1,70 @@
 public class Cube: CustomMesh{
     public override func createVertices(r: Float, g: Float, b: Float, a: Float) {
-        
+        createLeft(r: r, g: g, b: b, a: a)
+        createRight(r: r, g: g, b: b, a: a)
+        createTop(r: r, g: g, b: b, a: a)
+        createBottom(r: r, g: g, b: b, a: a)
+        createBack(r: r, g: g, b: b, a: a)
+        createFront(r: r, g: g, b: b, a: a)
     }
     private func creatLeft(r: Float, g: Float, b: Float, a: Float){
-      //Left
-      let vert = [
-            Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: -1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a)
-            ]
-            vertices.append(vert)
+      // TODO: rewrite all calls like the add vertex below. this shouldelaimate other err
+        add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: -1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a))
     }
     private func createRight(r: Float, g: Float, b: Float, a: Float){
-    // Right
-    let vert = [
-            Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a)
-            ]
-             vertices.append(vert)
+        // Right
+        add(vertex: Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a))
     }
     private func createTop(r: Float, g: Float, b: Float, a: Float){
-    //top
-            let vert = [
-            Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a)
-            ]
-            vertices.append(vert)
+        //top
+        add(vertex: Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: vertices.append(vert)
     }
     private func createBottom(r: Float, g: Float, b: Float, a: Float){
     //bottom
-    let vert = [
-            Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: -1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a)
-            ]
-            vertices.append(vert)
+        add(vertex: Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: -1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a))
     }
     private func createBack(r: Float, g: Float, b: Float, a: Float){
-    //back
-    let vert = [
-            Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a)
-            ]
-            vertices.append(vert)
+        //back
+        add(vertex: Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a)
     }
     private func createFront(r: Float, g: Float, b: Float, a: Float){
     //front
-        let vert = [
-            Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: -1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a),
-            Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a)
-        ]
-        vertices.append(vert)
+        add(vertex: Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: -1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a))
+        add(vertex: Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a))
     }
-    public init(position: float4, left: Color, right: Color, top: Color, botton: Color, back: Color, front: Color){
+    public init(named: String, position: float3, left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
             self.name = named
-            position(x: x, y: y, z: z)
+            self.transforms.position = position
             createLeft(r: left.r, g: left.g, b: left.b, a: left.a)
             createRight(r: right.r, g: right.g, b: right.b, a: right.a)
             createTop(r: top.r, g: top.g, b: top.b, a: top.a)
