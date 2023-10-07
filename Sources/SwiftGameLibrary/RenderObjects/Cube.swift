@@ -51,7 +51,7 @@ public class Cube: CustomMesh{
         add(vertex: Vertex(x: -1, y: 1, z: -1, r: r, g: g, b: b, a: a))
         add(vertex: Vertex(x: 1, y: 1, z: -1, r: r, g: g, b: b, a: a))
         add(vertex: Vertex(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a))
-        add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a)
+        add(vertex: Vertex(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a))
     }
     private func createFront(r: Float, g: Float, b: Float, a: Float){
     //front
