@@ -11,7 +11,7 @@ public struct Vertex{
     }
     public init(_ pos: float3, _ color: Color){
         self.position = pos
-        self.color = color.float4
+        self.color = color.vector
     }
     static public var vertexDescriptor: MTLVertexDescriptor = {
         let result = MTLVertexDescriptor()
