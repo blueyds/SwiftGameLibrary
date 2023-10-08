@@ -9,6 +9,10 @@ public struct Vertex{
         position = float3(x, y, z)
         color = float4(r, g, b, a)
     }
+    public init(_ pos: float3, _ color: Color){
+        self.position = pos
+        self.color = color.float4
+    }
     static public var vertexDescriptor: MTLVertexDescriptor = {
         let result = MTLVertexDescriptor()
         // POsition
