@@ -40,11 +40,11 @@ public class MainEngine{
         pipelineDescriptor.vertexDescriptor = Vertex.vertexDescriptor
         return try? device!.makeRenderPipelineState(descriptor: pipelineDescriptor)
     }
-    public func makeDepthState(device: MTLDevice, isDepthWriteEnabled: Bool, depthCompareFunction: MTLCompareFunction) -> MTLDepthStencilState? {
+    public func makeDepthState( isDepthWriteEnabled: Bool, depthCompareFunction: MTLCompareFunction) -> MTLDepthStencilState? {
         let depthStencilDescriptor = MTLDepthStencilDescriptor()
         depthStencilDescriptor.isDepthWriteEnabled = isDepthWriteEnabled
         depthStencilDescriptor.depthCompareFunction = depthCompareFunction
-        return device.makeDepthStencilState(descriptor: depthStencilDescriptor)
+        return device?.makeDepthStencilState(descriptor: depthStencilDescriptor)
 }
     
     
