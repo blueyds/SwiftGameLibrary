@@ -13,7 +13,7 @@ public class Cube: GameNode, VertexCollection{
     public init(named: String, position: float3, color: Color){
         self.name = named
         transforms.position = position
-        createVertices(r: color.r, g: color.g, b: color.b, g: color.g, a: color.a)
+        createVertices(r: color.r, g: color.g, b: color.b,a: color.a)
     }
     public init(named: String, position: float3, left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
         self.name = named
