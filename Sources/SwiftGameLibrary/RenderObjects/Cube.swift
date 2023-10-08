@@ -10,10 +10,14 @@ public class Cube: GameNode, VertexCollection{
 	public var transforms = Transforms()
     
 	public var vertices: [Vertex] = []
-    
+    public init(named: String, position: float3, color: Color){
+        self.name = named
+        transforms.position = position
+        createVertices(r: color.r, g: color.g, b: color.b, g: color.g, a: color.a)
+    }
     public init(named: String, position: float3, left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
-        super.init(named: named, x: position.x, y: position.y, z: position.z, r: left.r, g: left.g, b: left.b, a: left.a)
-        vertices = []
+        self.name = named
+        transforms.position = position
             createLeft(r: left.r, g: left.g, b: left.b, a: left.a)
             createRight(r: right.r, g: right.g, b: right.b, a: right.a)
             createTop(r: top.r, g: top.g, b: top.b, a: top.a)
@@ -22,7 +26,7 @@ public class Cube: GameNode, VertexCollection{
             createFront(r: front.r, g: front.g, b: front.b, a: front.a)
         }
     
-    public override func createVertices(r: Float, g: Float, b: Float, a: Float) {
+    public  func createVertices(r: Float, g: Float, b: Float, a: Float) {
         createLeft(r: r, g: g, b: b, a: a)
         createRight(r: r, g: g, b: b, a: a)
         createTop(r: r, g: g, b: b, a: a)

@@ -24,7 +24,7 @@ open class CustomMesh: GameNode, VertexCollection{
 	public init(named : String, x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
 		self.name = named
 		position(x: x, y: y, z: z)
-		createVertices(r: r, g: g, b: b, a: a)`
+		createVertices(r: r, g: g, b: b, a: a)
 	}
 	open func createVertices(r: Float, g: Float, b: Float, a: Float){ }
 	
