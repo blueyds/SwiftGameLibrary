@@ -87,10 +87,10 @@ public class Cube: GameNode, VertexCollection{
     //front
       add(vertex: Vertex( float3( -1, 1, 1 ), color))
       add(vertex: Vertex( float3( -1, -1, 1 ), color))
-      add(vertex: Vertex( float3( 1, -1, -1 ), color))
+      add(vertex: Vertex( float3( 1, -1, 1 ), color))
       add(vertex: Vertex( float3( 1, 1, 1 ), color))
       add(vertex: Vertex( float3( -1, 1, 1 ), color))
-      add(vertex: Vertex( float3( 1, -1, -1 ), color))
+      add(vertex: Vertex( float3( 1, -1, 1 ), color))
       
     }
     
