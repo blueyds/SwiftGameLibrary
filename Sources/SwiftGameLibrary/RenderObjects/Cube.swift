@@ -1,4 +1,27 @@
-public class Cube: CustomMesh{
+public class Cube: GameNode, VertexCollection{
+    	public var id = Int.NextID()
+
+	public var name: String
+	
+	//public var parent: (any GameNode)?
+
+	public var children: [any GameNode] = []
+
+	public var transforms = Transforms()
+    
+	public var vertices: [Vertex] = []
+    
+    public init(named: String, position: float3, left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
+        super.init(named: named, x: position.x, y: position.y, z: position.z, r: left.r, g: left.g, b: left.b, a: left.a)
+        vertices = []
+            createLeft(r: left.r, g: left.g, b: left.b, a: left.a)
+            createRight(r: right.r, g: right.g, b: right.b, a: right.a)
+            createTop(r: top.r, g: top.g, b: top.b, a: top.a)
+            createBottom(r: bottom.r, g: bottom.g, b: bottom.b, a: bottom.a)
+            createBack(r: back.r, g: back.g, b: back.b, a: back.a)
+            createFront(r: front.r, g: front.g, b: front.b, a: front.a)
+        }
+    
     public override func createVertices(r: Float, g: Float, b: Float, a: Float) {
         createLeft(r: r, g: g, b: b, a: a)
         createRight(r: r, g: g, b: b, a: a)
@@ -62,14 +85,5 @@ public class Cube: CustomMesh{
         add(vertex: Vertex(x: -1, y: 1, z: 1, r: r, g: g, b: b, a: a))
         add(vertex: Vertex(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a))
     }
-    public init(named: String, position: float3, left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
-        super.init(named: named, x: position.x, y: position.y, z: position.z, r: left.r, g: left.g, b: left.b, a: left.a)
-        vertices = []
-            createLeft(r: left.r, g: left.g, b: left.b, a: left.a)
-            createRight(r: right.r, g: right.g, b: right.b, a: right.a)
-            createTop(r: top.r, g: top.g, b: top.b, a: top.a)
-            createBottom(r: bottom.r, g: bottom.g, b: bottom.b, a: bottom.a)
-            createBack(r: back.r, g: back.g, b: back.b, a: back.a)
-            createFront(r: front.r, g: front.g, b: front.b, a: front.a)
-    }
+    
 }
