@@ -36,61 +36,61 @@ public class Cube: GameNode, VertexCollection{
     }
     private func createLeft(_ color: Color){
       // TODO: rewrite all calls like the add vertex below. this shouldelaimate other err
-      add(vertex: Vertex( float3( -1, -1, -1), color)
-      add(vertex: Vertex( float3( -1, -1, 1), color)
-      add(vertex: Vertex( float3( -1, 1, 1), color)
-      add(vertex: Vertex( float3( -1, -1, -1), color)
-      add(vertex: Vertex( float3( -1, 1, 1), color)
-      add(vertex: Vertex( float3( -1, 1, -1), color)
+      add(vertex: Vertex( float3( -1, -1, -1), color))
+      add(vertex: Vertex( float3( -1, -1, 1), color))
+      add(vertex: Vertex( float3( -1, 1, 1), color))
+      add(vertex: Vertex( float3( -1, -1, -1), color))
+      add(vertex: Vertex( float3( -1, 1, 1), color))
+      add(vertex: Vertex( float3( -1, 1, -1), color))
       
     }
     private func createRight(_ color: Color){
         // Right
-      add(vertex: Vertex( float3( 1, 1, 1 ), color)
-      add(vertex: Vertex( float3( 1, -1, -1 ), color)
-      add(vertex: Vertex( float3( 1, 1, -1 ), color)
-      add(vertex: Vertex( float3(  1, -1, -1), color)
-      add(vertex: Vertex( float3( 1, 1, 1 ), color)
-      add(vertex: Vertex( float3( 1, -1, 1 ), color)
+      add(vertex: Vertex( float3( 1, 1, 1 ), color))
+      add(vertex: Vertex( float3( 1, -1, -1 ), color))
+      add(vertex: Vertex( float3( 1, 1, -1 ), color))
+      add(vertex: Vertex( float3(  1, -1, -1), color))
+      add(vertex: Vertex( float3( 1, 1, 1 ), color))
+      add(vertex: Vertex( float3( 1, -1, 1 ), color))
     
     }
     private func createTop(_ color: Color){
         //top
-      add(vertex: Vertex( float3( 1, 1, 1  ), color)
-      add(vertex: Vertex( float3( 1, 1, -1), color)
-      add(vertex: Vertex( float3( -1, 1, -1 ), color)
-      add(vertex: Vertex( float3( 1, 1, 1 ), color)
-      add(vertex: Vertex( float3( -1, 1, -1 ), color)
-      add(vertex: Vertex( float3( -1, 1, 1 ), color)
+      add(vertex: Vertex( float3( 1, 1, 1  ), color))
+      add(vertex: Vertex( float3( 1, 1, -1), color))
+      add(vertex: Vertex( float3( -1, 1, -1 ), color))
+      add(vertex: Vertex( float3( 1, 1, 1 ), color))
+      add(vertex: Vertex( float3( -1, 1, -1 ), color))
+      add(vertex: Vertex( float3( -1, 1, 1 ), color))
       
     }
     private func createBottom(_ color: Color){
     //bottom
-      add(vertex: Vertex( float3( 1, -1, 1 ), color)
-      add(vertex: Vertex( float3( -1, -1, -1 ), color)
-      add(vertex: Vertex( float3( 1, -1, -1 ), color)
-      add(vertex: Vertex( float3( 1, -1, 1 ), color)
-      add(vertex: Vertex( float3( -1, -1, 1 ), color)
-      add(vertex: Vertex( float3( -1, -1, -1 ), color)
+      add(vertex: Vertex( float3( 1, -1, 1 ), color))
+      add(vertex: Vertex( float3( -1, -1, -1 ), color))
+      add(vertex: Vertex( float3( 1, -1, -1 ), color))
+      add(vertex: Vertex( float3( 1, -1, 1 ), color))
+      add(vertex: Vertex( float3( -1, -1, 1 ), color))
+      add(vertex: Vertex( float3( -1, -1, -1 ), color))
     }
     private func createBack(_ color: Color){
         //back
-      add(vertex: Vertex( float3( 1, 1, -1 ), color)
-      add(vertex: Vertex( float3( -1, -1, -1 ), color)
-      add(vertex: Vertex( float3( -1, 1, -1 ), color)
-      add(vertex: Vertex( float3( 1, 1, -1 ), color)
-      add(vertex: Vertex( float3(  1, -1, -1), color)
-      add(vertex: Vertex( float3( -1, -1, -1 ), color)
+      add(vertex: Vertex( float3( 1, 1, -1 ), color))
+      add(vertex: Vertex( float3( -1, -1, -1 ), color))
+      add(vertex: Vertex( float3( -1, 1, -1 ), color))
+      add(vertex: Vertex( float3( 1, 1, -1 ), color))
+      add(vertex: Vertex( float3(  1, -1, -1), color))
+      add(vertex: Vertex( float3( -1, -1, -1 ), color))
       
     }
     private func createFront(_ color: Color){
     //front
-      add(vertex: Vertex( float3( -1, 1, 1 ), color)
-      add(vertex: Vertex( float3( -1, -1, 1 ), color)
-      add(vertex: Vertex( float3( 1, -1, -1 ), color)
-      add(vertex: Vertex( float3( 1, 1, 1 ), color)
-      add(vertex: Vertex( float3( -1, 1, 1 ), color)
-      add(vertex: Vertex( float3( 1, -1, -1 ), color)
+      add(vertex: Vertex( float3( -1, 1, 1 ), color))
+      add(vertex: Vertex( float3( -1, -1, 1 ), color))
+      add(vertex: Vertex( float3( 1, -1, -1 ), color))
+      add(vertex: Vertex( float3( 1, 1, 1 ), color))
+      add(vertex: Vertex( float3( -1, 1, 1 ), color))
+      add(vertex: Vertex( float3( 1, -1, -1 ), color))
       
     }
     
