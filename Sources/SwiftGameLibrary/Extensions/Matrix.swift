@@ -90,9 +90,9 @@ extension Matrix{
         self = matrix_multiply(self, result)
     }
     
-    public mutating func perspective(degreesFov fov: Float, aspectRatio: Float, nearZ: Float, farz: Float ) {
-        var result = Matrix.idenity
-        let ys = 1 / tanf(Math.fromDegrees(fov) * 0.5)
+    public mutating func perspective(degreesFov fov: Float, aspectRatio: Float, nearZ: Float, farZ: Float ) {
+        var result = Matrix.identity
+        let ys = 1 / tanf(fov.fromDegrees * 0.5)
         let xs = ys / aspectRatio
         let zs = farZ / (nearZ - farZ)
         result.columns = (

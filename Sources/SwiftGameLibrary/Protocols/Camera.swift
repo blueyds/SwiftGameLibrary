@@ -1,3 +1,6 @@
+import Metal
+import simd
+
 public protocol Camera: Renderable {
     var viewMatrix: Matrix { get }
     var projectionMatrix: Matrix { get }

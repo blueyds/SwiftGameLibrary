@@ -3,7 +3,9 @@ import simd
 // TODO: this is lilke a perspective camera
 // see https://markdaws.net/blog/2019-12-17-toy3d/#_perspectivecamera
 
-public struct PerspectiveCamera: Camera{
+public class PerspectiveCamera: Camera, Identifiable{
+    public let name: String = "Perspective Camera"
+    public let id: Int = Int.NextID()
     public var transforms: Transforms = Transforms() 
         { didset{ didViewChange = true } }
     public var origin: float3{
@@ -29,8 +31,8 @@ public struct PerspectiveCamera: Camera{
         { didset{ didProjectionChange = true } }
     private var didViewChange: Bool = true
     private var didProjectionChange: Bool = true
-    private var _viewMatrix: Matrix = Matrix.identiy
-    private var _projectionMatrix: Matrix = Matrix.identiy
+    private var _viewMatrix: Matrix = Matrix.identity
+    private var _projectionMatrix: Matrix = Matrix.identity
     public var viewMatrix: Matrix {
         if didViewChange {
             let result = Matrix.identity
