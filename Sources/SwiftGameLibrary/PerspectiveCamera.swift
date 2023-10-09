@@ -49,9 +49,9 @@ public final class PerspectiveCamera: Camera, Identifiable{
         }
     }
     
-    public init(name: String){
+    public init(named: String){
       self.transforms = Transforms()
-        self.name = name
+        self.name = named
         self.lookAt = float3.Zero
         self.up = float3(0,1,0)
         self.fov = 90
@@ -59,9 +59,9 @@ public final class PerspectiveCamera: Camera, Identifiable{
         self.near = 1
         self.far = 1000  
     }
-    public init(name: String, origin: float3, lookAt: float3, up: float3, fov: Float, aspectRatio: Float, near: Float, far: Float ){
+    public init(named: String, origin: float3, lookAt: float3, up: float3, fov: Float, aspectRatio: Float, near: Float, far: Float ){
         self.transforms = Transforms()
-        self.name = name
+        self.name = named
         self.origin = origin
         self.lookAt = lookAt
         self.up = up
