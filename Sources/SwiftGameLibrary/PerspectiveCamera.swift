@@ -61,9 +61,8 @@ public final class PerspectiveCamera: Camera, Identifiable{
         self.far = 1000  
     }
     public init(named: String, origin: float3, lookAt: float3, up: float3, fov: Float, aspectRatio: Float, near: Float, far: Float ){
-        self.transforms = Transforms()
+        self.transforms = Transforms(position: origin, rotation: float3.Zero, scale: float3.One)
         self.name = named
-        self.origin = origin
         self.lookAt = lookAt
         self.up = up
         self.fov = fov
