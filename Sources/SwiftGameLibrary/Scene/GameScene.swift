@@ -1,7 +1,7 @@
 import Metal
 import simd
 
-public protocol GameScene: AnyObject, Transformable, Projectable, Nameable{
+public protocol GameScene: AnyObject, Nameable, Identifiable{
     var children: [any GameNode] { get set }
     
     /// pipelines should contain at least one reference
@@ -20,6 +20,7 @@ public protocol GameScene: AnyObject, Transformable, Projectable, Nameable{
     /// that object changed the pipeline
     func renderScene(using : MTLRenderCommandEncoder)
     //func updateScene()
+    var camera: Camera { get }
     
 }
 
@@ -28,8 +29,6 @@ extension GameScene{
         if let updateMe = self as? Updateable {
             updateMe.doUpdate()
         }
-        calculateViewMatrix()
-        camera.projectionMatrix()
         children.forEach(){
             $0.updateMeAndChildren()
         }
@@ -41,10 +40,8 @@ extension GameScene{
     public func renderScene(using encoder: MTLRenderCommandEncoder){
         encoder.pushDebugGroup(name)
         encoder.setRenderPipelineState(pipelines[0])
+        camera.render(using: encoder, currentState: pipelines[0])
         
-        encoder.setVertexBytes(&transforms.matrix, length: Matrix.stride(), index: BufferIndex.ViewMatrix)
-		encoder.setVertexBytes(&camera.matrix, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
-		
         children.forEach() { $0.renderAll(with: encoder, currentState: pipelines[0])}
         
         encoder.popDebugGroup()

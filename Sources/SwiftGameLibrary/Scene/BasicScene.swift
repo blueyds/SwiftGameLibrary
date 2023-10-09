@@ -4,10 +4,10 @@ import Metal
 
 open class BasicScene: GameScene{
     public var name: String
+    public var id: Int = Int.NextID()
     public var children: [any GameNode] = []
     public var pipelines: [MTLRenderPipelineState] = []
-    public var transforms = Transforms()
-    public var camera: Camera = Camera()
+    public var camera: Camera = PerspectiveCamera()
     
     public init(named: String, using engine: MainEngine){
         self.name = named
