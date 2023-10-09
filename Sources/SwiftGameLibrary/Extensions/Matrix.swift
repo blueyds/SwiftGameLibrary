@@ -99,8 +99,7 @@ extension Matrix{
             float4(xs,  0, 0,   0),
             float4( 0, ys, 0,   0),
             float4( 0,  0, zs, -1),
-            float4( 0,  0, zs * nearZ, 0)
-        ])
+            float4( 0,  0, zs * nearZ, 0))
         self = matrix_multiply(self, result)
     }
 }
