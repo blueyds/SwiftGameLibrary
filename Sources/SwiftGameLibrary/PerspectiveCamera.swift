@@ -3,11 +3,10 @@ import simd
 // TODO: this is lilke a perspective camera
 // see https://markdaws.net/blog/2019-12-17-toy3d/#_perspectivecamera
 
-public class PerspectiveCamera: Camera, Identifiable{
+public final class PerspectiveCamera: Camera, Identifiable{
     public let name: String = "Perspective Camera"
     public let id: Int = Int.NextID()
-    public var transforms: Transforms = Transforms() 
-        { didset{ didViewChange = true } }
+    public var transforms: Transforms { didset { didViewChange = true } }
     public var origin: float3{
         get{
             transforms.position
@@ -29,7 +28,7 @@ public class PerspectiveCamera: Camera, Identifiable{
     private var _projectionMatrix: Matrix = Matrix.identity
     public var viewMatrix: Matrix {
         if didViewChange {
-            let result = Matrix.identity
+            var result = Matrix.identity
             result.look(eye: origin, look: lookAt, up: up)
             _viewMatrix = result
             didViewChange = false
@@ -40,7 +39,7 @@ public class PerspectiveCamera: Camera, Identifiable{
     }
     public var projectionMatrix: Matrix {
         if didProjectionChange {
-            let result = Matrix.identity
+            var result = Matrix.identity
             result.perspective(degreesFov: fov, aspectRatio: aspectRatio, nearZ: near, farz: far)
             _projectionMatrix = result
             didProjectionChange = false
@@ -63,6 +62,7 @@ public class PerspectiveCamera: Camera, Identifiable{
     public init(name: String, origin: float3, lookAt: float3, up: float3, fov: Float, aspectRatio: Float, near: Float, far: Float ){
         self.transforms = Transforms()
         self.name = name
+        self.origin = origin
         self.lookAt = lookAt
         self.up = up
         self.fov = fov
