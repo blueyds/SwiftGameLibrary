@@ -4,7 +4,7 @@ import simd
 // see https://markdaws.net/blog/2019-12-17-toy3d/#_perspectivecamera
 
 public final class PerspectiveCamera: Camera, Identifiable{
-    public let name: String = "Perspective Camera"
+    public let name: String
     public let id: Int = Int.NextID()
     public var transforms: Transforms { didSet { didViewChange = true } }
     public var origin: float3{
