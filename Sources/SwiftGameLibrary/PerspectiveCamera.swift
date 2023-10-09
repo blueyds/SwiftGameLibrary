@@ -6,22 +6,23 @@ import simd
 public final class PerspectiveCamera: Camera, Identifiable{
     public let name: String = "Perspective Camera"
     public let id: Int = Int.NextID()
-    public var transforms: Transforms { didset { didViewChange = true } }
+    public var transforms: Transforms { didSet { didViewChange = true } }
     public var origin: float3{
         get{
             transforms.position
         }
         set(newOrigin){
             transforms.position = newOrigin
+            didViewChange = true
         }
     }
-    public var lookAt: float3 { didset { didViewChange = true } }
+    public var lookAt: float3 { didSet { didViewChange = true } }
     // up is the rotation. when we move our head left to right, our vector look does not change. This handles that.
-    public var up: float3 { didset { didViewChange = true } }
-    public var fov: Float { didset { didProjectionChange = true } }
-    public var aspectRatio: Float { didset { didProjectionChange = true } }
-    public var near: Float { didset { didProjectionChange = true } }
-    public var far: Float { didset { didProjectionChange = true } }
+    public var up: float3 { didSet { didViewChange = true } }
+    public var fov: Float { didSet { didProjectionChange = true } }
+    public var aspectRatio: Float { didSet { didProjectionChange = true } }
+    public var near: Float { didSet { didProjectionChange = true } }
+    public var far: Float { didSet { didProjectionChange = true } }
     private var didViewChange: Bool = true
     private var didProjectionChange: Bool = true
     private var _viewMatrix: Matrix = Matrix.identity
