@@ -7,8 +7,10 @@ public protocol Camera: Renderable {
 }
 
 extension Camera {
-    public func render(using: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
-        encoder.setVertexBytes(&viewMatrix, length: Matrix.stride(), index: BufferIndex.ViewMatrix)
-        encoder.setVertexBytes(&projectionMatrix, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
+    public func render(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+        var view: Matrix = viewMatrix
+        var projection: Matrix = projectionMatrix
+        encoder.setVertexBytes(&view, length: Matrix.stride(), index: BufferIndex.ViewMatrix)
+        encoder.setVertexBytes(&projection, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
     }
 }

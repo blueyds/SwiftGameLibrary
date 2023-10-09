@@ -71,7 +71,7 @@ extension Matrix{
     }
     
     public mutating func look(eye: float3, look: float3, up: float3){
-        var result = Matrix.identiy
+        var result = Matrix.identity
         let vLook = normalize(look)
         let vSide = cross(vLook, normalize(up))
         let vUp = cross(vSide, vLook)

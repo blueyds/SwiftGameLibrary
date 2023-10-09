@@ -3,7 +3,7 @@ import MetalKit
 public protocol SceneManager{
     func mainLoop(view: MTKView)
     func render(view: MTKView)
-    var currentScene: GameScene? { get set }
+    var currentScene: (any GameScene)? { get set }
     var engine: MainEngine? { get }
     
 }
