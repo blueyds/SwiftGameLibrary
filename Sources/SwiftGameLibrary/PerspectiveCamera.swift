@@ -41,7 +41,7 @@ public final class PerspectiveCamera: Camera, Identifiable{
     public var projectionMatrix: Matrix {
         if didProjectionChange {
             var result = Matrix.identity
-            result.perspective(degreesFov: fov, aspectRatio: aspectRatio, nearZ: near, farz: far)
+            result.perspective(degreesFov: fov, aspectRatio: aspectRatio, nearZ: near, farZ: far)
             _projectionMatrix = result
             didProjectionChange = false
             return result
