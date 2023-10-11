@@ -12,7 +12,6 @@ public protocol GameScene: AnyObject, Nameable, Identifiable{
     /// If an object changes teh state, then the 
     /// default renderScene will go back to the
     /// default pipeline when exiting from that object
-    var pipelines: [MTLRenderPipelineState] { get }
     /// renderScene should issue rendercommands onto 
     /// the encoder passed using various objects
     /// render function. It should know what pipeline
@@ -40,12 +39,11 @@ extension GameScene{
         }
     }
 
-    public func renderScene(using encoder: MTLRenderCommandEncoder){
+    public func renderScene(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
         encoder.pushDebugGroup(name)
-        encoder.setRenderPipelineState(pipelines[0])
-        camera.render(using: encoder, currentState: pipelines[0])
         
-        children.forEach() { $0.renderAll(with: encoder, currentState: pipelines[0])}
+        camera.render(using: encoder, currentState: currentState)
+        children.forEach() { $0.renderAll(with: encoder, currentState: currentState)}
         
         encoder.popDebugGroup()
     }
