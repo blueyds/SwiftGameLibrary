@@ -17,7 +17,7 @@ public protocol GameScene: AnyObject, Nameable, Identifiable{
     /// render function. It should know what pipeline
     /// was used going into a render function in case
     /// that object changed the pipeline
-    func renderScene(using : MTLRenderCommandEncoder)
+    func renderScene(using : MTLRenderCommandEncoder, currentState: MTLRenderPipelineState)
     //func updateScene()
     var camera: Camera { get }
     
