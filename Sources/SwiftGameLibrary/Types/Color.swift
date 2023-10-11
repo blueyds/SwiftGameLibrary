@@ -1,4 +1,5 @@
 import simd
+import Metal
 
 public struct Color{
     public var r: Float
@@ -14,6 +15,9 @@ public struct Color{
     }
     public var vector: float4 {
         float4(r, g, b, a)
+    }
+    public var clearColor: MTLClearColor{
+        MTLClearColorMake(r, g, b, a)
     }
     static public func black(a: Float = 1)-> Color{ Color(0,0,0,a)}
     static public func navy(a: Float = 1)-> Color { Color(0,0,0.5,a)}
