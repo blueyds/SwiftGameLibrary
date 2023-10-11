@@ -29,6 +29,9 @@ extension GameScene{
         if let updateMe = self as? Updateable {
             updateMe.doUpdate()
         }
+        if let updateCamera = camera as? Updateable{
+            camera.doUpdate()
+        }
         children.forEach(){
             $0.updateMeAndChildren()
         }
