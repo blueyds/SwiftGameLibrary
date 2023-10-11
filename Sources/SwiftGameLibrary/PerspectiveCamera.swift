@@ -1,15 +1,9 @@
 import simd
-// TODO: refacytor to a camera protocil with a viewmatrix and projection mtraix that is transformable
-// TODO: this is lilke a perspective camera
-// see https://markdaws.net/blog/2019-12-17-toy3d/#_perspectivecamera
 
 public class PerspectiveCamera: Camera, Identifiable{
     public let name: String
     public let id: Int = Int.NextID()
     public var transforms: Transforms
-    // public var lookAt: float3 
-    // up is the rotation. when we move our head left to right, our vector look does not change. This handles that.
-    // public var up: float3
     public var fov: Float
     public var aspectRatio: Float
     public var near: Float
@@ -22,7 +16,7 @@ public class PerspectiveCamera: Camera, Identifiable{
     }
     
     public init(named: String){
-      self.transforms = Transforms()
+        self.transforms = Transforms()
         self.name = named
         self.fov = 90
         self.aspectRatio = 1
