@@ -31,5 +31,7 @@ public class PerspectiveCamera: Camera, Identifiable{
         self.near = near
         self.far = far
     }
-    
+    public func changeAspectRatio(_ ratio: Float){
+        self.aspectRatio = ratio
+    }
 }

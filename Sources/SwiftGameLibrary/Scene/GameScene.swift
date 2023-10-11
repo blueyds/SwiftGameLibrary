@@ -47,5 +47,8 @@ extension GameScene{
         
         encoder.popDebugGroup()
     }
-
+    
+    public func changeAspectRatio(_ newRatio: Float){
+        camera.changeAspectRatio(newRatio)
+    }
 }

@@ -4,6 +4,7 @@ import simd
 public protocol Camera: Renderable, Transformable, AnyObject, Nameable {
     var viewMatrix: Matrix { get }
     var projectionMatrix: Matrix { get }
+    func changeAspectRatio(_ : Float)
 }
 
 extension Camera {
@@ -13,4 +14,5 @@ extension Camera {
         encoder.setVertexBytes(&view, length: Matrix.stride(), index: BufferIndex.ViewMatrix)
         encoder.setVertexBytes(&projection, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
     }
+    public func changeAspectRatio(_ ratio: Float){ }
 }
