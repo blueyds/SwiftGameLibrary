@@ -1,7 +1,9 @@
 import simd
 
 public typealias Matrix = simd_float4x4
-
+// TODO: Convert view and projection type matrix functions to static funcs.
+// Camera could multiply with another matrix if it wants to do som3ething
+// different
 extension Matrix{
     public static var identity: Matrix { 
         matrix_identity_float4x4
@@ -69,28 +71,14 @@ extension Matrix{
         )
         self = matrix_multiply(self, result)
     }
-    
-    public mutating func look(eye: float3, look: float3, up: float3){
+    // TODO: not implemented yet
+    internal static func lookAt(origin: float3, target: float3, up: float3) -> Matrix{
         var result = Matrix.identity
-        let vLook = normalize(look)
-        let vSide = cross(vLook, normalize(up))
-        let vUp = cross(vSide, vLook)
         
-        result.columns = (
-            float4(vSide, 0),
-            float4(vUp, 0),
-            float4(-vLook, 0),
-            float4(0, 0, 0, 1))
-        result = result.transpose
-
-        let eyeInv = -(result * float4(eye, 0))
-        result[3][0] = eyeInv.x
-        result[3][1] = eyeInv.y
-        result[3][2] = eyeInv.z
-        self = matrix_multiply(self, result)
+        return result
     }
     
-    public mutating func perspective(degreesFov fov: Float, aspectRatio: Float, nearZ: Float, farZ: Float ) {
+    public static func perspective(degreesFov fov: Float, aspectRatio: Float, nearZ: Float, farZ: Float )-> Matrix {
         var result = Matrix.identity
         let ys = 1 / tanf(fov.fromDegrees * 0.5)
         let xs = ys / aspectRatio
@@ -100,6 +88,6 @@ extension Matrix{
             float4( 0, ys, 0,   0),
             float4( 0,  0, zs, -1),
             float4( 0,  0, zs * nearZ, 0))
-        self = matrix_multiply(self, result)
+        return result
     }
 }
