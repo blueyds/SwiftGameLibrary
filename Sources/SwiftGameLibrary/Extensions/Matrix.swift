@@ -18,9 +18,6 @@ extension Matrix{
         )
         self = matrix_multiply(self, result)
     }
-    public mutating func translateView(_ position: simd_float3){
-        translateModel(-position)
-    }
     
     public mutating func scale(_ v3: float3){
         var result = Matrix.identity
@@ -71,6 +68,18 @@ extension Matrix{
         )
         self = matrix_multiply(self, result)
     }
+    
+    public static func view(position: simd_float3)-> Matrix{
+        var result = Matrix.identity
+        result.columns = (
+            simd_float4(1,      0,      0,      0),
+            simd_float4(0,      1,      0,      0),
+            simd_float4(0,      0,      1,      0),
+            simd_float4(-position.x, -position.y,   -position.z,   1)
+        )
+        return result
+    }
+    
     // TODO: not implemented yet
     internal static func lookAt(origin: float3, target: float3, up: float3) -> Matrix{
         var result = Matrix.identity
