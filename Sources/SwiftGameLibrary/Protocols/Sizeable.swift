@@ -22,6 +22,7 @@ extension sizeable{
         stride() * count
     }
 }
+extension float2: sizeable{}
 extension float3: sizeable{}
 extension float4: sizeable{}
 extension Vertex: sizeable {}
