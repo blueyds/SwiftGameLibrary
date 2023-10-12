@@ -37,7 +37,7 @@ public struct Vertex{
         result.attributes[2].offset = offset
         offset += float3.size()
         // texCoord
-        result.attributes[3].formate = .float2
+        result.attributes[3].format = .float2
         result.attributes[3].bufferIndex = 0
         result.attributes[3].offset = offset
         // layout
