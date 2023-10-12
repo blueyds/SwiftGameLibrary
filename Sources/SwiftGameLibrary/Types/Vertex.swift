@@ -11,13 +11,13 @@ public struct Vertex{
         position = float3(x, y, z)
         color = float4(r, g, b, a)
         normals = float3.Zero
-        texCoor = float2.Zero
+        texCoord = float2.Zero
     }
     public init(_ pos: float3, _ color: Color){
         self.position = pos
         self.color = color.vector
         normals = float3.Zero
-        texCoor = float2.Zero
+        texCoord = float2.Zero
     }
     static public var vertexDescriptor: MTLVertexDescriptor = {
         let result = MTLVertexDescriptor()
