@@ -8,7 +8,7 @@ public protocol GameNode: AnyObject, Transformable, Identifiable, Nameable {
     func updateMatrices(parent: Matrix)
 }
 extension GameNode{
-    public func addChild(_ child: any GameNode){
+    public func add(child: any GameNode){
         children.append(child)
       //  child.parent = self
     }

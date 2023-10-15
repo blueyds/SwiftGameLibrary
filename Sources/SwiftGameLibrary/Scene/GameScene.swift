@@ -51,4 +51,8 @@ extension GameScene{
     public func changeAspectRatio(_ newRatio: Float){
         camera.changeAspectRatio(newRatio)
     }
+    
+    public func add(child: any GameNode){
+        children.append(child)
+    }
 }
