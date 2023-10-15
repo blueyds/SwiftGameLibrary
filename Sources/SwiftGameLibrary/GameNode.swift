@@ -5,6 +5,7 @@ import Metal
 
 public protocol GameNode: AnyObject, Transformable, Identifiable, Nameable {
     var children: [any GameNode] { get set }
+    func updateMatrices(parent: Matrix)
 }
 extension GameNode{
     public func addChild(_ child: any GameNode){
@@ -33,9 +34,7 @@ extension GameNode{
     }
      func tryToRenderMe(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
         if let renderedObject = self as? Renderable {
-				encoder.pushDebugGroup(name)
 				renderedObject.render(using: encoder, currentState: currentState)
-				encoder.popDebugGroup()
             }
     }
 } 
