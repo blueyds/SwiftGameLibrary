@@ -14,6 +14,7 @@ extension Transformable{
             result.rotate(model.rotation)
             result.scale(model.scale)
             matrices.append(matrix_multiply(parent, result))
+        }
     }
 }
 
