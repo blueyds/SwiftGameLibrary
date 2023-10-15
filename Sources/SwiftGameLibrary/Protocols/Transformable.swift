@@ -65,3 +65,17 @@ extension Transformable {
     }
 }
 
+extension Transformable {
+    public func allocate(instanceCount: Int){
+        let diff = instanceCount - transforms.count
+        let newModels = Array(repeating: Transforms(), count: diff)
+        transforms.append(contentsOf: newModels)
+        if transforms.count != instanceCount {
+            fatalError("Allocate error in transformable")
+        }
+    }
+    public func add(instance: Transforms){
+        transforms.append(instance)
+    }
+}
+
