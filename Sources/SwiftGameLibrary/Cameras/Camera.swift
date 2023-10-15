@@ -15,4 +15,8 @@ extension Camera {
         encoder.setVertexBytes(&projection, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
     }
     public func changeAspectRatio(_ ratio: Float){ }
+    
+    public func changeAspectRatio(width: Float, height: Float){
+        changeAspectRatio(width / height)
+    }
 }
