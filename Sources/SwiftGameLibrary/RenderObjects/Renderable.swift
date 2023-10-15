@@ -32,6 +32,7 @@ extension Renderable{
         }
         encoder.popDebugGroup()
     }
+    public func drawPrimitives(using: MTLRenderCommandEncoder){}
 }
 
 
