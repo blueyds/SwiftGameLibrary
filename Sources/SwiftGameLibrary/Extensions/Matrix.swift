@@ -81,12 +81,13 @@ extension Matrix{
     }
     
     // TODO: not implemented yet
+    /*
     internal static func lookAt(origin: float3, target: float3, up: float3) -> Matrix{
         var result = Matrix.identity
         
         return result
     }
-    
+    */
     public static func perspective(degreesFov fov: Float, aspectRatio: Float, nearZ: Float, farZ: Float )-> Matrix {
         var result = Matrix.identity
         let ys = 1 / tanf(fov.fromDegrees * 0.5)

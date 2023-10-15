@@ -23,7 +23,7 @@ extension Renderable{
     public func render(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
         encoder.pushDebugGroup(name)
         var didChange: Bool = false
-        setPipelineState(on: encoder, &didChange)
+        setPipelineState(on: encoder, didChange: &didChange)
         setVertices(to: encoder)
         assignModelConstants(to: encoder)
         drawPrimitives(using: encoder)

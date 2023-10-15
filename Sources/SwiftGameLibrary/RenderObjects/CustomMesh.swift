@@ -17,7 +17,8 @@ open class CustomMesh: GameNode, VertexCollection{
 
 	public var children: [any GameNode] = []
 
-	public var transforms = Transforms()
+	public var transforms = [Transforms()]
+    public var matrices: [Matrix] = []
     
 	public var vertices: [Vertex] = []
 
