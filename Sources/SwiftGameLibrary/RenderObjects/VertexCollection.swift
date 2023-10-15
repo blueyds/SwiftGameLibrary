@@ -10,7 +10,7 @@ extension VertexCollection{
     public var vertexCount: Int{
         vertices.count
     }
-    public setVertices(to encoder: MTLRenderCommandEncoder){
+    public func setVertices(to encoder: MTLRenderCommandEncoder){
     	encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertexCount), index: BufferIndex.Vertex)
     }
     public func drawPrimitives(using encoder: MTLRenderCommandEncoder){

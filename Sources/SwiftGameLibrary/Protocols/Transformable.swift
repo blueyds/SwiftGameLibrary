@@ -22,6 +22,9 @@ extension Transformable{
     public func position(x: Float, y: Float, z: Float, at: Int = 0){
         transforms[at].position = float3(x, y, z)
     }
+    public func move(to position: Float, at: Int = 0){
+        transforms[at].position = position
+    }
     public func moveX(by delta: Float, at: Int = 0){
         transforms[at].position.x += delta
     }

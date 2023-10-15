@@ -7,24 +7,25 @@ public class Cube: GameNode, VertexCollection{
 
 	public var children: [any GameNode] = []
 
-	public var transforms = Transforms()
+	public var transforms = [Transforms()]
+    public var matrices: [Matrix] = []
     
 	public var vertices: [Vertex] = []
+    
     public init(named: String, position: float3, color: Color){
         self.name = named
-        transforms.position = position
         createVertices(color)
+        move(to: position)
     }
     public init(named: String, position: float3, left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
         self.name = named
-        transforms.position = position
-            createLeft(left)
-            createRight(right)
-            createTop(top)
-            createBottom(bottom)
-            createBack(back)
-            createFront(front)
-        }
+        createLeft(left)
+        createRight(right)
+        createTop(top)
+        createBottom(bottom)
+        createBack(back)
+        createFront(front)
+    }
     
     public  func createVertices(_ color: Color) {
         createLeft(color)
@@ -35,15 +36,15 @@ public class Cube: GameNode, VertexCollection{
         createFront(color)
     }
     private func createLeft(_ color: Color){
-      // TODO: rewrite all calls like the add vertex below. this shouldelaimate other err
-      add(vertex: Vertex( float3( -1, -1, -1), color))
-      add(vertex: Vertex( float3( -1, -1, 1), color))
-      add(vertex: Vertex( float3( -1, 1, 1), color))
-      add(vertex: Vertex( float3( -1, -1, -1), color))
-      add(vertex: Vertex( float3( -1, 1, 1), color))
-      add(vertex: Vertex( float3( -1, 1, -1), color))
-      
+        // TODO: rewrite all calls like the add vertex below. this shouldelaimate other err
+        add(vertex: Vertex( float3( -1, -1, -1), color))
+        add(vertex: Vertex( float3( -1, -1, 1), color))
+        add(vertex: Vertex( float3( -1, 1, 1), color))
+        add(vertex: Vertex( float3( -1, -1, -1), color))
+        add(vertex: Vertex( float3( -1, 1, 1), color))
+        add(vertex: Vertex( float3( -1, 1, -1), color))
     }
+    
     private func createRight(_ color: Color){
         // Right
       add(vertex: Vertex( float3( 1, 1, 1 ), color))
