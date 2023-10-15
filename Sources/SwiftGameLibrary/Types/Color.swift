@@ -35,4 +35,28 @@ public struct Color{
     static public func fuchsia(a: Float = 1) -> Color { Color(1, 0, 1, a)}
     static public func yellow(a: Float = 1) -> Color { Color(1, 1, 0, a)}
     static public func white(a: Float = 1) -> Color { Color(1, 1, 1, a)}
+    
+    static func randomColor()->SwiftGameLibrary.Color{
+        let a: Float = Float.random(in: 0...1)
+        let i = Int.random(in: 1...16)
+        switch i {
+        case 1: return Color.black(a: a)
+        case 2: return Color.navy(a: a)
+        case 3: return Color.blue(a: a)
+        case 4: return Color.green(a: a)
+        case 5: return Color.teal(a: a)
+        case 6: return Color.lime(a: a)
+        case 7: return Color.aqua(a: a)
+        case 8: return Color.maroon(a: a)
+        case 9: return Color.purple(a: a)
+        case 10: return Color.olive(a: a)
+        case 11: return Color.gray(a: a)
+        case 12: return Color.silver(a: a)
+        case 13: return Color.red(a: a)
+        case 14: return Color.fuchsia(a: a)
+        case 15: return Color.yellow(a: a)
+        case 16: return Color.white(a: a)
+        default: return Color.black(a: a)
+        }
+    }
 }
