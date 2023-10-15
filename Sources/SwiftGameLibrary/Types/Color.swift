@@ -36,7 +36,7 @@ public struct Color{
     static public func yellow(a: Float = 1) -> Color { Color(1, 1, 0, a)}
     static public func white(a: Float = 1) -> Color { Color(1, 1, 1, a)}
     
-    static func randomColor()->SwiftGameLibrary.Color{
+    static public func randomColor()->SwiftGameLibrary.Color{
         let a: Float = Float.random(in: 0...1)
         let i = Int.random(in: 1...16)
         switch i {
