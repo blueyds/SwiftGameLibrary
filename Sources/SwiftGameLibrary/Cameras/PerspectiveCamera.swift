@@ -6,7 +6,7 @@ public class PerspectiveCamera: Camera, Identifiable{
 	public var position: float3 = float3.Zero
     public var rotation: float3 = float3.Zero
     public var scale: float3 = float3.One
-    public var modelMatrix: Matrix
+    public var modelMatrix: Matrix = Matrix.identity
     public var fov: Float
     public var aspectRatio: Float
     public var near: Float

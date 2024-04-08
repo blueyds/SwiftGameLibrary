@@ -3,7 +3,7 @@ import Metal
 
 
 open class GameNode: Transformable, Identifiable, Nameable {
-	public let id = Int.NextID()
+	public let id: Int
 	public let name: String
 	public var position: float3 = float3.Zero
 	public var rotation: float3 = float3.Zero
@@ -20,7 +20,10 @@ open class GameNode: Transformable, Identifiable, Nameable {
 		self.name = "NONAME id\(self.id)"
 	}
 	
-	public init(named: String, mesh: Mesh){ }
+	public init(named: String, mesh: Mesh){
+		self.id = Int.NextID()
+		self.mesh = mesh
+	}
 	
     final public func add(child: GameNode){
         children.append(child)
