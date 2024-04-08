@@ -65,6 +65,6 @@ public struct Color: Nameable{
 
 extension Color: CustomStringConvertible{
     public var description: String {
-        "R" + r.description + "_G" + g.description + "_B" + b.description + "_A" + a.description"
+        "R" + r.description + "_G" + g.description + "_B" + b.description + "_A" + a.description
     } 
 }
