@@ -21,27 +21,30 @@ open public class GameNode: Transformable, Identifiable, Nameable {
 
 	var children: [GameNode] = []
 	var actions: [any Action] = []
+	
 	public init(){
 		self.name = ""
 	}
 	
-	public init(named: String, mesh: Mesh){
-		
-	}
+	public init(named: String, mesh: Mesh){ }
+	
     final public func add(child: GameNode){
         children.append(child)
         child.parent = self
     }
+	
 	public func attach(action: any Action ){
 		actions.append(action)
 	}
-    final public func updateAll(counter ticks: TickCounter) {
-        tryToUpdateMe(counter: ticks)
+    
+	final public func updateAll(counter ticks: TickCounter) {
+        updateMe(counter: ticks)
         children.forEach(){
             $0.updateAll(counter: ticks)
         }
     }
-    private func updateMe(counter ticks: TickCounter){
+    
+	private func updateMe(counter ticks: TickCounter){
 		actions.forEach(){
 			$0.step(counter: ticks)
 		}
