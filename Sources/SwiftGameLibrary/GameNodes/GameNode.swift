@@ -22,6 +22,7 @@ open class GameNode: Transformable, Identifiable, Nameable {
 	
 	public init(named: String, mesh: Mesh){
 		self.id = Int.NextID()
+		self.name = named
 		self.mesh = mesh
 	}
 	
