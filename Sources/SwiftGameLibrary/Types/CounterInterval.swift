@@ -5,10 +5,10 @@ public struct CounterInterval{
 	public var frequency: T
 	
 	public func isLapsed(current: TickCounter)->Bool{
-		if current - frequency ≥ lastCounter{ return true }
+		if current - frequency >= lastCounter{ return true }
 		return false
 	}
-	public func reset(counter: TickCounter){
+	public mutating func reset(counter: TickCounter){
 		lastCounter = counter
 	}
 	
