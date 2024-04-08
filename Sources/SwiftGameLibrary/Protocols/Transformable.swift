@@ -1,9 +1,10 @@
+import simd
 
 public protocol Transformable: AnyObject{
-    public var position: float3 { get set }
-    public var rotation: float3 { get set }
-    public var scale: float3 { get set}
-    public var modelMatrix: Matrix { get set}
+    var position: float3 { get set }
+    var rotation: float3 { get set }
+    var scale: float3 { get set}
+    var modelMatrix: Matrix { get set}
 }
 
 extension Transformable{
@@ -17,48 +18,48 @@ extension Transformable{
 }
 
 extension Transformable{
-    public func position(x: Float, y: Float, z: Float, at: Int = 0){
-        position = float3(x, y, z)
+    public func moveTo(x: Float, y: Float, z: Float){
+        self.position = float3(x, y, z)
     }
-    public func move(to position: float3, at: Int = 0){
-        position = position
+    public func move(to newPosition: float3){
+        self.position = newPosition
     }
-    public func moveX(by delta: Float, at: Int = 0){
-        position.x += delta
+    public func moveX(by delta: Float){
+        self.position.x += delta
     }
-    public func moveY(by delta: Float, at: Int = 0){
-        position.y += delta
+    public func moveY(by delta: Float){
+        self.position.y += delta
     }
-    public func moveZ(by delta: Float, at: Int = 0){
-        position.z += delta
+    public func moveZ(by delta: Float){
+        self.position.z += delta
     }
 }
 
 extension Transformable{
-	public func rotateX(by angle: Float, at: Int = 0){
+	public func rotateX(by angle: Float){
         rotation.x += angle.fromDegrees   
     }
-    public func rotateY(by angle: Float, at: Int = 0){
+    public func rotateY(by angle: Float){
         rotation.y += angle.fromDegrees
     }
-    public func rotateZ(by angle: Float, at: Int = 0){
+    public func rotateZ(by angle: Float){
         rotation.z += angle.fromDegrees
 	 }
 }
 
 extension Transformable {
-    public func scaleX(by delta: Float, at: Int = 0){
+    public func scaleX(by delta: Float){
         scale.x *= delta
     }
-    public func scaleY(by delta: Float, at: Int = 0){
+    public func scaleY(by delta: Float){
         scale.y *= delta
     }
-    public func scaleZ(by delta: Float, at: Int = 0){
+    public func scaleZ(by delta: Float){
         scale.z *= delta
     }
-    public func scaleAll(by delta: Float, at: Int = 0){
-        scaleX(by: delta, at: at)
-        scaleY(by: delta, at: at)
-        scaleZ(by: delta, at: at)
+    public func scaleAll(by delta: Float){
+        scaleX(by: delta)
+        scaleY(by: delta)
+        scaleZ(by: delta)
     }
 }
