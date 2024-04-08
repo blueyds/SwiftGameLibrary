@@ -9,14 +9,7 @@ open public class GameNode: Transformable, Identifiable, Nameable {
 	public var rotation: float3 = float3.Zero
 	public var scale: float3 = float3.One
 	public var parent: GameNode? = nil
-	public var modelMatrix: Matrix {
-		var result = Matrix.identity
-		var parentMatrix = parent?.modelMatrix ?? Matrix.identity
-        result.translateModel(position)
-        result.rotate(rotation)
-        result.scale(scale)
-        modelMatrix = matrix_multiply(parentMatrix, result)
-	}
+	public var modelMatrix: Matrix = Matrix.identity
 	public var mesh: Mesh? = nil
 
 	var children: [GameNode] = []
