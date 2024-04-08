@@ -3,7 +3,7 @@ public class Cube: VertexCollection{
 
 	public let name: String 
 	
-	public let vertices: [Vertex] = []
+	public var vertices: [Vertex] = []
     
     public init(color: Color){
         id = Int.NextID()
