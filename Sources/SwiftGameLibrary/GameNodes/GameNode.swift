@@ -2,7 +2,7 @@ import Foundation
 import Metal
 
 
-open public class GameNode: Transformable, Identifiable, Nameable {
+open class GameNode: Transformable, Identifiable, Nameable {
 	public let id = Int.NextID()
 	public let name: String
 	public var position: float3 = float3.Zero
@@ -16,7 +16,8 @@ open public class GameNode: Transformable, Identifiable, Nameable {
 	var actions: [any Action] = []
 	
 	public init(){
-		self.name = ""
+		self.id = Int.NextID
+		self.name = "NONAME id\(self.id)"
 	}
 	
 	public init(named: String, mesh: Mesh){ }
@@ -50,14 +51,17 @@ open public class GameNode: Transformable, Identifiable, Nameable {
     }
     
     final public func renderAll(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+		encoder.pushDebugGroup("NODE \(name)")
         tryToRenderMe(with: encoder, currentState: currentState)
-        children.forEach(){ $0.renderAll( with: encoder, currentState: currentState) }
+        children.forEach(){ 
+			$0.renderAll( with: encoder, currentState: currentState) 
+		}
+		encoder.popDebugGroup()
     }
      private func tryToRenderMe(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
         if let renderedMesh = mesh {
-			encoder.pushDebugGroup("NODE \(name)")
 			renderedMesh.render(using: encoder, currentState: currentState, at: self)
-			encoder.popDebugGroup()
+			
             }
     }
 } 

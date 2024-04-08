@@ -30,10 +30,10 @@ public class Buttons {
 	}
 	public func depress(button: Int){
 		if isValid(index: button){}
-		button[button] = false
+		buttons[button] = false
 	}
 	public func toggle(button: Int){
 		if isValid(index: button){ }
-		button[button].toggle()
+		buttons[button].toggle()
 	}
 }

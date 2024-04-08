@@ -1,7 +1,7 @@
 import Metal
 import simd
 
-public protocol Camera: Renderable, Transformable, AnyObject, Nameable {
+public protocol Camera: AnyObject, Transformable, Nameable {
     var viewMatrix: Matrix { get }
     var projectionMatrix: Matrix { get }
     func render(using: MTLRenderCommandEncoder)

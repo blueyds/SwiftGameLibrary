@@ -31,7 +31,7 @@ extension GameScene{
     public func updateScene(counter ticks: TickCounter){
 		update(counter: ticks)
         children.forEach(){
-            $0.updateMeAndChildren(counter: ticks)
+            $0.updateAll(counter: ticks)
         }
         children.forEach(){
             $0.updateMatrices(parent: Matrix.identity)

@@ -1,6 +1,6 @@
 import MetalKit
 
-public protocol SceneManager{
+public protocol SceneManager: AnyObject{
     var currentScene: (any GameScene) { get set }
     var engine: MainEngine { get }
     var renderPipeline: MTLRenderPipelineState { get }
