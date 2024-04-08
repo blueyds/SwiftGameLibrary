@@ -6,7 +6,7 @@ public protocol VertexCollection: Mesh{
     //    func createVertices()
     //    func createBuffer()
 }
-extension VertexCollect	
+extension VertexCollection{	
     public var vertexCount: Int{
         vertices.count
     }

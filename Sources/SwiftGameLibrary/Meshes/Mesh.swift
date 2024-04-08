@@ -1,6 +1,6 @@
 import Metal
 
-public protocol Mesh: AnyObject{
+public protocol Mesh: AnyObject, Nameable{
     func render(using: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState, at: Transformable)
     func drawPrimitives(using: MTLRenderCommandEncoder)
 	func assignModel(transforms: Transformable, to: MTLRenderCommandEncoder)
