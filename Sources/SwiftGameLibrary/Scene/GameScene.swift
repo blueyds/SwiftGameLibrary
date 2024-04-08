@@ -41,7 +41,7 @@ extension GameScene{
     public func renderScene(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
         encoder.pushDebugGroup("SCENE \(name)")
         
-        camera.render(using: encoder, currentState: currentState)
+        camera.render(using: encoder)
         children.forEach() { $0.renderAll(with: encoder, currentState: currentState)}
         
         encoder.popDebugGroup()

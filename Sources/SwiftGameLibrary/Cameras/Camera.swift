@@ -4,13 +4,15 @@ import simd
 public protocol Camera: Renderable, Transformable, AnyObject, Nameable {
     var viewMatrix: Matrix { get }
     var projectionMatrix: Matrix { get }
-    func changeAspectRatio(_ : Float)
+    func render(using: MTLRenderCommandEncoder)
+	func changeAspectRatio(_ : Float)
 	func update(counter: TickCounter)
+	
 }
 
 extension Camera {
 	
-    public func render(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+    public func render(using encoder: MTLRenderCommandEncoder){
         var view: Matrix = viewMatrix
         var projection: Matrix = projectionMatrix
 		encoder.pushDebugGroup("Camera \(name)")

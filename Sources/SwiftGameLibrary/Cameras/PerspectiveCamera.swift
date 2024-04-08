@@ -27,9 +27,7 @@ public class PerspectiveCamera: Camera, Identifiable{
     }
     public init(named: String, origin: float3, fov: Float, aspectRatio: Float, near: Float, far: Float ){
 		self.position = origin
-		self.rotation = rotation
-		self.scale = scale
-        self.name = named
+		self.name = named
         self.fov = fov
         self.aspectRatio = aspectRatio
         self.near = near
