@@ -40,7 +40,7 @@ open class GameNode: Transformable, Identifiable, Nameable {
     
 	private func updateMe(counter ticks: TickCounter){
 		for i in 0..<actions.count{
-			actions[i].step
+			actions[i].step()
 		}
     }
     final public func updateMatrices(parent: Matrix){
