@@ -13,9 +13,9 @@ public protocol SceneManager{
 
 extension SceneManager{
     public func mainLoop(view: MTKView){
-        currentScene.updateScene()
+        currentScene.updateScene(counter: tickCounter)
         render(view: view)
-		tickcounter.increment()
+		tickCounter.increment()
     }
     
     public func render(view: MTKView){
