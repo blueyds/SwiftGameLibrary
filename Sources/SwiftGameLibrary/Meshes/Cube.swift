@@ -1,24 +1,23 @@
-public class Cube: GameNode, VertexCollection{
-    	public var id = Int.NextID()
+public class Cube: VertexCollection{
+	public let id: Int
 
-	public var name: String
+	public let name: String 
 	
-	//public var parent: (any GameNode)?
-
-	public var children: [any GameNode] = []
-
-	public var transforms = [Transforms()]
-    public var matrices: [Matrix] = []
+	public let vertices: [Vertex] = []
     
-	public var vertices: [Vertex] = []
-    
-    public init(named: String, position: float3, color: Color){
-        self.name = named
+    public init(color: Color){
+        id = Int.NextID()
+        name = "Cube_" + color.name
         createVertices(color)
-        move(to: position)
     }
-    public init(named: String, position: float3, left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
-        self.name = named
+    public init(left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
+        id = Int.NextID()
+        name = "Cube_LEFT" + left.name + 
+			"_RIGHT" + right.name +
+			"_TOP" + top.name +
+			"_BOTTOM" + bottom.name +
+			"_BACK" + back.name +	
+			"_FRONT" + front.name 
         createLeft(left)
         createRight(right)
         createTop(top)
@@ -28,6 +27,7 @@ public class Cube: GameNode, VertexCollection{
     }
     
     public  func createVertices(_ color: Color) {
+        
         createLeft(color)
         createRight(color)
         createTop(color)

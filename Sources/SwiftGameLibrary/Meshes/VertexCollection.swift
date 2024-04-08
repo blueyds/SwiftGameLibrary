@@ -1,12 +1,12 @@
 import Metal
 
-public protocol VertexCollection: Renderable{
+public protocol VertexCollection: Mesh{
     // var vertexBuffer: MTLBuffer! { get set }
     var vertices: [Vertex] { get set }
     //    func createVertices()
     //    func createBuffer()
 }
-extension VertexCollection{
+extension VertexCollect	
     public var vertexCount: Int{
         vertices.count
     }

@@ -7,7 +7,7 @@ public class MainEngine{
     public var library: MTLLibrary?
     public var commandQueue: MTLCommandQueue?
     public var pixelFormat: MTLPixelFormat
-    public init(pixelFormat: MTLPixelFormat){
+	public init(pixelFormat: MTLPixelFormat){
         device = MTLCreateSystemDefaultDevice()
         commandQueue = device?.makeCommandQueue()
         if device == nil {
@@ -45,7 +45,6 @@ public class MainEngine{
         depthStencilDescriptor.isDepthWriteEnabled = isDepthWriteEnabled
         depthStencilDescriptor.depthCompareFunction = depthCompareFunction
         return device?.makeDepthStencilState(descriptor: depthStencilDescriptor)
-}
-    
-    
+	}
+	
 }

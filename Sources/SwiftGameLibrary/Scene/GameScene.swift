@@ -2,8 +2,11 @@ import Metal
 import simd
 
 public protocol GameScene: AnyObject, Nameable, Identifiable{
-    var children: [any GameNode] { get set }
-    
+    var children: [GameNode] { get set }
+	var camera: Camera { get }
+	
+	func update(counter: TickCounter)
+	
     /// pipelines should contain at least one reference
     /// the first pipeline will be used by the 
     /// default renderer. If a scene has custom
@@ -19,20 +22,16 @@ public protocol GameScene: AnyObject, Nameable, Identifiable{
     /// that object changed the pipeline
     func renderScene(using : MTLRenderCommandEncoder, currentState: MTLRenderPipelineState)
     //func updateScene()
-    var camera: Camera { get }
     
 }
 
 extension GameScene{
-    public func updateScene(){
-        if let updateMe = self as? Updateable {
-            updateMe.doUpdate()
-        }
-        if let updateCamera = camera as? Updateable{
-            updateCamera.doUpdate()
-        }
+	public func update(counter ticks: TickCounter){	}
+	
+    public func updateScene(counter ticks: TickCounter){
+		update(counter: ticks)
         children.forEach(){
-            $0.updateMeAndChildren()
+            $0.updateMeAndChildren(counter: ticks)
         }
         children.forEach(){
             $0.updateMatrices(parent: Matrix.identity)
@@ -40,7 +39,7 @@ extension GameScene{
     }
 
     public func renderScene(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
-        encoder.pushDebugGroup(name)
+        encoder.pushDebugGroup("SCENE \(name)")
         
         camera.render(using: encoder, currentState: currentState)
         children.forEach() { $0.renderAll(with: encoder, currentState: currentState)}
@@ -52,7 +51,7 @@ extension GameScene{
         camera.changeAspectRatio(newRatio)
     }
     
-    public func add(child: any GameNode){
+    public func add(child: GameNode){
         children.append(child)
     }
 }

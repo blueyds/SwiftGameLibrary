@@ -4,8 +4,8 @@ public protocol SceneManager{
     var currentScene: (any GameScene) { get set }
     var engine: MainEngine { get }
     var renderPipeline: MTLRenderPipelineState { get }
-    var depthStencilState: MTLDepthStencilState { get } 
-    
+    var depthStencilState: MTLDepthStencilState { get }
+    var tickCounter: TickCounter { get set}
     func mainLoop(view: MTKView)
     func render(view: MTKView)
 }
@@ -15,6 +15,7 @@ extension SceneManager{
     public func mainLoop(view: MTKView){
         currentScene.updateScene()
         render(view: view)
+		tickcounter.increment()
     }
     
     public func render(view: MTKView){
