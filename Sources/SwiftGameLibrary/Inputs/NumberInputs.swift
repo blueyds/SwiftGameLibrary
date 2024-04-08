@@ -4,7 +4,7 @@ public class NumberInputs{
 	private var numbers: [Float] = []
 	
 	private init(){
-		initalizeNumbers(size: 8)
+		initializeNumbers(size: 8)
 	}
 	public func initializeNumbers(size: Int){
 		numbers = []
@@ -14,7 +14,7 @@ public class NumberInputs{
 
 extension NumberInputs{
 	private func isValid(_ index: Int)-> Bool{
-		if numbers[index] != nil { return true}
+		if index < numbers.count { return true}
 		fatalError("index \(index) invalid in call to NumberInputs")
 	}
 	

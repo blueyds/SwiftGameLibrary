@@ -1,12 +1,12 @@
 public class Buttons {
-	public static shared: Buttons = Buttons()
+	public static var shared: Buttons = Buttons()
 	private init(){
-		initalizeButtons(size: 10)
+		initializeButtons(size: 10)
 	}
 	
-	private buttons: [Bool] = []
+	private var buttons: [Bool] = []
 	public func clearButtons(){
-		for i in buttons.index {
+		for i in 0..<buttons.count {
 			if buttons[i] == true { 
 				buttons[i] = false
 			}
@@ -21,19 +21,19 @@ public class Buttons {
 		return buttons[button]
 	}
 	private func isValid(index: Int)-> Bool{
-		if button[index] != nil { return true}
+		if index < buttons.count { return true}
 		fatalError("index \(index) invalid in call to class Buttons")
 	}
-	public func press(button i: Int){
-		if isValid(i) {}
-		button[i] = true
+	public func press(button: Int){
+		if isValid(index: button) {}
+		buttons[button] = true
 	}
-	public func depress(button i: Int){
-		if isValid(i){}
-		button[i] = false
+	public func depress(button: Int){
+		if isValid(index: button){}
+		button[button] = false
 	}
-	public func toggle(button i: Int){
-		if isValid(i){ }
-		button[i].toggle()
+	public func toggle(button: Int){
+		if isValid(index: button){ }
+		button[button].toggle()
 	}
 }
