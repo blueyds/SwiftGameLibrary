@@ -16,7 +16,7 @@ open class GameNode: Transformable, Identifiable, Nameable {
 	var actions: [any Action] = []
 	
 	public init(){
-		self.id = Int.NextID
+		self.id = Int.NextID()
 		self.name = "NONAME id\(self.id)"
 	}
 	
@@ -39,8 +39,8 @@ open class GameNode: Transformable, Identifiable, Nameable {
     }
     
 	private func updateMe(counter ticks: TickCounter){
-		actions.forEach(){
-			$0.step(counter: ticks)
+		for i in 0..<actions.count{
+			actions[i].step
 		}
     }
     final public func updateMatrices(parent: Matrix){
