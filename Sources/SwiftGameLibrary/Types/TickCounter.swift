@@ -45,3 +45,9 @@ extension TickCounter: Comparable{
 		return (lhs.ticks < rhs.ticks)
 	}
 }
+
+extension Int{
+	public init(_ counter: TickCounter){
+		self = counter.ticks
+	}
+}
