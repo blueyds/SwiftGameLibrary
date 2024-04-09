@@ -12,7 +12,7 @@ public protocol Camera: AnyObject, Transformable, Nameable {
 
 extension Camera {
 	
-    public func render(using encoder: MTLRenderCommandEncoder){
+    public func render(with encoder: MTLRenderCommandEncoder){
         var view: Matrix = viewMatrix
         var projection: Matrix = projectionMatrix
 		encoder.pushDebugGroup("Camera \(name)")

@@ -6,7 +6,12 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
     public var id: Int
 	public var children: [GameNode] = []
 	public var camera: Camera!
-	
+	// needed by hasChidren
+	public var position = float3.Zero
+	public var scale = float3.One
+	public var rotation = float3.Zero
+	public var modelMatrix = Matrix.identity
+	// end needed by hasChildren
 	public var actions: [any Action] = []
 	private var garbageCounter: Int = 15
     
@@ -61,11 +66,11 @@ extension GameScene{
     /// render function. It should know what pipeline
     /// was used going into a render function in case
     /// that object changed the pipeline
-	public func renderScene(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+	public func renderScene(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
         encoder.pushDebugGroup("SCENE \(name)")
         
-        camera.render(using: encoder)
-        renderChildren(using: encoder, currentState)
+        camera.render(with: encoder)
+        renderChildren(with: encoder, currentState)
         
         encoder.popDebugGroup()
     }

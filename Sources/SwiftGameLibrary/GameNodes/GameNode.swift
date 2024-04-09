@@ -39,8 +39,9 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
         updateChildren(counter: ticks)
     }
     
-    final public func updateMatrices(parentMatrix matrix: Matrix){
-        calculateModelMatrix(parentMatrix: matrix)
+    final public func updateMatrices(parentMatrix: Matrix){
+        calculateModelMatrix(parentMatrix
+		)
         updateChildMatrices()
     }
     
@@ -52,7 +53,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
     }
      private func tryToRenderMe(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
         if let renderedMesh = mesh {
-			renderedMesh.render(using: encoder, currentState, at: self)
+			renderedMesh.render(with: encoder, currentState, at: self)
 			
             }
     }

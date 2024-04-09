@@ -15,7 +15,7 @@ extension Mesh{
 		encoder.setVertexBytes(&transforms.modelMatrix, length: Matrix.stride(), index: BufferIndex.ModelMatrix)
 	}
 	
-	public func render(using encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState, at transforms: Transformable){
+	public func render(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState, at transforms: Transformable){
         encoder.pushDebugGroup(name)
         var didChange: Bool = false
         setPipelineState(on: encoder, &didChange)

@@ -27,7 +27,7 @@ extension SceneManager{
             encoder.setRenderPipelineState(renderPipeline)
             encoder.setDepthStencilState(depthStencilState)
             
-            currentScene.renderScene(using: encoder, currentState: renderPipeline)
+            currentScene.renderScene(with: encoder, currentState: renderPipeline)
             
             encoder.endEncoding()
 			commandBuffer.present(drawable)
