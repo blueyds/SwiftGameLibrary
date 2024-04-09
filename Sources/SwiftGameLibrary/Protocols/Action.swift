@@ -11,8 +11,8 @@ extension Action{
 			frequency.reset(counter: ticks)
 		}
 	}
-	public func isDead(counter ticks: TickCounter)->Bool{
-		(status == .idle) && (ticks.value - frequency.lastCounter > 60)
+	public func isDead(counter: TickCounter)->Bool{
+		(status == .idle) && (counter.ticks - frequency.lastCounter > 60)
 	}
 }
 
