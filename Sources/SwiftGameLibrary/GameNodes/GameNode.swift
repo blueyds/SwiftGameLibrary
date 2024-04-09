@@ -2,7 +2,7 @@ import Foundation
 import Metal
 
 
-open class GameNode: Transformable, Identifiable, Nameable {
+open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChildren {
 	public let id: Int
 	public let name: String
 	public var position: float3 = float3.Zero
@@ -26,40 +26,28 @@ open class GameNode: Transformable, Identifiable, Nameable {
 		self.mesh = mesh
 	}
 	
-    final public func add(child: GameNode){
-        children.append(child)
-        child.parent = self
-    }
 	
 	public func attach(action: any Action ){
 		actions.append(action)
 	}
     
+	open func doUpdate(counter ticks: TickCounter) { }
+	
 	final public func updateAll(counter ticks: TickCounter) {
-        updateMe(counter: ticks)
-        children.forEach(){
-            $0.updateAll(counter: ticks)
-        }
+        doUpdate(counter: ticks)
+		runActions(counter: ticks)
+        updateChildren(counter: ticks)
     }
     
-	private func updateMe(counter ticks: TickCounter){
-		for i in 0..<actions.count{
-			actions[i].step(counter: ticks)
-		}
-    }
-    final public func updateMatrices(parent: Matrix){
+    final public func updateMatrices(_ parent: Matrix){
         calculateModelMatrix(parent: parent)
-        children.forEach(){
-            $0.updateMatrices(parent: modelMatrix)
-        }
+        updateChildMatrices(parent.modelMatrix)
     }
     
     final public func renderAll(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("NODE \(name)")
         tryToRenderMe(with: encoder, currentState: currentState)
-        children.forEach(){ 
-			$0.renderAll( with: encoder, currentState: currentState) 
-		}
+        renderChildren(with: encoder: currentState: currentState)
 		encoder.popDebugGroup()
     }
      private func tryToRenderMe(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){

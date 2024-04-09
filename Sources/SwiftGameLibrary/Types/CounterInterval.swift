@@ -8,6 +8,7 @@ public struct CounterInterval{
 		if current - frequency >= lastCounter{ return true }
 		return false
 	}
+	
 	public mutating func reset(counter: TickCounter){
 		lastCounter = counter
 	}

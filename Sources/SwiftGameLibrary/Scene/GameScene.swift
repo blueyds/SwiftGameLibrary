@@ -1,13 +1,51 @@
 import Metal
 import simd
 
-public protocol GameScene: AnyObject, Nameable, Identifiable{
-    var children: [GameNode] { get set }
-	var camera: Camera { get }
+open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
+    public var name: String
+    public var id: Int
+	public var children: [GameNode] = []
+	public var camera: Camera!
 	
-	func update(counter: TickCounter)
+	var actions: [any Action] = []
+	private garbageCounter: Int = 15
+    
+	public init(named: String){
+        self.name = named
+		self.id = Int.NextID()
+	}
 	
-    /// pipelines should contain at least one reference
+	public init(){
+		self.id = Int.NextID()
+		self.name = "SCENE_id\(self.id)"
+	}
+	
+	public init(named: String, camera: Camera, children: @escaping(() -> [GameNode]), actions: @escaping (() -> [Action]){
+		self.name = named
+		self.id = Int.NextID()
+		self.camera = camera
+		self.children = children()
+		self.actions = actions()
+	}
+	open func doUpdate(counter ticks: TickCounter) { }
+}
+
+// Update functions
+extension GameScene{
+	
+	
+    public func updateScene(counter ticks: TickCounter){
+		doUpdate(counter: ticks)
+		runActions(counter: ticks)
+        updateChildren(counter: ticks)
+		updateChildMatrices(parent: Matrix.identity)
+    }
+}
+
+// Render functions
+extension GameScene{
+	
+	/// pipelines should contain at least one reference
     /// the first pipeline will be used by the 
     /// default renderer. If a scene has custom
     /// pipelines then it should pass those onto
@@ -20,38 +58,20 @@ public protocol GameScene: AnyObject, Nameable, Identifiable{
     /// render function. It should know what pipeline
     /// was used going into a render function in case
     /// that object changed the pipeline
-    func renderScene(using : MTLRenderCommandEncoder, currentState: MTLRenderPipelineState)
-    //func updateScene()
-    
-}
-
-extension GameScene{
-	public func update(counter ticks: TickCounter){	}
-	
-    public func updateScene(counter ticks: TickCounter){
-		update(counter: ticks)
-        children.forEach(){
-            $0.updateAll(counter: ticks)
-        }
-        children.forEach(){
-            $0.updateMatrices(parent: Matrix.identity)
-        }
-    }
-
-    public func renderScene(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+	public func renderScene(using encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
         encoder.pushDebugGroup("SCENE \(name)")
         
         camera.render(using: encoder)
-        children.forEach() { $0.renderAll(with: encoder, currentState: currentState)}
+        
         
         encoder.popDebugGroup()
     }
-    
+}
+
+
+// Miscellaneous Functions
+extension GameScene{    
     public func changeAspectRatio(_ newRatio: Float){
         camera.changeAspectRatio(newRatio)
-    }
-    
-    public func add(child: GameNode){
-        children.append(child)
     }
 }
