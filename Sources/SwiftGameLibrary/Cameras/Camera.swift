@@ -4,7 +4,7 @@ import simd
 public protocol Camera: AnyObject, Transformable, Nameable {
     var viewMatrix: Matrix { get }
     var projectionMatrix: Matrix { get }
-    func render(using: MTLRenderCommandEncoder)
+    func render(with: MTLRenderCommandEncoder)
 	func changeAspectRatio(_ : Float)
 	func update(counter: TickCounter)
 	

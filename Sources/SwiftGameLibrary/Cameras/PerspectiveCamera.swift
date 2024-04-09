@@ -23,7 +23,7 @@ public class PerspectiveCamera: Camera, Identifiable{
         self.fov = 90
         self.aspectRatio = 1
         self.near = 1
-        self.far = 1000  
+        self.far = 1000
     }
     public init(named: String, origin: float3, fov: Float, aspectRatio: Float, near: Float, far: Float ){
 		self.position = origin
