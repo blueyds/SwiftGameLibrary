@@ -12,8 +12,8 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	public var modelMatrix: Matrix = Matrix.identity
 	public var mesh: Mesh? = nil
 
-	var children: [GameNode] = []
-	var actions: [any Action] = []
+	public var children: [GameNode] = []
+	public var actions: [any Action] = []
 	
 	public init(){
 		self.id = Int.NextID()
@@ -39,8 +39,8 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
         updateChildren(counter: ticks)
     }
     
-    final public func updateMatrices(parentMatrix: Matrix){
-        calculateModelMatrix(parentMatrix)
+    final public func updateMatrices(parentMatrix matrix: Matrix){
+        calculateModelMatrix(parentMatrix: matrix)
         updateChildMatrices()
     }
     

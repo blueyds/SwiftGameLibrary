@@ -11,6 +11,9 @@ extension Action{
 			frequency.reset(counter: ticks)
 		}
 	}
+	public func isDead(counter ticks: TickCounter)->{
+		(status == .idle) && (ticks - frequency.lastCounter)
+	}
 }
 
 public enum ActionStatus{

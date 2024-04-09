@@ -19,7 +19,9 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		self.id = Int.NextID()
 		self.name = "SCENE_id\(self.id)"
 	}
-	
+
+
+/* 
 	public init(named: String, camera: Camera, children: @escaping (() -> [GameNode]), actions: @escaping (() -> [Action]){
 		self.name = named
 		self.id = Int.NextID()
@@ -27,7 +29,7 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		self.children = children()
 		self.actions = actions()
 	}
-	
+ */
 	open func doUpdate(counter ticks: TickCounter) { }
 }
 

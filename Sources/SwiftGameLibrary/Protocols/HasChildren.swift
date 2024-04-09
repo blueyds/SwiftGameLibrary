@@ -14,7 +14,7 @@ extension HasChildren{
 	
 	public func updateChildMatrices(){
 		children.forEach(){
-			$0.updateMatrices(modelMatrix)
+			$0.updateMatrices(parentMatrix: modelMatrix)
 		}
 	}
 	
