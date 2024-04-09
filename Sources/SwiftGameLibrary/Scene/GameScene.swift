@@ -7,8 +7,8 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	public var children: [GameNode] = []
 	public var camera: Camera!
 	
-	var actions: [any Action] = []
-	private garbageCounter: Int = 15
+	public var actions: [any Action] = []
+	private var garbageCounter: Int = 15
     
 	public init(named: String){
         self.name = named
@@ -20,13 +20,14 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		self.name = "SCENE_id\(self.id)"
 	}
 	
-	public init(named: String, camera: Camera, children: @escaping(() -> [GameNode]), actions: @escaping (() -> [Action]){
+	public init(named: String, camera: Camera, children: @escaping (() -> [GameNode]), actions: @escaping (() -> [Action]){
 		self.name = named
 		self.id = Int.NextID()
 		self.camera = camera
 		self.children = children()
 		self.actions = actions()
 	}
+	
 	open func doUpdate(counter ticks: TickCounter) { }
 }
 
@@ -38,7 +39,7 @@ extension GameScene{
 		doUpdate(counter: ticks)
 		runActions(counter: ticks)
         updateChildren(counter: ticks)
-		updateChildMatrices(parent: Matrix.identity)
+		updateChildMatrices()
     }
 }
 
@@ -62,7 +63,7 @@ extension GameScene{
         encoder.pushDebugGroup("SCENE \(name)")
         
         camera.render(using: encoder)
-        
+        renderChildren(using: encoder, currentState)
         
         encoder.popDebugGroup()
     }

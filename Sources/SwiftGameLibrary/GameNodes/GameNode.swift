@@ -8,7 +8,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	public var position: float3 = float3.Zero
 	public var rotation: float3 = float3.Zero
 	public var scale: float3 = float3.One
-	public var parent: GameNode? = nil
+	//public var parent: GameNode? = nil
 	public var modelMatrix: Matrix = Matrix.identity
 	public var mesh: Mesh? = nil
 
@@ -39,20 +39,20 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
         updateChildren(counter: ticks)
     }
     
-    final public func updateMatrices(_ parent: Matrix){
-        calculateModelMatrix(parent: parent)
-        updateChildMatrices(parent.modelMatrix)
+    final public func updateMatrices(parentMatrix: Matrix){
+        calculateModelMatrix(parentMatrix)
+        updateChildMatrices()
     }
     
-    final public func renderAll(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+    final public func renderAll(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("NODE \(name)")
-        tryToRenderMe(with: encoder, currentState: currentState)
-        renderChildren(with: encoder: currentState: currentState)
+        tryToRenderMe(with: encoder, currentState)
+        renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
     }
-     private func tryToRenderMe(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+     private func tryToRenderMe(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
         if let renderedMesh = mesh {
-			renderedMesh.render(using: encoder, currentState: currentState, at: self)
+			renderedMesh.render(using: encoder, currentState, at: self)
 			
             }
     }

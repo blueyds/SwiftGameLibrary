@@ -1,6 +1,6 @@
 import Metal
 
-public protocol HasChildren: AnyObject{
+public protocol HasChildren: AnyObject, Transformable{
 	var children: [GameNode] { get set }
 }
 
@@ -12,9 +12,9 @@ extension HasChildren{
         }
 	}
 	
-	public func updateChildMatrices(_ parent: Matrix){
+	public func updateChildMatrices(){
 		children.forEach(){
-			$0.updateMatrices(parent)
+			$0.updateMatrices(modelMatrix)
 		}
 	}
 	
@@ -22,13 +22,9 @@ extension HasChildren{
         children.append(child)
     }
 	
-	public func add(child: GameNode, parent: GameNode){
-        children.append(child)
-        child.parent = parent
-    }
-	public func renderChildren(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
+	public func renderChildren(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		children.forEach() { 
-			$0.renderAll(with: encoder, currentState: currentState)
+			$0.renderAll(with: encoder, currentState)
 		}
 	}
 }

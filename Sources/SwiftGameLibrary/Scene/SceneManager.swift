@@ -1,7 +1,7 @@
 import MetalKit
 
 public protocol SceneManager: AnyObject{
-    var currentScene: (any GameScene) { get set }
+    var currentScene: GameScene { get }
     var engine: MainEngine { get }
     var renderPipeline: MTLRenderPipelineState { get }
     var depthStencilState: MTLDepthStencilState { get }
