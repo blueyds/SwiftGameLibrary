@@ -12,7 +12,7 @@ extension Action{
 		}
 	}
 	public func isDead(counter: TickCounter)->Bool{
-		(status == .idle) && (Int(counter - frequency.lastCounter) > 60)
+		(status == .idle) && (Int(counter) - Int(frequency.lastCounter) > 60)
 	}
 }
 
