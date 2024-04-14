@@ -1,12 +1,15 @@
 import Metal
 
-public protocol VertexCollection: Mesh{
+public class VertexCollection: Mesh{
     // var vertexBuffer: MTLBuffer! { get set }
-    var vertices: [Vertex] { get set }
+    private var vertices: [Vertex] = []
+	public let name: String
+	private var _vertexBuilder: VertexCollectionBuilder = nil
+	public init(named name: String){
+		self.name = name
+	}
     //    func createVertices()
     //    func createBuffer()
-}
-extension VertexCollection{	
     public var vertexCount: Int{
         vertices.count
     }
@@ -18,6 +21,25 @@ extension VertexCollection{
     }
     
 	public func add(vertex: Vertex){
-		vertices.append(vertex)
+		checkBuilder()
+		_vertexBuilder!.add(vertex)
+	}
+	private func checkBuilder(){
+		if _vertexBuilder == nil {
+			_vertexBuilder = Vertices()
+		}
+	}
+	public func add(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
+		checkBuilder()
+		_vertexBuilder!.add(x, y, z, r, g, b, a)	
+	}
+	public func finishedBuilding(){
+		if _vertexBuilder == nil {
+			fatalError("called finish too early \(self)")
+		}
+		vertices = _vertexBuilder.getProcessedVertices()
+		_vertexBuilder = nil
+		print(vertices)
 	}
 }
+

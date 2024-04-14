@@ -1,29 +1,25 @@
 public class Cube: VertexCollection{
-	public let id: Int
-
-	public let name: String 
 	
-	public var vertices: [Vertex] = []
-    
+	
     public init(color: Color){
-        id = Int.NextID()
-        name = "Cube_" + color.name
+        super.init("Cube_" + color.name)
         createVertices(color)
+		finishedBuilding()
     }
     public init(left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
-        id = Int.NextID()
-        name = "Cube_LEFT" + left.name + 
+        super.init(named: "Cube_LEFT" + left.name + 
 			"_RIGHT" + right.name +
 			"_TOP" + top.name +
 			"_BOTTOM" + bottom.name +
 			"_BACK" + back.name +	
-			"_FRONT" + front.name 
+			"_FRONT" + front.name)
         createLeft(left)
         createRight(right)
         createTop(top)
         createBottom(bottom)
         createBack(back)
         createFront(front)
+		finishedBuilding()
     }
     
     public  func createVertices(_ color: Color) {
@@ -37,23 +33,49 @@ public class Cube: VertexCollection{
     }
     private func createLeft(_ color: Color){
         // TODO: rewrite all calls like the add vertex below. this shouldelaimate other err
+		let r = color.r
+		let g = color.g
+		let b = color.b
+		let a = color.a
+		/*
+		add(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a)
+		add(x: -1, y: -1, z:  1, r: r, g: g, b: b, a: a)
+		add(x: -1, y:  1, z:  1, r: r, g: g, b: b, a: a)
+		add(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a)
+		add(x: -1, y:  1, z:  1, r: r, g: g, b: b, a: a)
+		add(x: -1, y:  1, z: -1, r: r, g: g, b: b, a: a)
+		*/
+		
         add(vertex: Vertex( float3( -1, -1, -1), color))
         add(vertex: Vertex( float3( -1, -1, 1), color))
         add(vertex: Vertex( float3( -1, 1, 1), color))
         add(vertex: Vertex( float3( -1, -1, -1), color))
         add(vertex: Vertex( float3( -1, 1, 1), color))
         add(vertex: Vertex( float3( -1, 1, -1), color))
+	
     }
     
     private func createRight(_ color: Color){
         // Right
-      add(vertex: Vertex( float3( 1, 1, 1 ), color))
+      let r = color.r
+		let g = color.g
+		let b = color.b
+		let a = color.a
+		/*
+		add(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a)
+		add(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a)
+		add(x: 1, y:  1, z: -1, r: r, g: g, b: b, a: a)
+		add(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a)
+		add(x: 1, y:  1, z: 1, r: r, g: g, b: b, a: a)
+		add(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a)
+		*/
+		add(vertex: Vertex( float3( 1, 1, 1 ), color))
       add(vertex: Vertex( float3( 1, -1, -1 ), color))
       add(vertex: Vertex( float3( 1, 1, -1 ), color))
       add(vertex: Vertex( float3(  1, -1, -1), color))
       add(vertex: Vertex( float3( 1, 1, 1 ), color))
       add(vertex: Vertex( float3( 1, -1, 1 ), color))
-    
+  */  
     }
     private func createTop(_ color: Color){
         //top

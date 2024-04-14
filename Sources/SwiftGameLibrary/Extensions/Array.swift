@@ -5,3 +5,15 @@ extension Array {
         }
     }
 }
+
+extension Array where Element == simd_float3{
+    func sum()->simd_float3{
+        reduce(simd_float3(0, 0, 0), { $0 + $1})
+    }
+    func average()->Element{
+        let summary = sum()
+        let scale: Float = 1.0 / Float(count)
+        var result = summary * scale
+        return result
+    }
+}
