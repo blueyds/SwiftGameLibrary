@@ -33,7 +33,7 @@ public class VertexCollection: Mesh{
 		let v = Vertex(float3(x,y,z), Color(r,g,b,a))
 		add(vertex: v)	
 	}
-	public func add(_x: Float,_ y: Float,_ z: Float, _ color: Color){
+	public func add(_ x: Float,_ y: Float,_ z: Float, _ color: Color){
 		let v = Vertex(float3(x,y,z), color)
 		add(vertex: v)
 	}
@@ -41,7 +41,7 @@ public class VertexCollection: Mesh{
 		if _vertexBuilder == nil {
 			fatalError("called finish too early \(self)")
 		}
-		vertices = _vertexBuilder!fl.getProcessedVertexData()
+		vertices = _vertexBuilder!.getProcessedVertexData()
 		_vertexBuilder = nil
 		print(vertices)
 	}
