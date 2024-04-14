@@ -2,7 +2,7 @@ public class Cube: VertexCollection{
 	
 	
     public init(color: Color){
-        super.init("Cube_" + color.name)
+        super.init(named: "Cube_" + color.name)
         createVertices(color)
 		finishedBuilding()
     }
@@ -75,8 +75,8 @@ public class Cube: VertexCollection{
       add(vertex: Vertex( float3(  1, -1, -1), color))
       add(vertex: Vertex( float3( 1, 1, 1 ), color))
       add(vertex: Vertex( float3( 1, -1, 1 ), color))
-  */  
     }
+	
     private func createTop(_ color: Color){
         //top
       add(vertex: Vertex( float3( 1, 1, 1  ), color))

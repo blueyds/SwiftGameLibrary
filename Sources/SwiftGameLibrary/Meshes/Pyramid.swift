@@ -31,7 +31,7 @@ public class Pyramid: VertexCollection{
         createBottom(color)
     }
 	private func addTop(_ color: Color){
-		add(x: 0, y: 1, z: 0), color))
+		add(x: 0, y: 1, z: 0, color))
 	}
     private func createLeft(_ color: Color){
         add(vertex: Vertex( float3( -1, -1, -1), color))

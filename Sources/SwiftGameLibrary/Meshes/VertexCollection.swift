@@ -4,7 +4,7 @@ public class VertexCollection: Mesh{
     // var vertexBuffer: MTLBuffer! { get set }
     private var vertices: [Vertex] = []
 	public let name: String
-	private var _vertexBuilder: VertexCollectionBuilder = nil
+	private var _vertexBuilder: VertexCollectionBuilder? = nil
 	public init(named name: String){
 		self.name = name
 	}
@@ -26,7 +26,7 @@ public class VertexCollection: Mesh{
 	}
 	private func checkBuilder(){
 		if _vertexBuilder == nil {
-			_vertexBuilder = Vertices()
+			_vertexBuilder = VerticeCollectionBuilder()
 		}
 	}
 	public func add(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
@@ -37,7 +37,7 @@ public class VertexCollection: Mesh{
 		if _vertexBuilder == nil {
 			fatalError("called finish too early \(self)")
 		}
-		vertices = _vertexBuilder.getProcessedVertices()
+		vertices = _vertexBuilder.getProcessedVertexData()
 		_vertexBuilder = nil
 		print(vertices)
 	}

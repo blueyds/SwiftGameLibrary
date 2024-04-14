@@ -15,18 +15,17 @@ struct VertexCollectionBuilder{
 		process()
 		return processedVertices
 	}
-	mutating public func add(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float, _ a: Float){
-		let v = Vertex(float3(x,y,z), float4(r,g,b,a))
-		add(vertex: v)
+	mutating public func add(_ x: Float, _ y: Float, _ z: Float, _ color: Color){
+		let v = Vertex(float3(x,y,z), color)
+		add(v)
 	}
 	mutating public func add(_ vertex: Vertex){
-		inVertices.append(v)
+		inVertices.append(vertex)
 		if triangles.count == 0 {
 			triangles.append(Triangle())
 		}
-		let index = triangle.count - 1
+		let index = triangles.count - 1
 		if !triangles[index].add(v.position){
-			triangles[index].calculateNormal()
 			triangles.append(Triangle())
 			triangles[index + 1].add(v.position)
 		}
@@ -42,7 +41,7 @@ struct VertexCollectionBuilder{
 					normals.append(triangle.normal)
 				}
 			}
-			v.normals = simd_normalize(normals.average)
+			v.normals = simd_normalize(normals.average())
 			processedVertices.append(v)
 		}
 		if processedVertices.count != inVertices.count {
@@ -59,7 +58,7 @@ struct VertexCollectionBuilder{
 		//var colors: [float4] { c }
 		
 		var normal: float3 { 
-			if checkNormal() { return n}
+			if checkNormal() { return n!}
 			else { fatalError("CheckNormal failed \(description)")}
 		}
 		private func checkNormal()->Bool{
@@ -89,7 +88,7 @@ struct VertexCollectionBuilder{
 			}
 			let v1 = v[1] - v[2]
 			let v2 = v[1] - v[0]
-			normal = simd_normalize(simd_cross(v1,v2))
+			n = simd_normalize(simd_cross(v1,v2))
 		}
 		
 	}
