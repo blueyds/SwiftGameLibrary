@@ -6,9 +6,9 @@ extension Array {
     }
 }
 
-extension Array where Element == simd_float3{
-    func sum()->simd_float3{
-        reduce(simd_float3(0, 0, 0), { $0 + $1})
+extension Array where Element == float3{
+    func sum()->float3{
+        reduce(float3(0, 0, 0), { $0 + $1})
     }
     func average()->Element{
         let summary = sum()

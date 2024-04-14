@@ -42,6 +42,7 @@ public struct Vertex{
         result.attributes[3].offset = offset
         // layout
         result.layouts[0].stride = Vertex.stride()
-        return result
+        return resul
+		t
     }()
 }

@@ -1,4 +1,3 @@
-import SwiftGameLibrary
 
 public class Pyramid: VertexCollection{
     
@@ -8,7 +7,7 @@ public class Pyramid: VertexCollection{
 		finishedBuilding()
     }
     public init(left: Color, right: Color,  back: Color, front: Color, bottom: Color){
-        name = "PYRAMID_LEFT" + left.name + 
+        let name = "PYRAMID_LEFT" + left.name + 
         "_RIGHT" + right.name +
         "_BOTTOM" + bottom.name +
         "_BACK" + back.name +    
@@ -31,7 +30,7 @@ public class Pyramid: VertexCollection{
         createBottom(color)
     }
 	private func addTop(_ color: Color){
-		add(x: 0, y: 1, z: 0, color))
+		add(0, 1, 0, color)
 	}
     private func createLeft(_ color: Color){
         add(vertex: Vertex( float3( -1, -1, -1), color))

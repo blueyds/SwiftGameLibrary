@@ -15,6 +15,13 @@ public struct Color: Nameable{
         self.a = a
         self.name = named
     }
+	init(_ r: Float, _ g: Float, _ b: Float,_ a: Float){
+		self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+        self.name = "R\(r)_G\(g)_B\(b)_A\(a)"
+	}
     public var vector: float4 {
         float4(r, g, b, a)
     }

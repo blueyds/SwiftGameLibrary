@@ -25,9 +25,9 @@ struct VertexCollectionBuilder{
 			triangles.append(Triangle())
 		}
 		let index = triangles.count - 1
-		if !triangles[index].add(v.position){
+		if !triangles[index].add(vertex.position){
 			triangles.append(Triangle())
-			triangles[index + 1].add(v.position)
+			triangles[index + 1].add(vertex.position)
 		}
 	}
 	

@@ -26,18 +26,22 @@ public class VertexCollection: Mesh{
 	}
 	private func checkBuilder(){
 		if _vertexBuilder == nil {
-			_vertexBuilder = VerticeCollectionBuilder()
+			_vertexBuilder = VertexCollectionBuilder()
 		}
 	}
-	public func add(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
-		checkBuilder()
-		_vertexBuilder!.add(x, y, z, r, g, b, a)	
+	public func add(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float, _ a: Float){
+		let v = Vertex(float3(x,y,z), Color(r,g,b,a))
+		add(vertex: v)	
+	}
+	public func add(_x: Float,_ y: Float,_ z: Float, _ color: Color){
+		let v = Vertex(float3(x,y,z), color)
+		add(vertex: v)
 	}
 	public func finishedBuilding(){
 		if _vertexBuilder == nil {
 			fatalError("called finish too early \(self)")
 		}
-		vertices = _vertexBuilder.getProcessedVertexData()
+		vertices = _vertexBuilder!fl.getProcessedVertexData()
 		_vertexBuilder = nil
 		print(vertices)
 	}

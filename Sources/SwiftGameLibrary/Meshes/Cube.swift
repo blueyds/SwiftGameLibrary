@@ -33,19 +33,6 @@ public class Cube: VertexCollection{
     }
     private func createLeft(_ color: Color){
         // TODO: rewrite all calls like the add vertex below. this shouldelaimate other err
-		let r = color.r
-		let g = color.g
-		let b = color.b
-		let a = color.a
-		/*
-		add(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a)
-		add(x: -1, y: -1, z:  1, r: r, g: g, b: b, a: a)
-		add(x: -1, y:  1, z:  1, r: r, g: g, b: b, a: a)
-		add(x: -1, y: -1, z: -1, r: r, g: g, b: b, a: a)
-		add(x: -1, y:  1, z:  1, r: r, g: g, b: b, a: a)
-		add(x: -1, y:  1, z: -1, r: r, g: g, b: b, a: a)
-		*/
-		
         add(vertex: Vertex( float3( -1, -1, -1), color))
         add(vertex: Vertex( float3( -1, -1, 1), color))
         add(vertex: Vertex( float3( -1, 1, 1), color))
@@ -57,18 +44,6 @@ public class Cube: VertexCollection{
     
     private func createRight(_ color: Color){
         // Right
-      let r = color.r
-		let g = color.g
-		let b = color.b
-		let a = color.a
-		/*
-		add(x: 1, y: 1, z: 1, r: r, g: g, b: b, a: a)
-		add(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a)
-		add(x: 1, y:  1, z: -1, r: r, g: g, b: b, a: a)
-		add(x: 1, y: -1, z: -1, r: r, g: g, b: b, a: a)
-		add(x: 1, y:  1, z: 1, r: r, g: g, b: b, a: a)
-		add(x: 1, y: -1, z: 1, r: r, g: g, b: b, a: a)
-		*/
 		add(vertex: Vertex( float3( 1, 1, 1 ), color))
       add(vertex: Vertex( float3( 1, -1, -1 ), color))
       add(vertex: Vertex( float3( 1, 1, -1 ), color))
