@@ -8,7 +8,7 @@ struct VertexCollectionBuilder{
 		
 	}
 	
-	mutating public func getProccesedVertexData()->[Vertex]{
+	mutating public func getProcessedVertexData()->[Vertex]{
 		if processedVertices.count == inVertices.count{
 			return processedVertices
 		}
