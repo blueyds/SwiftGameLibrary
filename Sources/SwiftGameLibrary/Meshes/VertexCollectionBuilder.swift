@@ -1,4 +1,4 @@
-import simd
+/*import simd
 
 struct VertexCollectionBuilder{
 	private var inVertices: [Vertex] = []
@@ -106,4 +106,5 @@ let vector1 = vertex2 - vertex3
 let vector2 = vertex2 - vertex1
 The simd_cross function returns the vector that's perpendicular to the two vectors you pass it. In this example, the returned vector is the normal of the triangle. Because the normal represents a direction, you can normalize the value to get a unit vector:
 let normal = simd_normalize(simd_cross(vector1, vector2)) 
+*/
 */

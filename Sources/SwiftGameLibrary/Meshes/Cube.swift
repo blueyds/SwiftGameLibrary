@@ -1,4 +1,4 @@
-public class Cube: VertexCollection{
+/*public class Cube: VertexCollection{
 	
 	
     public init(color: Color){
@@ -92,4 +92,4 @@ public class Cube: VertexCollection{
       
     }
     
-}
+}*/

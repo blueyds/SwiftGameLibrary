@@ -1,4 +1,4 @@
-import Metal
+/*import Metal
 
 public class VertexCollection: Mesh{
     // var vertexBuffer: MTLBuffer! { get set }
@@ -46,4 +46,4 @@ public class VertexCollection: Mesh{
 		print(vertices)
 	}
 }
-
+*/

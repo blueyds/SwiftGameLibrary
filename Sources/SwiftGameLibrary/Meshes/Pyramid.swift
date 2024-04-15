@@ -1,4 +1,4 @@
-
+/*
 public class Pyramid: VertexCollection{
     
     public init(color: Color){
@@ -66,5 +66,5 @@ public class Pyramid: VertexCollection{
         add(vertex: Vertex( float3( -1, -1, -1 ), color))
     }
 	
-}
+}*/
 
