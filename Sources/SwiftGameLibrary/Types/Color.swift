@@ -8,14 +8,14 @@ public struct Color: Nameable{
     public let b: Float
     public let a: Float
     
-    init(_ r: Float, _ g: Float, _ b: Float, _ a:Float, named: String){
+    public init(_ r: Float, _ g: Float, _ b: Float, _ a:Float, named: String){
         self.r = r
         self.g = g
         self.b = b
         self.a = a
         self.name = named
     }
-	init(_ r: Float, _ g: Float, _ b: Float,_ a: Float){
+	public init(_ r: Float, _ g: Float, _ b: Float,_ a: Float){
 		self.r = r
         self.g = g
         self.b = b
