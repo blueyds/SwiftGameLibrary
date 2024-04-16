@@ -15,14 +15,8 @@ public struct TickCounter{
 	// return false if the Tickcounter will overflow. In this case the tickcounter 
 	// will reset to zero and return false so the call function
 	// can do stuff also
-	public mutating func increment()-> Bool{
-		if value < T.max {
-			value = value + 1
-			return true
-		} else {
-			value = 0
-			return false
-		}	
+	public mutating func increment(){
+		value += 1
 	}
 }
 
