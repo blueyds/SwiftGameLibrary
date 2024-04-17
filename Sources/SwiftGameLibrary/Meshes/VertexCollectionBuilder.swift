@@ -1,110 +1,115 @@
-/*import simd
+import simd
+import SwiftGameLibrary
 
 struct VertexCollectionBuilder{
-	private var inVertices: [Vertex] = []
-	private var processedVertices: [Vertex] = []
-	private var triangles: [Triangle] = []
-	init(){
-		
-	}
-	
-	mutating public func getProcessedVertexData()->[Vertex]{
-		if processedVertices.count == inVertices.count{
-			return processedVertices
-		}
-		process()
-		return processedVertices
-	}
-	mutating public func add(_ x: Float, _ y: Float, _ z: Float, _ color: Color){
-		let v = Vertex(float3(x,y,z), color)
-		add(v)
-	}
-	mutating public func add(_ vertex: Vertex){
-		inVertices.append(vertex)
-		if triangles.count == 0 {
-			triangles.append(Triangle())
-		}
-		let index = triangles.count - 1
-		if !triangles[index].add(vertex.position){
-			triangles.append(Triangle())
-			triangles[index + 1].add(vertex.position)
-		}
-	}
-	
-	mutating private func process(){
-		processedVertices = []
-		inVertices.forEach(){
-			var v = $0
-			var normals: [float3] = []
-			triangles.forEach(){ triangle in
-				if triangle.contains(v.position){
-					normals.append(triangle.normal)
-				}
-			}
-			v.normals = simd_normalize(normals.average())
-			processedVertices.append(v)
-		}
-		if processedVertices.count != inVertices.count {
-			fatalError("process vertices does not equal inVertices")
-		}
-	}
-	
-	
-	struct Triangle{
-		private var v: [float3] = []
-		//private var c: [float4] = []
-		private var n: float3? = nil
-		private var vertices:[float3]{ v }
-		//var colors: [float4] { c }
-		
-		var normal: float3 { 
-			if checkNormal() { return n!}
-			else { fatalError("CheckNormal failed \(description)")}
-		}
-		private func checkNormal()->Bool{
-			n != nil && v.count == 3
-		}
-		mutating func add(_ vertex: float3)-> Bool{
-			if v.count > 2 { 
-				calculateNormal()
-				return false
-			}
-			v.append(vertex)
-			//c.append(color)
-			return true
-		}
-		
-		func contains(_ vector: float3)->Bool{
-			v.contains(vector)
-		}
-		
-		var description: String {
-			"v1:\(v[0]) v2:\(v[1]) v3:\(v[2]) n:\(normal)"
-		}
-		
-		mutating private func calculateNormal(){
-			if v.count != 3 {
-				fatalError("trying to calculate normal with less than three vectors \(description)")
-			}
-			let v1 = v[1] - v[2]
-			let v2 = v[1] - v[0]
-			n = simd_normalize(simd_cross(v1,v2))
-		}
-		
-	}
+    private var inVertices: [Vertex] = []
+    private var processedVertices: [Vertex] = []
+    private var triangles: [Triangle]
+    public init(){
+        triangles = []
+        triangles.append(Triangle())
+    }
+    mutating public func getProcessedVertexData()->[Vertex]{
+        if processedVertices.count == inVertices.count{
+            return processedVertices
+        }
+        process()
+        return processedVertices
+    }
+    mutating public func add(_ x: Float, _ y: Float, _ z: Float, _ color: Color){
+        let v = Vertex(SIMD3<Float>(x,y,z), color)
+        add(v)
+    }
+    mutating public func add(_ vertex: Vertex){
+        inVertices.append(vertex)
+        var t = triangles.popLast()!
+        if t.isFull(){
+            triangles.append(t)
+            var t1 = Triangle()
+            t1.add(vertex.position)
+            triangles.append(t1)
+        } else {
+            t.add(vertex.position)
+            triangles.append(t)
+        }
+    }
+    
+    mutating private func process(){
+        processedVertices = []
+        
+        var vectorNormals: [SIMD3<Float>:SIMD3<Float>] = [:]
+        inVertices.forEach(){
+            var v = $0
+            if let norm = vectorNormals[v.position] {
+                v.normals = norm
+            } else {
+                let normal = calculateNormal(v.position)
+                vectorNormals.updateValue(normal, forKey: v.position)
+                v.normals = normal
+            }
+            processedVertices.append(v)
+        }
+        
+        if processedVertices.count != inVertices.count {
+            fatalError("process vertices does not equal inVertices")
+        }
+        
+    }
+    private func calculateNormal(_ v: SIMD3<Float>)->SIMD3<Float>{
+        var normals: [SIMD3<Float>] = []
+//    var count = 1
+        triangles.forEach(){ triangle in
+            if triangle.contains(v){
+                normals.append(triangle.normal)
+            }
+        }
+        return normals.average()
+    }
+    
+    
+    struct Triangle{
+        var v1: SIMD3<Float>? = nil
+        var v2: SIMD3<Float>? = nil
+        var v3: SIMD3<Float>? = nil
+        var n: SIMD3<Float>? = nil
+        var normal: SIMD3<Float> { 
+            if checkNormal() { return n!}
+            else { fatalError("CheckNormal failed")}
+        }
+        private func checkNormal()->Bool{
+            n != nil && v1 != nil && v2 != nil && v3 != nil
+        }
+        mutating func add(_ vertex: SIMD3<Float>){
+            if v1 == nil { 
+                v1 = vertex
+            }else if v2 == nil { 
+                v2 = vertex
+            } else{
+                v3 = vertex
+                calculateNormal()    
+            }
+        }
+        public func isFull()->Bool { v3 != nil }
+        
+        func contains(_ vector: SIMD3<Float>)->Bool{
+            if v1 == vector { return true }
+            if v2 == vector { return true }
+            if v3 == vector { return true }
+            return false
+        }
+        
+        var description: String {
+            "v1\(v1 ?? .zero) v2\(v2 ?? .zero) v3\(v3 ?? .zero) normal \(n ?? .zero)"
+        }
+        
+        mutating private func calculateNormal(){
+            if v1 == nil || v2 == nil || v3 == nil {
+                fatalError("Not enough vectors to caldulation")
+            }
+            let vector1 =  v1! - v2!
+            let vector2 = v1! - v3!
+            n = simd_normalize(simd_cross(vector1, vector2))
+        }
+        
+    }
 }
-/*
-normal for a vector is the cross productof adjacent triangle normals
-i
-calculatr normal of trianle
-The following code defines the three vertices of the triangle:
-let vertex1 = simd_float3(-1.5, 0.5, 0)
-let vertex2 = simd_float3(1, 0, 3)
-let vertex3 = simd_float3(0.5, -0.5, -1.5)
-Your first step in calculating the normal of the triangle is to create two vectors defined by the difference between the vertices—representing two sides of the triangle:
-let vector1 = vertex2 - vertex3
-let vector2 = vertex2 - vertex1
-The simd_cross function returns the vector that's perpendicular to the two vectors you pass it. In this example, the returned vector is the normal of the triangle. Because the normal represents a direction, you can normalize the value to get a unit vector:
-let normal = simd_normalize(simd_cross(vector1, vector2)) 
-*/
-*/
