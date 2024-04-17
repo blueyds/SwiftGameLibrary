@@ -25,17 +25,9 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		self.name = "SCENE_id\(self.id)"
 	}
 
-
-/* 
-	public init(named: String, camera: Camera, children: @escaping (() -> [GameNode]), actions: @escaping (() -> [Action]){
-		self.name = named
-		self.id = Int.NextID()
-		self.camera = camera
-		self.children = children()
-		self.actions = actions()
-	}
- */
 	open func doUpdate(counter ticks: TickCounter) { }
+	
+	open func attachLights(to encoder: MTLRenderCommandEncoder){ }
 }
 
 // Update functions
@@ -70,6 +62,7 @@ extension GameScene{
         encoder.pushDebugGroup("SCENE \(name)")
         
         camera.render(with: encoder)
+		attachLights(to: encoder)
         renderChildren(with: encoder, currentState)
         
         encoder.popDebugGroup()

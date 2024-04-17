@@ -1,6 +1,6 @@
 import Metal
 
-public class VertexCollection: Mesh{
+open class VertexCollection: Mesh{
     // var vertexBuffer: MTLBuffer! { get set }
     private var vertices: [Vertex] = []
     public let name: String
