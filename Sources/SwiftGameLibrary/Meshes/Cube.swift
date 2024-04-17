@@ -1,4 +1,3 @@
-import SwiftGameLibrary
 public class Cube: VertexCollection{
     
     
@@ -35,13 +34,13 @@ public class Cube: VertexCollection{
     }
 	
     private func createLeft(_ color: Color){
-        // TODO: rewrite all calls like the add vertex below. this shouldelaimate other err
-        add(vertex: Vertex( float3( -1, -1, -1), color))
-        add(vertex: Vertex( float3( -1, -1, 1), color))
-        add(vertex: Vertex( float3( -1, 1, 1), color))
-        add(vertex: Vertex( float3( -1, -1, -1), color))
-        add(vertex: Vertex( float3( -1, 1, 1), color))
-        add(vertex: Vertex( float3( -1, 1, -1), color))
+        // Left
+        add( -1, -1, -1, color)
+        add( -1, -1,  1, color)
+        add( -1,  1,  1, color)
+        add( -1, -1, -1, color)
+        add( -1,  1,  1, color)
+        add( -1,  1, -1, color)
         
     }
     

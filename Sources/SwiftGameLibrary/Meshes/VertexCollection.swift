@@ -1,5 +1,5 @@
 import Metal
-import SwiftGameLibrary
+
 public class VertexCollection: Mesh{
     // var vertexBuffer: MTLBuffer! { get set }
     private var vertices: [Vertex] = []

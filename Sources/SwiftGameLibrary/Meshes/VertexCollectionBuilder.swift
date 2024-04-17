@@ -1,5 +1,4 @@
 import simd
-import SwiftGameLibrary
 
 struct VertexCollectionBuilder{
     private var inVertices: [Vertex] = []
