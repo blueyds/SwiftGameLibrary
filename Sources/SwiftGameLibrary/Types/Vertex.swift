@@ -10,14 +10,14 @@ public struct Vertex{
     public init(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
         position = float3(x, y, z)
         color = float4(r, g, b, a)
-        normals = float3.Zero
-        texCoord = float2.Zero
+        normals = float3.zero
+        texCoord = float2.zero
     }
     public init(_ pos: float3, _ color: Color){
         self.position = pos
         self.color = color.vector
-        normals = float3.Zero
-        texCoord = float2.Zero
+        normals = float3.zero
+        texCoord = float2.zero
     }
     static public var vertexDescriptor: MTLVertexDescriptor = {
         let result = MTLVertexDescriptor()

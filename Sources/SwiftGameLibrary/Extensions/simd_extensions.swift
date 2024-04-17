@@ -7,21 +7,6 @@
 
 import simd
 
-public typealias float2 = simd_float2
-public typealias float3 = simd_float3
-public typealias float4 = simd_float4
-
-extension float2{
-    public static var Zero: float2 { float2(repeating: 0)}
-    public static var One: float2 { float2(repeating: 1)}
-}
-
-extension float3{
-	public static var Zero: float3 { float3(repeating: 0)}
-	public static var One: float3 { float3(repeating: 1)}
-}
-
-extension float4{
-	public static var Zero: float4 { float4(repeating: 0) }
-	public static var One: float4 { float4(repeating: 1) }
-}
+public typealias float2 = SIMD2<Float>
+public typealias float3 = SIMD3<Float>
+public typealias float4 = SIMD4<Float>

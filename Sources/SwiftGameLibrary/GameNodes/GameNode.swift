@@ -5,9 +5,9 @@ import Metal
 open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChildren {
 	public let id: Int
 	public let name: String
-	public var position: float3 = float3.Zero
-	public var rotation: float3 = float3.Zero
-	public var scale: float3 = float3.One
+	public var position: float3 = float3.zero
+	public var rotation: float3 = float3.zero
+	public var scale: float3 = float3.one
 	//public var parent: GameNode? = nil
 	public var modelMatrix: Matrix = Matrix.identity
 	public var mesh: Mesh? = nil

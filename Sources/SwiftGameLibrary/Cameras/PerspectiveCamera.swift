@@ -3,9 +3,9 @@ import simd
 public class PerspectiveCamera: Camera, Identifiable{
     public let name: String
     public let id: Int = Int.NextID()
-	public var position: float3 = float3.Zero
-    public var rotation: float3 = float3.Zero
-    public var scale: float3 = float3.One
+	public var position: float3 = float3.zero
+    public var rotation: float3 = float3.zero
+    public var scale: float3 = float3.one
     public var modelMatrix: Matrix = Matrix.identity
     public var fov: Float
     public var aspectRatio: Float
