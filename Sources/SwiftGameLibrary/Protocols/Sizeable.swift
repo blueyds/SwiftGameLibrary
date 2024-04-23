@@ -22,9 +22,12 @@ extension sizeable{
         stride() * count
     }
 }
-extension float2: sizeable{}
-extension float3: sizeable{}
-extension float4: sizeable{}
+extension SIMD2<Float>: sizeable{}
+extension SIMD3<Float>: sizeable{}
+extension SIMD4<Float>: sizeable{}
 extension Vertex: sizeable {}
 extension Matrix: sizeable {}
-
+extension Int32: sizeable {}
+extension Int16: sizeable {}
+extension UInt32: sizeable {}
+extension UInt16: sizeable {}

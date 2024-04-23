@@ -3,21 +3,21 @@ import Metal
 import simd
 
 public struct Vertex{
-    public var position: float3
-    public var color: float4
-    public var normals: float3
-    public var texCoord: float2
+    public var position: SIMD3<Float>
+    public var color: SIMD4<Float>
+    public var normals: SIMD3<Float>
+    public var texCoord: SIMD2<Float>
     public init(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
-        position = float3(x, y, z)
-        color = float4(r, g, b, a)
-        normals = float3.zero
-        texCoord = float2.zero
+        position = SIMD3<Float>(x, y, z)
+        color = SIMD4<Float>(r, g, b, a)
+        normals = .zero
+        texCoord = .zero
     }
-    public init(_ pos: float3, _ color: Color){
+    public init(_ pos: SIMD3<Float>, _ color: Color){
         self.position = pos
         self.color = color.vector
-        normals = float3.zero
-        texCoord = float2.zero
+        normals = .zero
+        texCoord = .zero
     }
     static public var vertexDescriptor: MTLVertexDescriptor = {
         let result = MTLVertexDescriptor()
@@ -25,17 +25,17 @@ public struct Vertex{
         result.attributes[0].format = .float3
         result.attributes[0].bufferIndex = 0 
         result.attributes[0].offset = 0
-        var offset = result.attributes[0].offset + float3.size()
+        var offset = result.attributes[0].offset + SIMD3<Float>.size()
         //o Color
         result.attributes[1].format = .float4
         result.attributes[1].bufferIndex = 0
         result.attributes[1].offset = offset
-        offset += float4.size()
+        offset += SIMD4<Float>.size()
         // normals 
         result.attributes[2].format = .float3
         result.attributes[2].bufferIndex = 0
         result.attributes[2].offset = offset
-        offset += float3.size()
+        offset += SIMD3<Float>.size()
         // texCoord
         result.attributes[3].format = .float2
         result.attributes[3].bufferIndex = 0

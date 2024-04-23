@@ -8,28 +8,28 @@ extension Matrix{
     public static var identity: Matrix { 
         matrix_identity_float4x4
     }
-    public mutating func translateModel(_ v3: float3){
+    public mutating func translateModel(_ v3: SIMD3<Float>){
         var result = Matrix.identity
         result.columns = (
-            simd_float4(1,      0,      0,      0),
-            simd_float4(0,      1,      0,      0),
-            simd_float4(0,      0,      1,      0),
-            simd_float4(v3.x,   v3.y,   v3.z,   1)
+            SIMD4<Float>(1,      0,      0,      0),
+            SIMD4<Float>(0,      1,      0,      0),
+            SIMD4<Float>(0,      0,      1,      0),
+            SIMD4<Float>(v3.x,   v3.y,   v3.z,   1)
         )
         self = matrix_multiply(self, result)
     }
     
-    public mutating func scale(_ v3: float3){
+    public mutating func scale(_ v3: SIMD3<Float>){
         var result = Matrix.identity
         result.columns = (
-            simd_float4(v3.x, 0, 0, 0),
-            simd_float4(0, v3.y, 0, 0),
-            simd_float4(0, 0, v3.z, 0),
-            simd_float4(0, 0, 0, 1)
+            SIMD4<Float>(v3.x, 0, 0, 0),
+            SIMD4<Float>(0, v3.y, 0, 0),
+            SIMD4<Float>(0, 0, v3.z, 0),
+            SIMD4<Float>(0, 0, 0, 1)
         )
         self = matrix_multiply(self, result)
     }
-    public mutating func rotate(_ v3: float3){
+    public mutating func rotate(_ v3: SIMD3<Float>){
         rotate(v3.x, onX: true)
         rotate(v3.y, onY: true)
         rotate(v3.z, onZ: true)
@@ -52,52 +52,45 @@ extension Matrix{
         let mc: Float = (1 - c)   
         
         result.columns = (
-            simd_float4(x * x * mc + c,
+            SIMD4<Float>(x * x * mc + c,
                         x * y * mc + z * s,
                         x * z * mc - y * s,
                         0),
-            simd_float4(y * x * mc - z * s,
+            SIMD4<Float>(y * x * mc - z * s,
                         y * y * mc + c,
                         y * z * mc + x * s,
                         0),
-            simd_float4(z * x * mc + y * s,
+            SIMD4<Float>(z * x * mc + y * s,
                         z * y * mc - x * s,
                         z * z * mc + c,
                         0),
-            simd_float4(0,0,0,1)
+            SIMD4<Float>(0,0,0,1)
         )
         self = matrix_multiply(self, result)
     }
     
-    public static func view(position: simd_float3)-> Matrix{
+    public static func view(position: SIMD3<Float>)-> Matrix{
         var result = Matrix.identity
         result.columns = (
-            simd_float4(1,      0,      0,      0),
-            simd_float4(0,      1,      0,      0),
-            simd_float4(0,      0,      1,      0),
-            simd_float4(-position.x, -position.y,   -position.z,   1)
+            SIMD4<Float>(1,      0,      0,      0),
+            SIMD4<Float>(0,      1,      0,      0),
+            SIMD4<Float>(0,      0,      1,      0),
+            SIMD4<Float>(-position.x, -position.y,   -position.z,   1)
         )
         return result
     }
-    
-    // TODO: not implemented yet
-    /*
-    internal static func lookAt(origin: float3, target: float3, up: float3) -> Matrix{
-        var result = Matrix.identity
-        
-        return result
-    }
-    */
+	
+	
     public static func perspective(degreesFov fov: Float, aspectRatio: Float, nearZ: Float, farZ: Float )-> Matrix {
         var result = Matrix.identity
         let ys = 1 / tanf(fov.fromDegrees * 0.5)
         let xs = ys / aspectRatio
         let zs = farZ / (nearZ - farZ)
         result.columns = (
-            float4(xs,  0, 0,   0),
-            float4( 0, ys, 0,   0),
-            float4( 0,  0, zs, -1),
-            float4( 0,  0, zs * nearZ, 0))
+            SIMD4<Float>(xs,  0, 0,   0),
+            SIMD4<Float>( 0, ys, 0,   0),
+            SIMD4<Float>( 0,  0, zs, -1),
+            SIMD4<Float>( 0,  0, zs * nearZ, 0))
         return result
     }
 }

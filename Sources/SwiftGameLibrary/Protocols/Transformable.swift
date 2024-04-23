@@ -1,9 +1,9 @@
 import simd
 
 public protocol Transformable: AnyObject{
-    var position: float3 { get set }
-    var rotation: float3 { get set }
-    var scale: float3 { get set}
+    var position: SIMD3<Float> { get set }
+    var rotation: SIMD3<Float> { get set }
+    var scale: SIMD3<Float> { get set}
     var modelMatrix: Matrix { get set}
 }
 
@@ -19,9 +19,9 @@ extension Transformable{
 
 extension Transformable{
     public func moveTo(x: Float, y: Float, z: Float){
-        self.position = float3(x, y, z)
+        self.position = SIMD3<Float>(x, y, z)
     }
-    public func move(to newPosition: float3){
+    public func move(to newPosition: SIMD3<Float>){
         self.position = newPosition
     }
     public func moveX(by delta: Float){

@@ -1,13 +1,14 @@
 import Foundation
+import simd
 import Metal
 
 
 open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChildren {
 	public let id: Int
 	public let name: String
-	public var position: float3 = float3.zero
-	public var rotation: float3 = float3.zero
-	public var scale: float3 = float3.one
+	public var position: SIMD3<Float> = .zero
+	public var rotation: SIMD3<Float> = .zero
+	public var scale: SIMD3<Float> = .one
 	//public var parent: GameNode? = nil
 	public var modelMatrix: Matrix = Matrix.identity
 	public var mesh: Mesh? = nil

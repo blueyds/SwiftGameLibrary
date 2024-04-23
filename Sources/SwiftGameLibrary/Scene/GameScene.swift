@@ -7,10 +7,10 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	public var children: [GameNode] = []
 	public var camera: Camera!
 	// needed by hasChidren
-	public var position = float3.zero
-	public var scale = float3.one
-	public var rotation = float3.zero
-	public var modelMatrix = Matrix.identity
+	public var position: SIMD3<Float> = .zero
+	public var scale: SIMD3<Float> = .one
+	public var rotation: SIMD3<Float> = .zero
+	public var modelMatrix: Matrix = .identity
 	// end needed by hasChildren
 	public var actions: [any Action] = []
 	private var garbageCounter: Int = 15
