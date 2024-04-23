@@ -1,4 +1,4 @@
-import simd
+/* import simd
 
 struct VertexCollectionBuilder{
     private var inVertices: [Vertex] = []
@@ -127,4 +127,4 @@ struct VertexCollectionBuilder{
         }
         
     }
-}
+} */

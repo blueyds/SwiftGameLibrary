@@ -10,7 +10,7 @@ public class Sphere: VertexCollection{
 	public init(using device: MTLDevice, stacks: Int, slices: Int){
 		self.stacks = stacks
 		self.slices = slices
-		init(using: device)
+		super.init(using: device)
 	}
     public func createVertices(){
 		createSphere(.random)

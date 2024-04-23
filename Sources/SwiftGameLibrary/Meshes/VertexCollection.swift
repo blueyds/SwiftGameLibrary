@@ -17,14 +17,14 @@ extension VertexCollection{
 	
 	private func createBuffer(using device: MTLDevice){
 		if  vertices.count >  0{
-			vertexBuffer = device.makeBuffer(bytes: vertices, length: Vertex.stride(vertices.count), option: [])
+			vertexBuffer = device.makeBuffer(bytes: vertices, length: Vertex.stride(vertices.count), options: [])
 		}
 	}
 	public func setVertices(to encoder: MTLRenderCommandEncoder){
-		if _vertexBuffer == nil {
-			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertexCount), index: BufferIndex.Vertex)
+		if vertexBuffer == nil {
+			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: BufferIndex.Vertex)
 		} else {
-			encoder.setVertexBuffer(_vertexBuffer, offset: 0, index: 0)
+			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
 		}
 	}
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder){

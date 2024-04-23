@@ -1,4 +1,4 @@
-
+import Metal
 public class Pyramid: VertexCollection{
     public var vertices: [Vertex] = []
 	public var vertexBuffer: MTLBuffer? = nil

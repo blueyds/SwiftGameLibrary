@@ -15,6 +15,14 @@ public struct Color: Nameable{
 		self.a = a
 		self.name = named
 	}
+	
+	public init(_ r: Float, _ g: Float, _ b: Float, named: String){
+		self.r = r
+		self.g = g
+		self.b = b
+		self.a = 1
+		self.name = named
+	}
 	public init(_ r: Float, _ g: Float, _ b: Float,_ a: Float){
 		self.r = r
 		self.g = g
@@ -27,7 +35,7 @@ public struct Color: Nameable{
 		self.r = r
 		self.g = g
 		self.b = b
-		self.a. = 1
+		self.a = 1
 		self.name = "R\(r)_G\(g)_B\(b)_A\(a)"
 	}
 	

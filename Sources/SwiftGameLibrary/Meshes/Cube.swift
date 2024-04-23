@@ -1,3 +1,5 @@
+import Metal
+
 public class Cube: VertexCollection{
 	
 	public var vertices: [Vertex] = []
