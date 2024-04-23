@@ -5,11 +5,9 @@ public class Sphere: VertexCollection{
 	public var vertices: [Vertex] = []
 	public var vertexBuffer: MTLBuffer? = nil
 	public var name: String = "SPHERE"
-	let stacks: Int = 8
-	let slices: Int = 8
-	public init(using device: MTLDevice, stacks: Int, slices: Int){
-		self.stacks = stacks
-		self.slices = slices
+	let resolution: Int
+	public init(using device: MTLDevice, resolution: Int){
+		self.resolution = resolution
 		createVertices()
 		createBuffer(using: device)
 	}
@@ -18,10 +16,10 @@ public class Sphere: VertexCollection{
     }
     private func createSphere(_ color: Color){
 		var vectors: [SIMD3<Float>] = []
-        for stack in 0...stacks{
-            let phi:Float = (Float(stack) / Float(stacks)) * Float.pi
-            for slice in 0...slices {
-                let theta:Float = (Float(slice) / Float(slices)) * Float.pi * 2
+        for stack in 0...resolution{
+            let phi:Float = (Float(stack) / Float(resolution)) * Float.pi
+            for slice in 0...resolution {
+                let theta:Float = (Float(slice) / Float(resolution)) * Float.pi * 2
                 let x:Float = cos(theta) * sin(phi)
                 let y:Float = cos(phi)
                 let z:Float = sin(theta) * sin(phi)
