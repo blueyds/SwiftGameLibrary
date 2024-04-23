@@ -11,7 +11,7 @@ public class Sphere: VertexCollection{
 		self.stacks = stacks
 		self.slices = slices
 		createVertices()
-		createBuffer(using: devie)
+		createBuffer(using: device)
 	}
     public func createVertices(){
 		createSphere(.random)
