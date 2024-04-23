@@ -1,24 +1,11 @@
 
 public class Pyramid: VertexCollection{
-    
-    public init(color: Color){
-        super.init(named: "PYRAMID_" + color.name)
-        createVertices(color)
-		finishedBuilding()
-    }
-    public init(left: Color, right: Color,  back: Color, front: Color, bottom: Color){
-        let name = "PYRAMID_LEFT" + left.name + 
-        "_RIGHT" + right.name +
-        "_BOTTOM" + bottom.name +
-        "_BACK" + back.name +    
-        "_FRONT" + front.name 
-		super.init(named: name)
-        createLeft(left)
-        createRight(right)
-        createBack(back)
-        createFront(front)
-        createBottom(bottom)
-		finishedBuilding()
+    public var vertices: [Vertex] = []
+	public var vertexBuffer: MTLBuffer? = nil
+	public var name: String = "PYRAMID"
+	
+    public func createVertices(){
+		createVertices(.random)
     }
     
     public  func createVertices(_ color: Color) {

@@ -3,19 +3,30 @@ import simd
 struct VertexCollectionBuilder{
     private var inVertices: [Vertex] = []
     private var processedVertices: [Vertex] = []
+	private var processedIndices: [UInt16] = []
     private var triangles: [Triangle]
     public init(){
         triangles = []
         triangles.append(Triangle())
-    }
+    
+	}
+	
     mutating public func getProcessedVertexData()->[Vertex]{
         if processedVertices.count == inVertices.count{
             return processedVertices
         }
-        process()
+        processVertices()
         return processedVertices
     }
-    mutating public func add(_ x: Float, _ y: Float, _ z: Float, _ color: Color){
+	mutating public func getIndexedVertexData()->([Vertex],[UInt16]){
+		if processedVertices.count == inVertices.count{
+            return processedVertices
+        }
+        processVertices()
+		processIndices()
+		
+	}
+	mutating public func add(_ x: Float, _ y: Float, _ z: Float, _ color: Color){
         let v = Vertex(SIMD3<Float>(x,y,z), color)
         add(v)
     }
@@ -33,7 +44,7 @@ struct VertexCollectionBuilder{
         }
     }
     
-    mutating private func process(){
+    mutating private func processVertices(){
         processedVertices = []
         
         var vectorNormals: [SIMD3<Float>:SIMD3<Float>] = [:]
@@ -54,6 +65,11 @@ struct VertexCollectionBuilder{
         }
         
     }
+	// TODO: implement indexed primitives
+	mutating private func processIndices(){
+		inVertices = processedVertices
+		processedIndices = []
+	}
     private func calculateNormal(_ v: SIMD3<Float>)->SIMD3<Float>{
         var normals: [SIMD3<Float>] = []
 //    var count = 1

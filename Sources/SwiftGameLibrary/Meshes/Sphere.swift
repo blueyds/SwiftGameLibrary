@@ -1,18 +1,22 @@
 
 import simd
+import Metal
 public class Sphere: VertexCollection{
-    public init(color: Color){
-        let name = "SPHERE_\(color)"
-        super.init(named: name)
-        createSphere( color)
-        finishedBuilding()
-       // print("Built \(vertexCount) vertices")
+	public var vertices: [Vertex] = []
+	public var vertexBuffer: MTLBuffer? = nil
+	public var name: String = "SPHERE"
+	let stacks: Int = 8
+	let slices: Int = 8
+	public init(using device: MTLDevice, stacks: Int, slices: Int){
+		self.stacks = stacks
+		self.slices = slices
+		init(using: device)
+	}
+    public func createVertices(){
+		createSphere(.random)
     }
-    
     private func createSphere(_ color: Color){
-        let stacks: Int = 8
-        let slices: Int = 8
-        var vectors: [SIMD3<Float>] = []
+		var vectors: [SIMD3<Float>] = []
         for stack in 0...stacks{
             let phi:Float = (Float(stack) / Float(stacks)) * Float.pi
             for slice in 0...slices {

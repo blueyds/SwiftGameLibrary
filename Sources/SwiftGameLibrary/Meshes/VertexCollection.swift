@@ -1,50 +1,46 @@
 import Metal
-
-open class VertexCollection: Mesh{
-    // var vertexBuffer: MTLBuffer! { get set }
-    private var vertices: [Vertex] = []
-    public let name: String
-    private var _vertexBuilder: VertexCollectionBuilder? = nil
-    public init(named name: String){
-        self.name = name
-    }
-    //    func createVertices()
-    //    func createBuffer()
-    public var vertexCount: Int{
-        vertices.count
-    }
-    public func setVertices(to encoder: MTLRenderCommandEncoder){
-        encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertexCount), index: BufferIndex.Vertex)
-    }
-    public func drawPrimitives(using encoder: MTLRenderCommandEncoder){
+import simd
+public protocol VertexCollection: Mesh{
+	var vertices: [Vertex] { get set}
+	var vertexBuffer: MTLBuffer? { get set }
+	func createVertices() 
+}
+extension VertexCollection{
+	public init(){
+		createVertices()
+		vertexBuffer = nil
+	}
+	public init(using device: MTLDevice){
+		createVertices()
+		createBuffer(using: device)
+	}
+	
+	private func createBuffer(using device: MTLDevice){
+		if  vertices.count >  0{
+			vertexBuffer = device.makeBuffer(bytes: vertices, length: Vertex.stride(vertices.count), option: [])
+		}
+	}
+	public func setVertices(to encoder: MTLRenderCommandEncoder){
+		if _vertexBuffer == nil {
+			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertexCount), index: BufferIndex.Vertex)
+		} else {
+			encoder.setVertexBuffer(_vertexBuffer, offset: 0, index: 0)
+		}
+	}
+	public func drawPrimitives(using encoder: MTLRenderCommandEncoder){
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
     }
-    
-    public func add(vertex: Vertex){
-        checkBuilder()
-        _vertexBuilder!.add(vertex)
-    }
-    private func checkBuilder(){
-        if _vertexBuilder == nil {
-            _vertexBuilder = VertexCollectionBuilder()
-        }
-    }
-    public func add(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float, _ a: Float){
-        let v = Vertex(float3(x,y,z), Color(r,g,b,a))
-        add(vertex: v)    
-    }
-    public func add(_ x: Float,_ y: Float,_ z: Float, _ color: Color){
-        let v = Vertex(float3(x,y,z), color)
-        add(vertex: v)
-    }
-    public func finishedBuilding(){
-        if _vertexBuilder == nil {
-            fatalError("called finish too early \(self)")
-        }
-        //print("getting process vertexd data")
-        vertices = _vertexBuilder!.getProcessedVertexData()
-        //print("Finished proceess vertex data")
-        _vertexBuilder = nil
-        
-    }
+
+	public func add(vertex: Vertex){
+		vertices.append(vertex)
+	}
+	
+	public func add(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float, _ a: Float){
+		let v = Vertex(SIMD3<Float>(x,y,z), Color(r,g,b,a))
+		add(vertex: v)    
+	}
+	public func add(_ x: Float,_ y: Float,_ z: Float, _ color: Color){
+		let v = Vertex(SIMD3<Float>(x,y,z), color)
+		add(vertex: v)
+	}
 }

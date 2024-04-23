@@ -1,24 +1,11 @@
 public class Cube: VertexCollection{
-	public init(color: Color){
-		super.init(named: "Cube_" + color.name)
-		createVertices(color)
-		finishedBuilding()
-	}
 	
-	public init(left: Color, right: Color, top: Color, bottom: Color, back: Color, front: Color){
-		super.init(named: "Cube_LEFT" + left.name + 
-				"_RIGHT" + right.name +
-				"_TOP" + top.name +
-				"_BOTTOM" + bottom.name +
-				"_BACK" + back.name +    
-				"_FRONT" + front.name)
-		createLeft(left)
-		createRight(right)
-		createTop(top)
-		createBottom(bottom)
-		createBack(back)
-		createFront(front)
-		finishedBuilding()
+	public var vertices: [Vertex] = []
+	public var vertexBuffer: MTLBuffer? = nil
+	public var name: String = "CUBE"
+	
+	public func createVertices(){
+		createVertices(.random)
 	}
 	
 	public  func createVertices(_ color: Color) {
