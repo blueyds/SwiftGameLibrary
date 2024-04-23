@@ -29,8 +29,8 @@ public class Sphere: VertexCollection{
         //print(vectors.count)
         for i1 in vectors.indices{
             // each triangle will be /\/
-            guard let i2 = vectors.index(i1, offsetBy: slices + 1, limitedBy: vectors.endIndex - 1) else { continue }
-            guard let i3 = vectors.index(i1, offsetBy: slices, limitedBy: vectors.endIndex - 1) else { continue }
+            guard let i2 = vectors.index(i1, offsetBy: resolution + 1, limitedBy: vectors.endIndex - 1) else { continue }
+            guard let i3 = vectors.index(i1, offsetBy: resolution, limitedBy: vectors.endIndex - 1) else { continue }
             guard let i4 = vectors.index(i1, offsetBy: 1, limitedBy: vectors.endIndex - 1) else { continue }
             // add 1, 2, 3
             // add 4, 5, 6
