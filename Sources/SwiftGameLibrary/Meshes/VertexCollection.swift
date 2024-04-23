@@ -15,20 +15,20 @@ extension VertexCollection{
 		createBuffer(using: device)
 	}
 	
-	private func createBuffer(using device: MTLDevice){
+	public func createBuffer(using device: MTLDevice){
 		if  vertices.count >  0{
-			vertexBuffer = device.makeBuffer(bytes: vertices, length: Vertex.stride(vertices.count), options: [])
+			vertexBuffer = device.makeBuffer(bytes: vertices, length: Vertex.stride(of: vertices.count), options: [])
 		}
 	}
 	public func setVertices(to encoder: MTLRenderCommandEncoder){
 		if vertexBuffer == nil {
 			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: BufferIndex.Vertex)
 		} else {
-			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: BufferIndex.Vertex)
 		}
 	}
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder){
-        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount)
+        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
     }
 
 	public func add(vertex: Vertex){
