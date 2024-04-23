@@ -6,11 +6,11 @@ public protocol VertexCollection: Mesh{
 	func createVertices() 
 }
 extension VertexCollection{
-	public init(){
+	public func  build(){
 		createVertices()
 		vertexBuffer = nil
 	}
-	public init(using device: MTLDevice){
+	public build(using device: MTLDevice){
 		createVertices()
 		createBuffer(using: device)
 	}

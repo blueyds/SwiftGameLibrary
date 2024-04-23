@@ -3,7 +3,8 @@ public class Pyramid: VertexCollection{
     public var vertices: [Vertex] = []
 	public var vertexBuffer: MTLBuffer? = nil
 	public var name: String = "PYRAMID"
-	
+	public init() { build() }
+	public init(using device: MTLDevice){ build(using: device)}
     public func createVertices(){
 		createVertices(.random)
     }

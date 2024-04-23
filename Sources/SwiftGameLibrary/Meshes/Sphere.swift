@@ -8,8 +8,7 @@ public class Sphere: VertexCollection{
 	let resolution: Int
 	public init(using device: MTLDevice, resolution: Int){
 		self.resolution = resolution
-		createVertices()
-		createBuffer(using: device)
+		build(using: device)
 	}
     public func createVertices(){
 		createSphere(.random)
