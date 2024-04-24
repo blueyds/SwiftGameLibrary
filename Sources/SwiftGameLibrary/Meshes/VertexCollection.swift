@@ -10,7 +10,7 @@ extension VertexCollection{
 		createVertices()
 		vertexBuffer = nil
 	}
-	public build(using device: MTLDevice){
+	public func build(using device: MTLDevice){
 		createVertices()
 		createBuffer(using: device)
 	}
