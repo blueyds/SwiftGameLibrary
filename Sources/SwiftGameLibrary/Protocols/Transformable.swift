@@ -4,17 +4,24 @@ public protocol Transformable: AnyObject{
     var position: SIMD3<Float> { get set }
     var rotation: SIMD3<Float> { get set }
     var scale: SIMD3<Float> { get set}
-    var modelMatrix: Matrix { get set}
+   // var modelMatrix: Matrix { get set}
 }
 
 extension Transformable{
-    public func calculateModelMatrix(_ parentMatrix: Matrix = Matrix.identity){
-        var result = Matrix.identity
-        result.translateModel(position)
-        result.rotate(rotation)
-        result.scale(scale)
-        modelMatrix = matrix_multiply(parentMatrix, result)
-    }
+	public func calculateModelMatrix(_ parentMatrix: Matrix = Matrix.identity)->Matrix{
+		var result = Matrix.identity
+		result.translateModel(position)
+		result.rotate(rotation)
+		result.scale(scale)
+		return matrix_multiply(parentMatrix, result)
+	}
+	public func calculateViewMatrix()->Matrix{
+		var result = Matrix.identity
+		result.translateModel(-position)
+		result.rotate(-rotation)
+		//result.scale(scale)
+		return result
+	}
 }
 
 extension Transformable{

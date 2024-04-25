@@ -41,8 +41,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
     }
     
     final public func updateMatrices(parentMatrix: Matrix){
-        calculateModelMatrix(parentMatrix
-		)
+        self.modelMatrix = calculateModelMatrix(parentMatrix)
         updateChildMatrices()
     }
     
