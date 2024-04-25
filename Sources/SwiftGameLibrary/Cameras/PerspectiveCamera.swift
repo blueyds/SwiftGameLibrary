@@ -6,13 +6,12 @@ public class PerspectiveCamera: Camera, Identifiable{
 	public var position: SIMD3<Float> = .zero
 	public var rotation: SIMD3<Float> = .zero
 	public var scale: SIMD3<Float> = .one
-	public var modelMatrix: Matrix = .identity
 	public var fov: Float
 	public var aspectRatio: Float
 	public var near: Float
 	public var far: Float
 	public var viewMatrix: Matrix {
-		Matrix.view(position: position)
+		calculateViewMatrix()
 	}
 	public var projectionMatrix: Matrix {
 		Matrix.perspective(degreesFov: fov, aspectRatio: aspectRatio, nearZ: near, farZ: far)

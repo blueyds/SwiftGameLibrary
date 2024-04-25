@@ -1,6 +1,6 @@
 import Metal
 
-public protocol HasChildren: AnyObject, Transformable{
+public protocol HasChildren: AnyObject{
 	var children: [GameNode] { get set }
 }
 

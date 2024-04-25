@@ -3,4 +3,5 @@ extension Float{
     public var fromDegrees: Float{
         self * Float.pi / 180
     }
+	
  }

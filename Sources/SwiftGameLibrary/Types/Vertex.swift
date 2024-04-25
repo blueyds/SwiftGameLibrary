@@ -3,45 +3,47 @@ import Metal
 import simd
 
 public struct Vertex{
-    public var position: SIMD3<Float>
-    public var color: SIMD4<Float>
-    public var normals: SIMD3<Float>
-    public var texCoord: SIMD2<Float>
-    public init(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
-        position = SIMD3<Float>(x, y, z)
-        color = SIMD4<Float>(r, g, b, a)
-        normals = .zero
-        texCoord = .zero
-    }
-    public init(_ pos: SIMD3<Float>, _ color: Color){
-        self.position = pos
-        self.color = color.vector
-        normals = .zero
-        texCoord = .zero
-    }
-    static public var vertexDescriptor: MTLVertexDescriptor = {
-        let result = MTLVertexDescriptor()
-        // POsition
-        result.attributes[0].format = .float3
-        result.attributes[0].bufferIndex = 0 
-        result.attributes[0].offset = 0
-        var offset = result.attributes[0].offset + SIMD3<Float>.size()
-        //o Color
-        result.attributes[1].format = .float4
-        result.attributes[1].bufferIndex = 0
-        result.attributes[1].offset = offset
-        offset += SIMD4<Float>.size()
-        // normals 
-        result.attributes[2].format = .float3
-        result.attributes[2].bufferIndex = 0
-        result.attributes[2].offset = offset
-        offset += SIMD3<Float>.size()
-        // texCoord
-        result.attributes[3].format = .float2
-        result.attributes[3].bufferIndex = 0
-        result.attributes[3].offset = offset
-        // layout
-        result.layouts[0].stride = Vertex.stride()
-        return result
-    }()
+	public var position: SIMD3<Float>
+	public var color: SIMD4<Float>
+	public var normals: SIMD3<Float>
+	public var texCoord: SIMD2<Float>
+	public init(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
+		position = SIMD3<Float>(x, y, z)
+		color = SIMD4<Float>(r, g, b, a)
+		normals = .zero
+		texCoord = .zero
+	}
+
+	public init(_ pos: SIMD3<Float>, _ color: Color){
+		self.position = pos
+		self.color = color.vector
+		normals = .zero
+		texCoord = .zero
+	}
+
+	static public var vertexDescriptor: MTLVertexDescriptor = {
+		let result = MTLVertexDescriptor()
+		// POsition
+		result.attributes[0].format = .float3
+		result.attributes[0].bufferIndex = 0 
+		result.attributes[0].offset = 0
+		var offset = result.attributes[0].offset + SIMD3<Float>.size()
+		//o Color
+		result.attributes[1].format = .float4
+		result.attributes[1].bufferIndex = 0
+		result.attributes[1].offset = offset
+		offset += SIMD4<Float>.size()
+		// normals 
+		result.attributes[2].format = .float3
+		result.attributes[2].bufferIndex = 0
+		result.attributes[2].offset = offset
+		offset += SIMD3<Float>.size()
+		// texCoord
+		result.attributes[3].format = .float2
+		result.attributes[3].bufferIndex = 0
+		result.attributes[3].offset = offset
+		// layout
+		result.layouts[0].stride = Vertex.stride()
+		return result
+	}()
 }
