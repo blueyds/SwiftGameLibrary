@@ -11,7 +11,6 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	public var scale: SIMD3<Float> = .one
 	//public var parent: GameNode? = nil
 	public var modelMatrix: Matrix = Matrix.identity
-	public var mesh: Mesh? = nil
 
 	public var children: [GameNode] = []
 	public var actions: [any Action] = []
@@ -21,10 +20,9 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 		self.name = "NONAME id\(self.id)"
 	}
 	
-	public init(named: String, mesh: Mesh){
+	public init(named: String){
 		self.id = Int.NextID()
 		self.name = named
-		self.mesh = mesh
 	}
 	
 	
@@ -44,17 +42,14 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
     
     final public func renderAll(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("NODE \(name)")
-        tryToRenderMe(with: encoder, currentState)
+        doRender(with: encoder, currentState)
         renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
     }
 	
 	// TODO: This is hidden and fixed. it would be hard to modify to render
 	// with different modelmatrix ie for animation
-     private func tryToRenderMe(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
-        if let renderedMesh = mesh {
-			renderedMesh.render(with: encoder, currentState, modelMatrix: modelMatrix)
-			
-            }
-    }
-} 
+	
+     open func doRender(with: MTLRenderCommandEncoder, _ : MTLRenderPipelineState){ }
+	
+}
