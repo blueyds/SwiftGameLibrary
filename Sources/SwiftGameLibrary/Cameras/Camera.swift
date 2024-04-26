@@ -28,4 +28,13 @@ extension Camera {
 	}
 	
 	public func update(counter ticks: TickCounter){ }
+	
+	
+	public func calculateViewMatrix()->Matrix{
+		var result = Matrix.identity
+		result.translateModel(-position)
+		result.rotate(-rotation)
+		//result.scale(scale)
+		return result
+	}
 }

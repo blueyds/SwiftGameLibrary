@@ -15,13 +15,6 @@ extension Transformable{
 		result.scale(scale)
 		return matrix_multiply(parentMatrix, result)
 	}
-	public func calculateViewMatrix()->Matrix{
-		var result = Matrix.identity
-		result.translateModel(-position)
-		result.rotate(-rotation)
-		//result.scale(scale)
-		return result
-	}
 }
 
 extension Transformable{
