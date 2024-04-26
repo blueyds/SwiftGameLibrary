@@ -28,10 +28,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	}
 	
 	
-	public func attach(action: any Action ){
-		actions.append(action)
-	}
-    
+	
 	open func doUpdate(counter ticks: TickCounter) { }
 	
 	final public func updateAll(counter ticks: TickCounter) {
@@ -51,9 +48,12 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
         renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
     }
+	
+	// TODO: This is hidden and fixed. it would be hard to modify to render
+	// with different modelmatrix ie for animation
      private func tryToRenderMe(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
         if let renderedMesh = mesh {
-			renderedMesh.render(with: encoder, currentState, at: self)
+			renderedMesh.render(with: encoder, currentState, modelMatrix: modelMatrix)
 			
             }
     }
