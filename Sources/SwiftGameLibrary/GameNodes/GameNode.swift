@@ -50,6 +50,6 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	// TODO: This is hidden and fixed. it would be hard to modify to render
 	// with different modelmatrix ie for animation
 	
-     open func doRender(with: MTLRenderCommandEncoder, _ : MTLRenderPipelineState){ }
+     func doRender(with: MTLRenderCommandEncoder, _ : MTLRenderPipelineState){ }
 	
 }

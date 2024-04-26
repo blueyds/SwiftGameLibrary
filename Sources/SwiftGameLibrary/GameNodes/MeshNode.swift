@@ -10,6 +10,6 @@ public class MeshNode: GameNode{
 	}
 	
 	override func doRender(with encode: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
-		mesh.render(|with: encoder, currentState, modelMatrix: modelMatrix)
+		mesh.render(with: encoder, currentState, modelMatrix: modelMatrix)
 	}
 }
