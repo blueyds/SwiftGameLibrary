@@ -39,7 +39,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
     
     final public func updateMatrices(parentMatrix: Matrix){
         self.modelMatrix = calculateModelMatrix(parentMatrix)
-        updateChildMatrices()
+        updateChildMatrices(parentMatrix: modelMatrix)
     }
     
     final public func renderAll(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){

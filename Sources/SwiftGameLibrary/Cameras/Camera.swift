@@ -2,8 +2,6 @@ import Metal
 import simd
 
 public protocol Camera: AnyObject, Transformable, Nameable {
-	var viewMatrix: Matrix { get set }
-	var projectionMatrix: Matrix { get set }
 	func getViewMatrix()->Matrix
 	func getProjectionMatrix()->Matrix
 	func render(with: MTLRenderCommandEncoder)

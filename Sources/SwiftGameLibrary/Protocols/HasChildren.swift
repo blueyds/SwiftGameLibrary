@@ -12,7 +12,7 @@ extension HasChildren{
         }
 	}
 	
-	public func updateChildMatrices(){
+	public func updateChildMatrices(parentMatrix modelMatrix: Matrix){
 		children.forEach(){
 			$0.updateMatrices(parentMatrix: modelMatrix)
 		}

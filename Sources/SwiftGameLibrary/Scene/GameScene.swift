@@ -32,7 +32,7 @@ extension GameScene{
 		doUpdate(counter: ticks)
 		runActions(counter: ticks)
 		updateChildren(counter: ticks)
-		updateChildMatrices()
+		updateChildMatrices(parentMatrix: .identity)
 	}
 }
 
