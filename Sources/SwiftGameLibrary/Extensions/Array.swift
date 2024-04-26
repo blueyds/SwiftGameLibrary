@@ -7,21 +7,12 @@ extension Array {
         }
     }
 }
-
-extension Array where Element == SIMD3<Float>{
-    public func sum()->SIMD3<Float>{
-        reduce(SIMD3<Float>(0, 0, 0)){  
-          var result = $0
-            result.x += $1.x
-            result.y += $1.y
-            result.z += $1.z
-            return result
-        }
+extension Array where Element:SIMD, Element.Scalar:FloatingPoint{
+    public func sum()->Element{
+        reduce(Element.zero){  $0 + $1 }
     }
     public func average()->Element{
-        let summary = sum()
-        let scale: Float = 1.0 / Float(count)
-        return summary * scale
+        let scale = Element(repeating: Element.Scalar(self.count))
+        return  sum() / scale
     }
 }
-
