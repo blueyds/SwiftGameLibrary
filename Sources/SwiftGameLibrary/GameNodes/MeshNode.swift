@@ -9,7 +9,7 @@ public class MeshNode: GameNode{
 		super.init(named: name)
 	}
 	
-	override func doRender(with encode: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
+	override func doRender(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		mesh.render(with: encoder, currentState, modelMatrix: modelMatrix)
 	}
 }

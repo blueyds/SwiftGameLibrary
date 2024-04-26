@@ -26,8 +26,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	}
 	
 	
-	
-	open func doUpdate(counter ticks: TickCounter) { }
+	open func doUpdate(counter: TickCounter) { }
 	
 	final public func updateAll(counter ticks: TickCounter) {
         doUpdate(counter: ticks)
