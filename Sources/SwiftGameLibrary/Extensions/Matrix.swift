@@ -67,18 +67,7 @@ extension Matrix{
             SIMD4<Float>(0,0,0,1)
         )
         self = matrix_multiply(self, result)
-    }
-    
-    public static func view(position: SIMD3<Float>)-> Matrix{
-        var result = Matrix.identity
-        result.columns = (
-            SIMD4<Float>(1,      0,      0,      0),
-            SIMD4<Float>(0,      1,      0,      0),
-            SIMD4<Float>(0,      0,      1,      0),
-            SIMD4<Float>(-position.x, -position.y,   -position.z,   1)
-        )
-        return result
-    }
+	}
 	
 	
     public static func perspective(degreesFov fov: Float, aspectRatio: Float, nearZ: Float, farZ: Float )-> Matrix {
