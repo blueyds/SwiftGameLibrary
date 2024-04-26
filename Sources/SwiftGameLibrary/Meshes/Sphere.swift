@@ -4,7 +4,7 @@ import Metal
 public class Sphere: VertexCollection{
 	public var vertices: [Vertex] = []
 	public var vertexBuffer: MTLBuffer? = nil
-	public var name: String = "SPHERE"
+	//public var name: String = "SPHERE"
 	let resolution: Int
 	public init(using device: MTLDevice, resolution: Int){
 		self.resolution = resolution
