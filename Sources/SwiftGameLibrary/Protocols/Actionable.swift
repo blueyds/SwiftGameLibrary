@@ -3,6 +3,11 @@ public protocol Actionable: AnyObject{
 }
 
 extension Actionable{
+	
+	public func attach(action: any Action ){
+		actions.append(action)
+	}
+
 	public func collectGarbage(counter ticks: TickCounter){
 		
 		actions.removeAll(where: {$0.isDead(counter: ticks)})
