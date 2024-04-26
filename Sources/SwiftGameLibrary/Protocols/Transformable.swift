@@ -8,7 +8,7 @@ public protocol Transformable: AnyObject{
 }
 
 extension Transformable{
-	public func calculateModelMatrix(_ parentMatrix: Matrix = Matrix.identity)->Matrix{
+	internal func calculateModelMatrix(_ parentMatrix: Matrix = Matrix.identity)->Matrix{
 		var result = Matrix.identity
 		result.translateModel(position)
 		result.rotate(rotation)

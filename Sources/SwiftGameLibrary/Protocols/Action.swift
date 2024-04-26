@@ -5,13 +5,13 @@ public protocol Action {
 	func doStep()
 }
 extension Action{
-	public mutating func step(counter ticks: TickCounter){
+	internal mutating func step(counter ticks: TickCounter){
 		if frequency.isLapsed(current: ticks) && status != .idle {
 			doStep()
 			frequency.reset(counter: ticks)
 		}
 	}
-	public func isDead(counter: TickCounter)->Bool{
+	internal func isDead(counter: TickCounter)->Bool{
 		(status == .idle) && (Int(counter) - Int(frequency.lastCounter) > 60)
 	}
 }
