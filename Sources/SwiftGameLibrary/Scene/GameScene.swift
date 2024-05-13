@@ -33,8 +33,8 @@ extension GameScene{
 			if let light = child as? LightNode{
 				lights.append(light)
 			}
-			let nodes = child.filterChildren(){
-				if let light = child as? LightNode{ 
+			let nodes = child.filterChildren(){node in
+				if let light = node as? LightNode{ 
 					return true
 				}
 				else { 
