@@ -29,7 +29,7 @@ extension GameScene{
 	
 	public func findAllLights(){
 		lights = []
-		children.getAllChildren(){child in
+		getAllChildren(){child in
 			if let light = child as? LightNode{
 				lights.append(light)
 			}
