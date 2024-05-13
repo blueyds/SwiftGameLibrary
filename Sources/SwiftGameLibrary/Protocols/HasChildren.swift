@@ -33,7 +33,7 @@ extension HasChildren{
         }
         return result
     }
-	public func filterChilden(where filterFn: ((GameNode)->Bool)->[GameNode]{
+	public func filterChilden(where filterFn: ((GameNode)->Bool)->[GameNode]){
         return getAllChildren().filter(filterFn)
     }
 }
