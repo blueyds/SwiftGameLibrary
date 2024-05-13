@@ -25,6 +25,10 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 		self.name = named
 	}
 	
+	public func add(child: GameNode){
+        children.append(child)
+    }
+	
 	
 	open func doUpdate(counter: TickCounter) { }
 	

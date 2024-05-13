@@ -8,7 +8,7 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	public var camera: Camera!
 	public var actions: [any Action] = []
 	private var garbageCounter: Int = 15
-
+	public var lights: [LightNode] = []
 	public init(named: String){
 		self.name = named
 		self.id = Int.NextID()
@@ -27,6 +27,23 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 // Update functions
 extension GameScene{
 	
+	public func findAllLights(){
+		lights = []
+		children.forEach(){child in
+			if let light = child as? LightNode{
+				lights.append(light)
+			}
+			let nodes = child.filterChildren(){
+				if let light = child as? LightNode{ 
+					return true
+				}
+				else { 
+					return false
+				}
+			}
+			lights.append(contentsOf: nodes)
+		}
+	}
 	
 	public func updateScene(counter ticks: TickCounter){
 		doUpdate(counter: ticks)
