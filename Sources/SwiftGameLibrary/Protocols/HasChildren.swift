@@ -17,7 +17,9 @@ extension HasChildren{
 			$0.updateMatrices(parentMatrix: modelMatrix)
 		}
 	}
-	
+	public func add(child: GameNode){
+		children.append(child)
+	}
 	
 	
 	internal func renderChildren(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
@@ -32,8 +34,8 @@ extension HasChildren{
             result.append(contentsOf: $0.getAllChildren())
         }
         return result
-    }
-	public func filterChilden(where filterFn: ((GameNode)->Bool))->[GameNode]{
+ 
+	func filterChilden(where filterFn: ((GameNode)->Bool))->[GameNode]{
         return getAllChildren().filter(filterFn)
     }
 }

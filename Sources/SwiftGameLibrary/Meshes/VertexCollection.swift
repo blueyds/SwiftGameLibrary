@@ -22,9 +22,9 @@ extension VertexCollection{
 	}
 	public func setVertices(to encoder: MTLRenderCommandEncoder){
 		if vertexBuffer == nil {
-			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: BufferIndex.Vertex)
+			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: VertexParameters.Vertex)
 		} else {
-			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: BufferIndex.Vertex)
+			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: VertexParameters.Vertex)
 		}
 	}
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder){

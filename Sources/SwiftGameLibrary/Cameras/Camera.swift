@@ -17,8 +17,8 @@ extension Camera {
 		var view: Matrix = getViewMatrix()
 		var projection: Matrix = getProjectionMatrix()
 		encoder.pushDebugGroup("Camera \(name)")
-		encoder.setVertexBytes(&view, length: Matrix.stride(), index: BufferIndex.ViewMatrix)
-		encoder.setVertexBytes(&projection, length: Matrix.stride(), index: BufferIndex.ProjectionMatrix)
+		encoder.setVertexBytes(&view, length: Matrix.stride(), index: VertexParameters.ViewMatrix)
+		encoder.setVertexBytes(&projection, length: Matrix.stride(), index: VertexParameters.ProjectionMatrix)
 		encoder.popDebugGroup()
 	}
 	public func changeAspectRatio(_ ratio: Float){ }

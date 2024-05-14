@@ -21,7 +21,14 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 
 	open func doUpdate(counter ticks: TickCounter) { }
 	
-	open func attachLights(to encoder: MTLRenderCommandEncoder){ }
+	public func attachLights(to encoder: MTLRenderCommandEncoder){
+		emcoder.setFragmentBytes()
+		if lights.count > 0{
+			encoder.setFragmentBytes(&lights[0].position, length: SIMD3<Float>.size,index: FragmentParameters.LightPosition)
+			encoder.setFragmentBytes(&lights[0].color, length: SIMD3<Float>.size, index: FragmentParameters.LightColor)
+			encoder.setFragmentBytes(&lights[0].intensity, SIMD4<Float>.size, index: FragmentParameters.LightIntensity)
+		}
+	}
 }
 
 // Update functions
@@ -63,6 +70,7 @@ extension GameScene{
 	public func renderScene(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("SCENE \(name)")
 		camera.render(with: encoder)
+		encoder.setVertexBytes(&camera.position, length: SIMD3<Float>.stride, index: VertexParameters.CameraPosition)0
 		attachLights(to: encoder)
 		renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()

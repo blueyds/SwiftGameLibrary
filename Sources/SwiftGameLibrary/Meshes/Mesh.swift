@@ -13,7 +13,7 @@ extension Mesh{
 	public func setPipelineState(on: MTLRenderCommandEncoder, _ didChange: inout Bool){ didChange = false }
 	public func assign(modelMatrix: Matrix, to encoder: MTLRenderCommandEncoder){
 		var matrix: Matrix = modelMatrix
-		encoder.setVertexBytes(&matrix, length: Matrix.stride(), index: BufferIndex.ModelMatrix)
+		encoder.setVertexBytes(&matrix, length: Matrix.stride(), index: VertexParameters.ModelMatrix)
 	}
 	
 	public func render(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState, modelMatrix: Matrix){
