@@ -23,11 +23,11 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	
 	public func attachLights(to encoder: MTLRenderCommandEncoder){
 		var count: Int32 = Int32(lights.count)
-		encoder.setFragmentBytes(&count, length: Int32.stride, index: FragmentParameters.LightCount)
+		encoder.setFragmentBytes(&count, length: Int32.stride(), index: FragmentParameters.LightCount)
 		if count > 0{
-			encoder.setFragmentBytes(&lights[0].position, length: SIMD3<Float>.stride, index: FragmentParameters.LightPosition)
-			encoder.setFragmentBytes(&lights[0].color, length: SIMD3<Float>.stride, index: FragmentParameters.LightColor)
-			encoder.setFragmentBytes(&lights[0].intensity, length: SIMD4<Float>.stride, index: FragmentParameters.LightIntensity)
+			encoder.setFragmentBytes(&lights[0].position, length: SIMD3<Float>.stride(), index: FragmentParameters.LightPosition)
+			encoder.setFragmentBytes(&lights[0].color, length: SIMD3<Float>.stride(), index: FragmentParameters.LightColor)
+			encoder.setFragmentBytes(&lights[0].intensity, length: SIMD4<Float>.stride(P, index: FragmentParameters.LightIntensity)
 		}
 	}
 }
@@ -71,7 +71,7 @@ extension GameScene{
 	public func renderScene(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("SCENE \(name)")
 		camera.render(with: encoder)
-		encoder.setVertexBytes(&camera.position, length: SIMD3<Float>.stride, index: VertexParameters.CameraPosition)
+		encoder.setVertexBytes(&camera.position, length: SIMD3<Float>.stride(), index: VertexParameters.CameraPosition)
 		attachLights(to: encoder)
 		renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
