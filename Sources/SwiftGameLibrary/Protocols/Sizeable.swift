@@ -31,3 +31,4 @@ extension Int32: sizeable {}
 extension Int16: sizeable {}
 extension UInt32: sizeable {}
 extension UInt16: sizeable {}
+extension Float: sizeable {}
