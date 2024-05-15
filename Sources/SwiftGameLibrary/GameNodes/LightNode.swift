@@ -4,25 +4,25 @@ public class LightNode: GameNode{
 	public var color: SIMD3<Float> = .one
 	public var intensity: SIMD4<Float> = .one  
 	
-	public init(named name: String){
-		super.init(named: name)
-	}
+	// public init(named name: String){
+	// 	super.init(named: name)
+	// }
 	
 	public var brightness: Float {
-		get{	intensity.v0	}
-		set {	intensity.v0 = newValue	}
+		get{	intensity.x	}
+		set {	intensity.x = newValue	}
 	}
 	public var ambienceIntensity: Float {
-		get{	intensity.v1	}
-		set {	intensity.v1 = newValue	}
+		get{	intensity.y	}
+		set {	intensity.y = newValue	}
 	}
 	public var diffuseIntensity: Float{
-		get{	intensity.v2	}
-		set {	intensity.v2 = newValue	}
+		get{	intensity.z	}
+		set {	intensity.z = newValue	}
 	}
 	public var specularIntensity: Float{
-		get{	intensity.v3	}
-		set {	intensity.v3 = newValue	}
+		get{	intensity.w	}
+		set {	intensity.w = newValue	}
 	}
 	
 }

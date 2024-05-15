@@ -16,11 +16,11 @@ public class MeshNode: GameNode{
 		super.init(named: name)
 	}
 	public func assignMaterials(to encoder: MTLRenderCommandEncoder){
-		encoder.setFragmentBytes(&color, length: SIMD4<Float>.size, index: FragmentParameters.Color)
-		encoder.setFragmentBytes(&ambient, SIMD3<Float>.size, index: FragmentParameters.Ambient)
-		encoder.setFragmentBytes(&diffuse, SIMD3<Float>.size, index: FragmentParameters.Diffuse)
-		encoder.setFragmentBytes(&specular, SIMD3<Float>.size, index: FragmentParameters.Specular)
-		encoder.setFragmentBytes(&shininess, Float.size, index: FragmentParameters.Shininess)
+		encoder.setFragmentBytes(&color, length: SIMD4<Float>.stride, index: FragmentParameters.Color)
+		encoder.setFragmentBytes(&ambient, length: SIMD3<Float>.stride, index: FragmentParameters.Ambient)
+		encoder.setFragmentBytes(&diffuse, length: SIMD3<Float>.stride, index: FragmentParameters.Diffuse)
+		encoder.setFragmentBytes(&specular, length:SIMD3<Float>.size, index: FragmentParameters.Specular)
+		encoder.setFragmentBytes(&shininess, length: Float.stride, index: FragmentParameters.Shininess)
 	}
 	
 	override func doRender(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){

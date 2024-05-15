@@ -27,6 +27,7 @@ extension HasChildren{
 			$0.renderAll(with: encoder, currentState)
 		}
 	}
+	
 	func getAllChildren()->[GameNode]{
         var result: [GameNode] = []
         children.forEach(){
@@ -34,7 +35,8 @@ extension HasChildren{
             result.append(contentsOf: $0.getAllChildren())
         }
         return result
- 
+ 	}
+	
 	func filterChilden(where filterFn: ((GameNode)->Bool))->[GameNode]{
         return getAllChildren().filter(filterFn)
     }

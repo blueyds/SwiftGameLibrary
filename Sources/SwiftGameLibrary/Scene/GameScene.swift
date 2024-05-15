@@ -22,11 +22,12 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	open func doUpdate(counter ticks: TickCounter) { }
 	
 	public func attachLights(to encoder: MTLRenderCommandEncoder){
-		emcoder.setFragmentBytes()
-		if lights.count > 0{
-			encoder.setFragmentBytes(&lights[0].position, length: SIMD3<Float>.size,index: FragmentParameters.LightPosition)
-			encoder.setFragmentBytes(&lights[0].color, length: SIMD3<Float>.size, index: FragmentParameters.LightColor)
-			encoder.setFragmentBytes(&lights[0].intensity, SIMD4<Float>.size, index: FragmentParameters.LightIntensity)
+		var count: Int = lights.count
+		encoder.setFragmentBytes(&count, length: Int.stride, FragmentParameters.LightCount)
+		if count > 0{
+			encoder.setFragmentBytes(&lights[0].position, length: SIMD3<Float>.stride,index: FragmentParameters.LightPosition)
+			encoder.setFragmentBytes(&lights[0].color, length: SIMD3<Float>.stride, index: FragmentParameters.LightColor)
+			encoder.setFragmentBytes(&lights[0].intensity, SIMD4<Float>.stride, index: FragmentParameters.LightIntensity)
 		}
 	}
 }
