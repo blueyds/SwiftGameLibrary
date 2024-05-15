@@ -14,10 +14,10 @@ public struct VertexParameters{
 
 public struct FragmentParameters{
 	// light Data for fragment shader
-	public static let LightCount = 100
-	public static let LightPosition = 101
-	public static let LightColor = 102
-	public static let LightIntensity = 103
+	public static let LightCount = 10
+	public static let LightPosition = 11
+	public static let LightColor = 12
+	public static let LightIntensity = 13
 	//material data
 	public static let Color = 101
 	public static let IsLit = 102
