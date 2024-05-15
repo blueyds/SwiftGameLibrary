@@ -71,7 +71,7 @@ extension GameScene{
 	public func renderScene(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("SCENE \(name)")
 		camera.render(with: encoder)
-		encoder.setVertexBytes(&camera.position, length: SIMD3<Float>.stride, index: VertexParameters.CameraPosition)0
+		encoder.setVertexBytes(&camera.position, length: SIMD3<Float>.stride, index: VertexParameters.CameraPosition)
 		attachLights(to: encoder)
 		renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
