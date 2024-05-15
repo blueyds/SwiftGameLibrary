@@ -19,7 +19,7 @@ public class MeshNode: GameNode{
 		encoder.setFragmentBytes(&color, length: SIMD4<Float>.stride(), index: FragmentParameters.Color)
 		encoder.setFragmentBytes(&ambient, length: SIMD3<Float>.stride(), index: FragmentParameters.Ambient)
 		encoder.setFragmentBytes(&diffuse, length: SIMD3<Float>.stride(), index: FragmentParameters.Diffuse)
-		encoder.setFragmentBytes(&specular, length:SIMD3<Float>.stride() index: FragmentParameters.Specular)
+		encoder.setFragmentBytes(&specular, length:SIMD3<Float>.stride(), index: FragmentParameters.Specular)
 		encoder.setFragmentBytes(&shininess, length: Float.stride(), index: FragmentParameters.Shininess)
 	}
 	
