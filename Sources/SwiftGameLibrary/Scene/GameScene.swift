@@ -27,7 +27,7 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		if count > 0{
 			encoder.setFragmentBytes(&lights[0].position, length: SIMD3<Float>.stride(), index: FragmentParameters.LightPosition)
 			encoder.setFragmentBytes(&lights[0].color, length: SIMD3<Float>.stride(), index: FragmentParameters.LightColor)
-			encoder.setFragmentBytes(&lights[0].intensity, length: SIMD4<Float>.stride(P, index: FragmentParameters.LightIntensity)
+			encoder.setFragmentBytes(&lights[0].intensity, length: SIMD4<Float>.stride(), index: FragmentParameters.LightIntensity)
 		}
 	}
 }
