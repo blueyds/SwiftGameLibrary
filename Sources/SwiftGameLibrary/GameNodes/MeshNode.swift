@@ -21,7 +21,7 @@ public class MeshNode: GameNode{
 		encoder.setFragmentBytes(&diffuse, length: SIMD3<Float>.stride(), index: FragmentParameters.Diffuse)
 		encoder.setFragmentBytes(&specular, length:SIMD3<Float>.stride(), index: FragmentParameters.Specular)
 		encoder.setFragmentBytes(&shininess, length: Float.stride(), index: FragmentParameters.Shininess)
-		encoder.setVertexBytes(&position, length: SIMD3<Float>.stride, index: VertexParameters.WorldPosition)
+		encoder.setVertexBytes(&position, length: SIMD3<Float>.stride(), index: VertexParameters.WorldPosition)
 	}
 	
 	override func doRender(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
