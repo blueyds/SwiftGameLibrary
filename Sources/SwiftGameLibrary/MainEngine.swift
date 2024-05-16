@@ -7,7 +7,9 @@ public class MainEngine{
 	public var library: MTLLibrary?
 	public var commandQueue: MTLCommandQueue?
 	public var pixelFormat: MTLPixelFormat
-	public init(pixelFormat: MTLPixelFormat){
+	public var depthFormat: MTLPixelFormat
+	public var stencilFormat: MTLPixelFormat
+	public init(pixelFormat: MTLPixelFormat, depthFormat: MTLPixelFormat, stencilFormat: MTLPixelFormat){
 		device = MTLCreateSystemDefaultDevice()
 		commandQueue = device?.makeCommandQueue()
 		if device == nil {
@@ -17,6 +19,8 @@ public class MainEngine{
 			fatalError("commandQueue failed ot init")
 		}
 		self.pixelFormat = pixelFormat
+		self.depthFormat = depthFormat
+		self.stencilFormat = stencilFormat
 	}
 	public func setupLibrary(withSource: String){
 		library = try? device?.makeLibrary(source: withSource, options: nil)
@@ -35,6 +39,8 @@ public class MainEngine{
 	public func makePipelineState( vertexFunction: String, fragmentFunction: String) -> MTLRenderPipelineState?{
 		let pipelineDescriptor = MTLRenderPipelineDescriptor()
 		pipelineDescriptor.colorAttachments[0].pixelFormat = pixelFormat
+		pipelineDescriptor.depthAttachmentPixelFormat = depthFormat
+		pipelineDescriptor.stencilAttachmentPixelFormat = stencilFormat
 		pipelineDescriptor.vertexFunction = library!.makeFunction(name: vertexFunction)
 		pipelineDescriptor.fragmentFunction = library!.makeFunction(name: fragmentFunction)
 		pipelineDescriptor.vertexDescriptor = Vertex.vertexDescriptor
