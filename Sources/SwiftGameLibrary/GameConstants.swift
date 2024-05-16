@@ -6,23 +6,23 @@ public struct VertexParameters{
 	public static let ProjectionMatrix = 3
 	
 	// cameraData
-	public static let CameraPosition = 50
+	public static let CameraPosition = 4
 	// node Data
-	public static let WorldPosition = 100
+	public static let WorldPosition = 5
 	
 }
 
 public struct FragmentParameters{
 	// light Data for fragment shader
-	public static let LightCount = 10
-	public static let LightPosition = 11
-	public static let LightColor = 12
-	public static let LightIntensity = 13
+	public static let LightCount = 1
+	public static let LightPosition = 2
+	public static let LightColor = 3
+	public static let LightIntensity = 4
 	//material data
-	public static let Color = 101
-	public static let IsLit = 102
-	public static let Ambient = 103
-	public static let Diffuse = 104
-	public static let Specular = 105
-	public static let Shininess = 106
+	public static let Color = 5
+	public static let IsLit = 6
+	public static let Ambient = 7
+	public static let Diffuse = 8
+	public static let Specular = 9
+	public static let Shininess = 10
 }
