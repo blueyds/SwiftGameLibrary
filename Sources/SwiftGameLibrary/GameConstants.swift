@@ -8,7 +8,6 @@ public struct VertexParameters{
 	// cameraData
 	public static let CameraPosition = 4
 	// node Data
-	public static let WorldPosition = 5
 	
 }
 
