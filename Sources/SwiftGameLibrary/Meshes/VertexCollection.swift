@@ -75,61 +75,56 @@ extension VertexCollection{
 						normals.append(triangle.normal)
 					}
 				}	
-				vectorNormals.updateValue(normal.average, forKey: v.position)
+				vectorNormals.updateValue(normals.average, forKey: v.position)
 				v.normals = normal
 			}
 			processedVertices.append(v)
 		}
+		if processedVertices.count != vertices.count {
+			fatalError("process vertices does not equal inVertices")
+		}
+		vertices = processedVertices
+	}
+}
+
+struct Triangle{
+	var v1: SIMD3<Float>? = nil
+	var v2: SIMD3<Float>? = nil
+	var v3: SIMD3<Float>? = nil
+	var n: SIMD3<Float>? = nil
+	var normal: SIMD3<Float> { 
+		if checkNormal() { return n!}
+			else { fatalError("CheckNormal failed")}
+	}
+	private func checkNormal()->Bool{
+		n != nil && v1 != nil && v2 != nil && v3 != nil
+	}
+	mutating func add(_ vertex: SIMD3<Float>){
+		if v1 == nil { 
+			v1 = vertex
+		}else if v2 == nil { 
+			v2 = vertex
+		} else{
+			v3 = vertex
+			calculateNormal()    
+		}
+	}
+
+	public func isFull()->Bool { v3 != nil }
         
-        if processedVertices.count != vertices.count {
-            fatalError("process vertices does not equal inVertices")
-        }
-        vertices = processedVertices
-    }
+	func contains(_ vector: SIMD3<Float>)->Bool{
+		if v1 == vector { return true }
+		if v2 == vector { return true }
+		if v3 == vector { return true }
+		return false
+	}
 	
-    struct Triangle{
-        var v1: SIMD3<Float>? = nil
-        var v2: SIMD3<Float>? = nil
-        var v3: SIMD3<Float>? = nil
-        var n: SIMD3<Float>? = nil
-        var normal: SIMD3<Float> { 
-            if checkNormal() { return n!}
-            else { fatalError("CheckNormal failed")}
-        }
-        private func checkNormal()->Bool{
-            n != nil && v1 != nil && v2 != nil && v3 != nil
-        }
-        mutating func add(_ vertex: SIMD3<Float>){
-            if v1 == nil { 
-                v1 = vertex
-            }else if v2 == nil { 
-                v2 = vertex
-            } else{
-                v3 = vertex
-                calculateNormal()    
-            }
-        }
-        public func isFull()->Bool { v3 != nil }
-        
-        func contains(_ vector: SIMD3<Float>)->Bool{
-            if v1 == vector { return true }
-            if v2 == vector { return true }
-            if v3 == vector { return true }
-            return false
-        }
-        
-        var description: String {
-            "v1\(v1 ?? .zero) v2\(v2 ?? .zero) v3\(v3 ?? .zero) normal \(n ?? .zero)"
-        }
-        
-        mutating private func calculateNormal(){
-            if v1 == nil || v2 == nil || v3 == nil {
-                fatalError("Not enough vectors to caldulation")
-            }
-            let vector1 =  v1! - v2!
-            let vector2 = v1! - v3!
-            n = simd_normalize(simd_cross(vector1, vector2))
-        }
-        
-    }
+	mutating private func calculateNormal(){
+ 		if v1 == nil || v2 == nil || v3 == nil {
+			fatalError("Not enough vectors to caldulation")
+		}
+		let vector1 =  v1! - v2!
+		let vector2 = v1! - v3!
+		n = simd_normalize(simd_cross(vector1, vector2))
+	}
 }
