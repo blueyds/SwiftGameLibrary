@@ -29,8 +29,8 @@ extension VertexCollection{
 		}
 	}
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder){
-        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
-    }
+	encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
+	}
 
 	public func add(vertex: Vertex){
 		vertices.append(vertex)
@@ -46,41 +46,42 @@ extension VertexCollection{
 	}
 	
 	func processVertices(){
-		var inVertices: [Vertex] = []
-    	var processedVertices: [Vertex] = []
+		var processedVertices: [Vertex] = []
 		var triangles: [Triangle] = [Triangle()]
-		// add each vertex to the process queue
-    	vertices.forEach(){vIn in 
-			inVertices.append(vIn)
-        	var t = triangles.popLast()!
-        	if t.isFull(){
-            	triangles.append(t)
-            	var t1 = Triangle()
-            	t1.add(vIn.position)
-            	triangles.append(t1)
-        	} else {
-            	t.add(vIn.position)
-            	triangles.append(t)
-        	}
+		// add each vertex to a triangle structure array
+		vertices.forEach(){vIn in 
+			var t = triangles.popLast()!
+			if t.isFull(){
+				// prior triangle is full. crealte a new one and add it
+				triangles.append(t)
+				var t1 = Triangle()
+				t1.add(vIn.position)
+				triangles.append(t1)
+			} else {
+				// just append to a triangle
+				t.add(vIn.position)
+				triangles.append(t)
+			}
 		}
-        var vectorNormals: [SIMD3<Float>:SIMD3<Float>] = [:]
-        inVertices.forEach(){
-            var v = $0
-            if let norm = vectorNormals[v.position] {
-                v.normals = norm
-            } else { // we need to calculate the normal for that pos
+		var vectorNormals: [SIMD3<Float>:SIMD3<Float>] = [:]
+		vertices.forEach(){
+			var v = $0
+			if let norm = vectorNormals[v.position] {
+				v.normals = norm
+			} else { // we need to calculate the average normal for that pos
 				var normals: [SIMD3<Float>] = []
-        		triangles.forEach(){ triangle in
-            	if triangle.contains(v){
-                	normals.append(triangle.normal)
-            	}	
-        	    vectorNormals.updateValue(normal.average, forKey: v.position)
-                v.normals = normal
-            }
-            processedVertices.append(v)
-        }
+				triangles.forEach() { triangle in
+					if triangle.contains(v){
+						normals.append(triangle.normal)
+					}
+				}	
+				vectorNormals.updateValue(normal.average, forKey: v.position)
+				v.normals = normal
+			}
+			processedVertices.append(v)
+		}
         
-        if processedVertices.count != inVertices.count {
+        if processedVertices.count != vertices.count {
             fatalError("process vertices does not equal inVertices")
         }
         vertices = processedVertices
