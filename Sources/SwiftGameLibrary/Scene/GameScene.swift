@@ -81,7 +81,7 @@ extension GameScene{
 		var scene = SceneConstants(
 			viewMatrix: camera.getViewMatrix(),
 			projectionMatrix: camera.getProjectionMatrix(),
-			cameraPosition: camera.position,
+			cameraPos: camera.position,
 			lightCount: lights.count,
 			lights: lights
 		)

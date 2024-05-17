@@ -34,6 +34,6 @@ public class MeshNode: GameNode{
 	
 	override func doRender(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		assignDefaultBuffers(to: encoder)
-		mesh.render(with: encoder, currentState, modelMatrix: modelMatrix)
+		mesh.render(with: encoder, currentState)
 	}
 }
