@@ -4,11 +4,7 @@ public struct SceneConstants: sizeable{
 	public let viewMatrix: Matrix
 	public let projectionMatrix: Matrix
 	public let cameraPos: SIMD3<Float>
-	public let lightCount: Int
-	public let lights: [LightData]
-	public var stride: Int{
-		Matrix.stride(of: 2) + SIMD3<Float>.stride() + Int.stride() + LightData.stride(of: lightCount)
-	}
+	public let light: LightData
 }
 
 public struct LightData: sizeable {
@@ -18,6 +14,9 @@ public struct LightData: sizeable {
 	public let ambienceIntensity: Float
 	public let diffuseIntensity: Float
 	public let specularIntensity: Float
+	public static let noLight: LightData {
+		LightData(position: .zero, color: .zero, brightness: 0, ambienceIntensity: 0, diffuseIntensity: 0, specularIntensity: 0)
+	}
 }
 public struct MaterialData: sizeable {
 	public let color: SIMD4<Float>

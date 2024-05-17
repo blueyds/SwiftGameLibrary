@@ -8,6 +8,6 @@ public struct VertexParameters{
 
 public struct FragmentParameters{
 	// light Data for fragment shader
-	public static let SceneConstants = 1
-	public static let ModelConstants = 2
+	public static let LightCount = 1
+	public static let Lights = 2
 }

@@ -78,16 +78,17 @@ extension GameScene{
 		encoder.pushDebugGroup("SCENE \(name)")
 		// TODO: does cameraPOsition need to be reversed?
 		var lights = getLightData()
+		var count = Uint32(lights.count)
 		var scene = SceneConstants(
 			viewMatrix: camera.getViewMatrix(),
 			projectionMatrix: camera.getProjectionMatrix(),
 			cameraPos: camera.position,
-			lightCount: lights.count,
-			lights: lights
+			lights: lights.first? ?? LightData.noLight
 		)
 		
-		encoder.setVertexBytes(&scene, length: scene.stride, index: VertexParameters.SceneConstants)
-		encoder.setFragmentBytes(&scene, length: scene.stride, index: FragmentParameters.SceneConstants)
+		encoder.setVertexBytes(&scene, length: SceneConstants.stride(), index: VertexParameters.SceneConstants)
+		encoder.setFragmentBytes(&count, length: Uint32.stride(), index: FragmentParameters.LightCount)
+		encoder.setFragmentBytes(&lights, length: LightData.stride(of: count), index: FragmentParameters.Lights)
 		renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
 	}
