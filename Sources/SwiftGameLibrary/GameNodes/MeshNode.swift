@@ -29,7 +29,6 @@ public class MeshNode: GameNode{
 		 )
 		 var model = ModelConstants(modelMatrix: modelMatrix, material: material )
 		 encoder.setVertexBytes(&model, length: ModelConstants.stride(), index: VertexParameters.ModelConstants)
-		 encoder.setFragmentBytes(&model, length: ModelConstants.stride(), index: FragmentParameters.ModelConstants)
 	 }
 	
 	override func doRender(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){

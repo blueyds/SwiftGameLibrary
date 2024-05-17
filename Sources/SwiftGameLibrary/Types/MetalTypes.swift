@@ -14,7 +14,7 @@ public struct LightData: sizeable {
 	public let ambienceIntensity: Float
 	public let diffuseIntensity: Float
 	public let specularIntensity: Float
-	public static let noLight: LightData {
+	public static var noLight: LightData {
 		LightData(position: .zero, color: .zero, brightness: 0, ambienceIntensity: 0, diffuseIntensity: 0, specularIntensity: 0)
 	}
 }
