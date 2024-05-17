@@ -71,7 +71,7 @@ extension VertexCollection{
 			} else { // we need to calculate the average normal for that pos
 				var normals: [SIMD3<Float>] = []
 				triangles.forEach() { triangle in
-					if triangle.contains(v){
+					if triangle.contains(v.position){
 						normals.append(triangle.normal)
 					}
 				}
