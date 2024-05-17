@@ -74,9 +74,9 @@ extension VertexCollection{
 					if triangle.contains(v){
 						normals.append(triangle.normal)
 					}
-				}	
-				vectorNormals.updateValue(normals.average, forKey: v.position)
-				v.normals = normal
+				}
+				v.normals = normals.average()
+				vectorNormals.updateValue(v.normals, forKey: v.position)
 			}
 			processedVertices.append(v)
 		}
