@@ -83,12 +83,12 @@ extension GameScene{
 			viewMatrix: camera.getViewMatrix(),
 			projectionMatrix: camera.getProjectionMatrix(),
 			cameraPos: camera.position,
-			light: lights.first? ?? LightData.noLight
+			light: lights.first ?? LightData.noLight
 		)
 		
 		encoder.setVertexBytes(&scene, length: SceneConstants.stride(), index: VertexParameters.SceneConstants)
 		encoder.setFragmentBytes(&count, length: UInt32.stride(), index: FragmentParameters.LightCount)
-		encoder.setFragmentBytes(&lights, length: LightData.stride(of: count), index: FragmentParameters.Lights)
+		encoder.setFragmentBytes(&lights, length: LightData.stride(of: lights.count), index: FragmentParameters.Lights)
 		renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
 	}
