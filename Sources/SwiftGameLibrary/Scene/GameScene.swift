@@ -21,14 +21,20 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 
 	open func doUpdate(counter ticks: TickCounter) { }
 	
-	public func attachLights(to encoder: MTLRenderCommandEncoder){
-		var count: Int32 = Int32(lights.count)
-		encoder.setFragmentBytes(&count, length: Int32.stride(), index: FragmentParameters.LightCount)
-		if count > 0{
-			encoder.setFragmentBytes(&lights[0].position, length: SIMD3<Float>.stride(), index: FragmentParameters.LightPosition)
-			encoder.setFragmentBytes(&lights[0].color, length: SIMD3<Float>.stride(), index: FragmentParameters.LightColor)
-			encoder.setFragmentBytes(&lights[0].intensity, length: SIMD4<Float>.stride(), index: FragmentParameters.LightIntensity)
+	public func getLightData()->[LightData]{
+		var result: [LightData] = []
+		lights.forEach(){ light in
+			let data = LightData(
+				position: light.position,
+				color: light.color,
+				brightness: light.brightness,
+				ambienceIntensity: light.ambienceIntensity,
+				diffuseIntensity: light.diffuseIntensity,
+				specularIntensity: light.specularIntensity
+			)
+			result.append(data)
 		}
+		return result
 	}
 }
 
@@ -70,9 +76,18 @@ extension GameScene{
 	/// that object changed the pipeline
 	public func renderScene(with encoder: MTLRenderCommandEncoder, currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("SCENE \(name)")
-		camera.render(with: encoder)
-		encoder.setVertexBytes(&camera.position, length: SIMD3<Float>.stride(), index: VertexParameters.CameraPosition)
-		attachLights(to: encoder)
+		// TODO: does cameraPOsition need to be reversed?
+		var lights = getLightData()
+		var scene = SceneConstants(
+			viewMatrix: camera.getViewMatrix(),
+			projectionMatrix: camera.getProjectionMatrix(),
+			cameraPosition: camera.position,
+			lightCount: lights.count,
+			lights: lights
+		)
+		
+		encoder.setVertexBytes(&scene, length: scene.stride, index: VertexParameters.SceneConstants)
+		encoder.setFragmentBytes(&scene, length: scene.stride, index: FragmentParameters.SceneConstants)
 		renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
 	}
