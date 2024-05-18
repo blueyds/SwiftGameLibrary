@@ -27,7 +27,7 @@ public class MeshNode: GameNode{
 			specular: specular,
 			shininess: shininess
 		 )
-		 var model = ModelConstants(modelMatrix: modelMatrix, material: material )
+		 var model = ModelConstants(modelMatrix: modelMatrix, normalMatrix: normalMatrix, material: material )
 		 encoder.setVertexBytes(&model, length: ModelConstants.stride(), index: VertexParameters.ModelConstants)
 	 }
 	

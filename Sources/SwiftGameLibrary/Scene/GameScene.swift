@@ -54,7 +54,7 @@ extension GameScene{
 		doUpdate(counter: ticks)
 		runActions(counter: ticks)
 		updateChildren(counter: ticks)
-		updateChildMatrices(parentMatrix: .identity)
+		updateChildMatrices(parentMatrix: .identity, viewMatrix: camera.getViewMatrix() )
 	}
 }
 

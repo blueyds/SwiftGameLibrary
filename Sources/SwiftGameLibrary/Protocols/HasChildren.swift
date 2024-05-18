@@ -12,9 +12,9 @@ extension HasChildren{
         }
 	}
 	
-	internal func updateChildMatrices(parentMatrix modelMatrix: Matrix){
+	internal func updateChildMatrices(parentMatrix modelMatrix: Matrix, viewMatrix: Matrix){
 		children.forEach(){
-			$0.updateMatrices(parentMatrix: modelMatrix)
+			$0.updateMatrices(parentMatrix: modelMatrix, viewMatrix: viewMatrix)
 		}
 	}
 	public func add(child: GameNode){
@@ -22,9 +22,9 @@ extension HasChildren{
 	}
 	
 	
-	internal func renderChildren(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
+	internal func renderChildren(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState, scene: SceneConstants){
 		children.forEach() { 
-			$0.renderAll(with: encoder, currentState)
+			$0.renderAll(with: encoder, currentState, scene: scene)
 		}
 	}
 	

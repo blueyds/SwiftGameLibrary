@@ -11,7 +11,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	public var scale: SIMD3<Float> = .one
 	//public var parent: GameNode? = nil
 	public var modelMatrix: Matrix = Matrix.identity
-
+	public var normalMatrix: Matrix = Matrix.identity
 	public var children: [GameNode] = []
 	public var actions: [any Action] = []
 	
@@ -33,14 +33,19 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
         updateChildren(counter: ticks)
     }
     
-    final public func updateMatrices(parentMatrix: Matrix){
+    final public func updateMatrices(parentMatrix: Matrix, viewMatrix: Matrix){
         self.modelMatrix = calculateModelMatrix(parentMatrix)
-        updateChildMatrices(parentMatrix: modelMatrix)
+		let modelViewMatrix = viewMatrix * modelMatrix
+		let mVM = simd_float3x3(modelViewMatrix[0].xyz,
+								modelViewMatrix[1].xyz,
+								modelViewMatrix[2].xyz)
+		normalMatrix = mVM.inverse.transpose
+        updateChildMatrices(parentMatrix: modelMatrix, viewMatrix: Matrix)
     }
     
     final public func renderAll(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("NODE \(name)")
-        doRender(with: encoder, currentState)
+        doRender(with: encoder, currentState, scene: scene)
         renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
     }
