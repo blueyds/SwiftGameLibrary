@@ -1,5 +1,9 @@
 import simd
-
+extension simd_float3x3{
+	public static var identity: simd_float3x3{
+		matrix_identity_float3x3
+	}
+}
 public typealias Matrix = simd_float4x4
 // TODO: Convert view and projection type matrix functions to static funcs.
 // Camera could multiply with another matrix if it wants to do som3ething
