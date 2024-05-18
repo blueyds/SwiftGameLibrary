@@ -40,7 +40,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 								modelViewMatrix[1].xyz,
 								modelViewMatrix[2].xyz)
 		normalMatrix = mVM.inverse.transpose
-        updateChildMatrices(parentMatrix: modelMatrix, viewMatrix: Matrix)
+        updateChildMatrices(parentMatrix: modelMatrix, viewMatrix: viewMatrix)
     }
     
     final public func renderAll(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
