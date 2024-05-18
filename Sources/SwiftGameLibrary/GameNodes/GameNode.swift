@@ -11,7 +11,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	public var scale: SIMD3<Float> = .one
 	//public var parent: GameNode? = nil
 	public var modelMatrix: Matrix = Matrix.identity
-	public var normalMatrix: Matrix = Matrix.identity
+	public var normalMatrix: simd_float3x3 = .identity
 	public var children: [GameNode] = []
 	public var actions: [any Action] = []
 	
@@ -45,7 +45,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
     
     final public func renderAll(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("NODE \(name)")
-        doRender(with: encoder, currentState, scene: scene)
+        doRender(with: encoder, currentState)
         renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
     }

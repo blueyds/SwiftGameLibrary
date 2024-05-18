@@ -29,6 +29,6 @@ public struct MaterialData: sizeable {
 }
 public struct ModelConstants: sizeable {
 	public let modelMatrix: Matrix
-	public let normalMatrix: Matrix
+	public let normalMatrix: simd_float3x3
 	public let material: MaterialData
 }
