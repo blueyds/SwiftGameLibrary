@@ -17,7 +17,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	
 	public init(){
 		self.id = Int.NextID()
-		self.name = "NONAME id\(self.id)"
+		self.name = "GAMENODE_\(self.id)"
 	}
 	
 	public init(named: String){

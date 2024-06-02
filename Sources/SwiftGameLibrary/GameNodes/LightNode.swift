@@ -7,7 +7,15 @@ public class LightNode: GameNode{
 	// public init(named name: String){
 	// 	super.init(named: name)
 	// }
+	public init(){
+		super.init()
+	}
 	
+	public init(color: Color, ambienceIntensity: Float, diffuseIntensity: Float, specularIntensity: Float, brightness: Float){
+		self.color = color.rgb
+		self.intensity = SIMD4<Float>(brightness, ambienceIntensity, diffuseIntensity, specularIntensity)
+		super.init()
+	}
 	public var brightness: Float {
 		get{	intensity.x	}
 		set {	intensity.x = newValue	}
