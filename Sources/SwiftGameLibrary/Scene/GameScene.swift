@@ -14,14 +14,10 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		self.name = named
 		self.id = Int.NextID()
 		self.engine = engine
-		buildMeshes()
-		buildScene()
-	}
-	
-	public init(using engine: MainEngine){
-		self.id = Int.NextID()
-		self.name = "SCENE_\(self.id)"
-		self.engine = engine
+		children = []
+		actions = []
+		lights = []
+		meshes = [:]
 		buildMeshes()
 		buildScene()
 	}
