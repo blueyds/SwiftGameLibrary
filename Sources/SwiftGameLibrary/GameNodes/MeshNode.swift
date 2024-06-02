@@ -4,15 +4,15 @@ public class MeshNode: GameNode{
 	
 	let mesh: Mesh
 	
-	public var color: SIMD4<Float> = Color.random.vector
+	public var color: Color = Color.random
 	
 	public var isLit: Bool = true
 	
-	public var ambient: SIMD3<Float> = .one
+	public var ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1)
 	public var diffuse: SIMD3<Float> = .one
 	public var specular: SIMD3<Float> = .one
 	
-	public var shininess: Float = 1
+	public var shininess: Float = 50
 	
 	public init(named name: String, mesh: Mesh){
 		self.mesh = mesh
@@ -20,7 +20,7 @@ public class MeshNode: GameNode{
 	}
 	 func assignDefaultBuffers(to encoder: MTLRenderCommandEncoder){
 		 let material = MaterialData(
-		 	color: color,
+		 	color: color.rgba,
 			isLit: isLit,
 			ambient: ambient,
 			diffuse: diffuse,

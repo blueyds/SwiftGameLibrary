@@ -16,7 +16,7 @@ public struct Vertex{
 
 	public init(_ pos: SIMD3<Float>, _ color: Color){
 		self.position = pos
-		self.color = color.vector
+		self.color = color.rgba
 		normals = .zero
 		texCoord = .zero
 	}
