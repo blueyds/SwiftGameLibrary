@@ -20,20 +20,7 @@ public struct Color{
 		self.b = b
 		self.a = 1
 	}
-	public init(_ r: Float, _ g: Float, _ b: Float,_ a: Float){
-		self.r = r
-		self.g = g
-		self.b = b
-		self.a = a
-	}
-	
-	public init(_ r: Float, _ g: Float, _ b:Float){
-		self.r = r
-		self.g = g
-		self.b = b
-		self.a = 1
-	}
-	
+
 	public var rgba: SIMD4<Float> {
 		SIMD4<Float>(r, g, b, a)
 	}
