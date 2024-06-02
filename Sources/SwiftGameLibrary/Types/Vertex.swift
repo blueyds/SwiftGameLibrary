@@ -5,20 +5,21 @@ import simd
 public struct Vertex{
 	public var position: SIMD3<Float>
 	public var color: SIMD4<Float>
-	public var normals: SIMD3<Float>
-	public var texCoord: SIMD2<Float>
+	public var normals: SIMD3<Float> = .zero
+	public var texCoord: SIMD2<Float> = .zero
 	public init(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
 		position = SIMD3<Float>(x, y, z)
 		color = SIMD4<Float>(r, g, b, a)
-		normals = .zero
-		texCoord = .zero
 	}
 
 	public init(_ pos: SIMD3<Float>, _ color: Color){
 		self.position = pos
 		self.color = color.rgba
-		normals = .zero
-		texCoord = .zero
+	}
+	
+	public init(_ pos: SIMD3<Float>, _ color: SIMD4<Float>){
+		self.position = pos
+		self.color = color
 	}
 
 	static public var vertexDescriptor: MTLVertexDescriptor = {
