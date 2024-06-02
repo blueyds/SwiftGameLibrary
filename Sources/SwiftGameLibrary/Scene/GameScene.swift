@@ -7,18 +7,28 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	public var children: [GameNode] = []
 	public var camera: Camera!
 	public var actions: [any Action] = []
-	private var garbageCounter: Int = 15
 	public var lights: [LightNode] = []
-	public init(named: String){
+	public var meshes: [String: Mesh] = [:]
+	public let engine: MainEngine
+	public init(named: String, using engine: MainEngine){
 		self.name = named
 		self.id = Int.NextID()
+		self.engine = engine
+		buildMeshes()
+		buildScene()
 	}
 	
-	public init(){
+	public init(using engine: MainEngine){
 		self.id = Int.NextID()
-		self.name = "SCENE_id\(self.id)"
+		self.name = "SCENE_\(self.id)"
+		self.engine = engine
+		buildMeshes()
+		buildScene()
 	}
-
+	
+	open func buildMeshes() { }
+	open func buildScene() { }
+	
 	open func doUpdate(counter ticks: TickCounter) { }
 	
 	public func getLightData()->[LightData]{
