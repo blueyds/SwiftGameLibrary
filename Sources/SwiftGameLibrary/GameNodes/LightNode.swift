@@ -7,9 +7,6 @@ public class LightNode: GameNode{
 	// public init(named name: String){
 	// 	super.init(named: name)
 	// }
-	public init(){
-		super.init()
-	}
 	
 	public init(color: Color, ambienceIntensity: Float, diffuseIntensity: Float, specularIntensity: Float, brightness: Float){
 		self.color = color.rgb
