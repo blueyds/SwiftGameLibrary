@@ -12,7 +12,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 	//public var parent: GameNode? = nil
 	public var modelMatrix: Matrix = Matrix.identity
 	public var normalMatrix: simd_float3x3 = .identity
-	public var children: [String: GameNode] = []
+	public var children: [String: GameNode] = [:]
 	public var actions: [any Action] = []
 	
 	public init(){
