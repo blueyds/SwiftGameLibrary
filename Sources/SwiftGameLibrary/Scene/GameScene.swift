@@ -4,7 +4,7 @@ import simd
 open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	public var name: String
 	public var id: Int
-	public var children: [GameNode] = []
+	public var children: [String: GameNode] = []
 	public var camera: Camera!
 	public var actions: [any Action] = []
 	public var lights: [LightNode] = []
@@ -20,6 +20,7 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		meshes = [:]
 		buildMeshes()
 		buildScene()
+		findAllLights()
 	}
 	
 	open func buildMeshes() { }

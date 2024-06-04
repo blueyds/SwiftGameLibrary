@@ -1,38 +1,38 @@
 import Metal
 
 public protocol HasChildren: AnyObject{
-	var children: [GameNode] { get set }
+	var children: [String: GameNode] { get set }
 }
 
 extension HasChildren{
 	
 	internal func updateChildren(counter ticks: TickCounter){
-		children.forEach(){
-            $0.updateAll(counter: ticks)
-        }
+		for child in children.values{
+			child.updateAll(counter: ticks)
+		}
 	}
 	
 	internal func updateChildMatrices(parentMatrix modelMatrix: Matrix, viewMatrix: Matrix){
-		children.forEach(){
-			$0.updateMatrices(parentMatrix: modelMatrix, viewMatrix: viewMatrix)
+		for child in children.values{
+			child.updateMatrices(parentMatrix: modelMatrix, viewMatrix: viewMatrix)
 		}
 	}
 	public func add(child: GameNode){
-		children.append(child)
+		children.updateValue(child, forKey: child.name)
 	}
 	
 	
 	internal func renderChildren(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
-		children.forEach() {
-			$0.renderAll(with: encoder, currentState)
+		for child in children.values {
+			child.renderAll(with: encoder, currentState)
 		}
 	}
 	
 	func getAllChildren()->[GameNode]{
         var result: [GameNode] = []
-        children.forEach(){
-            result.append($0)
-            result.append(contentsOf: $0.getAllChildren())
+        for child in children.values{
+            result.append(child)
+            result.append(contentsOf: child.getAllChildren())
         }
         return result
  	}
