@@ -14,7 +14,7 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		self.name = named
 		self.id = Int.NextID()
 		self.engine = engine
-		children = []
+		children = [:]
 		actions = []
 		lights = []
 		meshes = [:]
