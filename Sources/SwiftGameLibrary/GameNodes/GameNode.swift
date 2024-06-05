@@ -31,7 +31,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 			OneOrMore(.word)
 			One("/")
 		}
-		let post = s.trimmingPrefix(child.name)
+		let post = child.name.trimmingPrefix(search)
 		var newName = name + "/" + post
 		child.name = newName
 		children.updateValue(child, forKey: child.name)
