@@ -20,7 +20,7 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		meshes = [:]
 		buildMeshes()
 		buildScene()
-		findAllLoghts()
+		findAllLights()
 		findCamera()
 	}
 	
