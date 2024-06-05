@@ -65,9 +65,11 @@ extension GameScene{
 		var noCamera: Bool = true
 		getAllChildren().forEach(){ node in 
 			if let cam = node as? CameraNode {
-				camera = cam
-				noCamera = false
-				break
+				if noCamera {
+					camera = cam
+					noCamera = false
+				}
+				
 			}}
 		if noCamera {
 			fatalError("No CameraNode defined in scene")
