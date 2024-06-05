@@ -17,9 +17,7 @@ extension HasChildren{
 			child.updateMatrices(parentMatrix: modelMatrix, viewMatrix: viewMatrix)
 		}
 	}
-	public func add(child: GameNode){
-		children.updateValue(child, forKey: child.name)
-	}
+
 	
 	
 	internal func renderChildren(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){

@@ -1,11 +1,12 @@
 import Foundation
 import simd
 import Metal
+import RegexBuilder
 
 
 open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChildren {
 	public let id: Int
-	public let name: String
+	public var name: String
 	public var position: SIMD3<Float> = .zero
 	public var rotation: SIMD3<Float> = .zero
 	public var scale: SIMD3<Float> = .one
@@ -25,6 +26,16 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 		self.name = named
 	}
 	
+	public func add(child: GameNode){
+		let search = Regex{
+			OneOrMore(.word)
+			One("/")
+		}
+		let post = s.trimmingPrefix(child.name)
+		var newName = name + "/" + post
+		child.name = newName
+		children.updateValue(child, forKey: child.name)
+	}
 	open func doUpdate(counter: TickCounter) { }
 	
 	final public func updateAll(counter ticks: TickCounter) {

@@ -23,6 +23,11 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		findAllLights()
 	}
 	
+	public func add(child: GameNode){
+		children.updateValue(child, forKey: child.name)
+	}
+	
+	
 	open func buildMeshes() { }
 	open func buildScene() { }
 	
