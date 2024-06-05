@@ -2,7 +2,9 @@ import Metal
 import simd
 
 public class CameraNode: GameNode {
-	open func getViewMatrix()->Matrix{ Matrix.identity }
+	open func getViewMatrix()->Matrix{ 
+		calculateViewMatrix()
+	}
 	open func getProjectionMatrix()->Matrix { Matrix.identity }
     
 	open func changeAspectRatio(_ ratio: Float){ }
