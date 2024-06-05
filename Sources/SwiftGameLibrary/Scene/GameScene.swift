@@ -20,7 +20,8 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 		meshes = [:]
 		buildMeshes()
 		buildScene()
-		findAllLights()
+		findAllLoghts()
+		findCamera()
 	}
 	
 	public func add(child: GameNode){
