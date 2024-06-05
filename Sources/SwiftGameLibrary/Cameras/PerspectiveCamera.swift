@@ -6,10 +6,10 @@ public class PerspectiveCamera: CameraNode{
 	var near: Float
 	var far: Float
 	
-	public func getViewMatrix()->Matrix{
+	override func getViewMatrix()->Matrix{
 		calculateViewMatrix()
 	}
-	public func getProjectionMatrix()->Matrix {
+	override func getProjectionMatrix()->Matrix {
 		Matrix.perspective(degreesFov: fov, aspectRatio: aspectRatio, nearZ: near, farZ: far)
 	}
 	
@@ -22,7 +22,7 @@ public class PerspectiveCamera: CameraNode{
 		self.far = far
 		super.init(named: named)
 	}
-	public func changeAspectRatio(_ ratio: Float){
+	override func changeAspectRatio(_ ratio: Float){
 		self.aspectRatio = ratio
 	}
 }
