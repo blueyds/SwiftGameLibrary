@@ -25,6 +25,10 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 		self.id = Int.NextID()
 		self.name = named
 	}
+	init(prepend: String){
+		self.id = Int.NextID()
+		self.name = "\(prepend)_\(self.id)"
+	}
 	
 	public func add(child: GameNode){
 		let search = Regex{

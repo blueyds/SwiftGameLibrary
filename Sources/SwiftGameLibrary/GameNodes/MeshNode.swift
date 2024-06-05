@@ -23,7 +23,7 @@ public class MeshNode: GameNode{
 		if let name = named {
 			super.init(named: name)
 		} else {
-			super.init()
+			super.init(prepend: "MESH")
 		}
 	}
 	public init(named name: String, mesh: Mesh){
