@@ -11,13 +11,14 @@ public class PerspectiveCamera: CameraNode{
 	}
 	
 	public init(named: String, origin: SIMD3<Float>, fov: Float = 90, aspectRatio: Float = 1, near: Float = 1, far: Float = 1000 ){
-		self.position = origin
-		self.name = named
 		self.fov = fov
 		self.aspectRatio = aspectRatio
 		self.near = near
 		self.far = far
+
 		super.init(named: named)
+
+		self.position = origin
 	}
 	override public func changeAspectRatio(_ ratio: Float){
 		self.aspectRatio = ratio
