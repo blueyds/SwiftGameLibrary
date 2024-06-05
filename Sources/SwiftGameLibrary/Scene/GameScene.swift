@@ -5,7 +5,7 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	public var name: String
 	public var id: Int
 	public var children: [String: GameNode] = [:]
-	public var camera: Camera!
+	public var camera: CameraNode!
 	public var actions: [any Action] = []
 	public var lights: [LightNode] = []
 	public var meshes: [String: Mesh] = [:]
@@ -59,6 +59,18 @@ extension GameScene{
 			if let light = child as? LightNode{
 				lights.append(light)
 			}
+		}
+	}
+	public func findCamera(){
+		var noCamera: Bool = true
+		getAllChildren().forEach(){ node in 
+			if let cam = node as? CameraNode {
+				camera = cam
+				noCamera = false
+				break
+			}}
+		if noCamera {
+			fatalError("No CameraNode defined in scene")
 		}
 	}
 	
