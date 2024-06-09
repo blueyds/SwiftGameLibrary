@@ -62,6 +62,17 @@ extension GameScene{
 			}
 		}
 	}
+	
+	
+	public func updateScene(counter ticks: TickCounter){
+		doUpdate(counter: ticks)
+		runActions(counter: ticks)
+		updateChildren(counter: ticks)
+		updateChildMatrices(parentMatrix: .identity, viewMatrix: camera.getViewMatrix() )
+	}
+}
+// camear function
+extension GameScene{
 	public func findCamera(){
 		var noCamera: Bool = true
 		getAllChildren().forEach(){ node in 
@@ -77,14 +88,10 @@ extension GameScene{
 		}
 	}
 	
-	public func updateScene(counter ticks: TickCounter){
-		doUpdate(counter: ticks)
-		runActions(counter: ticks)
-		updateChildren(counter: ticks)
-		updateChildMatrices(parentMatrix: .identity, viewMatrix: camera.getViewMatrix() )
+	public func viewPortChanged(to newSize: (width: Float, height: Float)){
+		camera.changeViewportSize(to: newSize)
 	}
 }
-
 // Render functions
 extension GameScene{
 	
@@ -122,9 +129,3 @@ extension GameScene{
 }
 
 
-// Miscellaneous Functions
-extension GameScene{    
-	public func changeAspectRatio(_ newRatio: Float){
-		camera.changeAspectRatio(newRatio)
-	}
-}
