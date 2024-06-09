@@ -20,7 +20,7 @@ public class PerspectiveCamera: CameraNode{
 
 		self.position = origin
 	}
-	override public func changeAspectRatio(_ ratio: Float){
-		self.aspectRatio = ratio
+	override public func  viewportDidChange(){
+		self.aspectRatio = viewport.width / viewport.height
 	}
 }
