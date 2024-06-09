@@ -27,15 +27,24 @@ extension HasChildren{
 	}
 	
 	func getAllChildren()->[GameNode]{
-        var result: [GameNode] = []
-        for child in children.values{
-            result.append(child)
-            result.append(contentsOf: child.getAllChildren())
-        }
-        return result
+		var result: [GameNode] = []
+		for child in children.values{
+			result.append(child)
+			result.append(contentsOf: child.getAllChildren())
+		}
+		return result
  	}
 	
 	func filterChilden(where filterFn: ((GameNode)->Bool))->[GameNode]{
-        return getAllChildren().filter(filterFn)
-    }
+		return getAllChildren().filter(filterFn)
+	}
+	
+	public func getSubLevel(_ levels: String...)->GameNode?{
+		var nodeIndices = levels
+		var result: GameNode? = children[nodeIndices.removeFirst()]
+		nodeIndices.forEach(){
+			result = result?.children[$0]
+		}
+		return result
+	}
 }
