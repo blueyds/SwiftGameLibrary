@@ -16,7 +16,7 @@ public class PerspectiveCamera: CameraNode{
 		self.near = near
 		self.far = far
 
-		super.init(named: named)
+		super.init(named: named, width: 1, height: 1)
 
 		self.position = origin
 	}

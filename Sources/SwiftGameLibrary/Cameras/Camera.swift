@@ -4,8 +4,8 @@ import simd
 public class CameraNode: GameNode {
 	public var viewport: (width: Float, height: Float)
 	
-	public init(named name: String){
-		self.viewport = (width: 0, height: 0)
+	public init(named name: String, width: Float, height: Float){
+		self.viewport = (width: width, height: height)
 		super.init(named: name)
 	}
 	
@@ -16,7 +16,7 @@ public class CameraNode: GameNode {
 
 	open func viewportDidChange() { }
 	
-	func changeViewportSize(to newSize: (width: Float, height: Float){
+	func changeViewportSize(to newSize: (width: Float, height: Float)){
 		self.viewport = newSize
 		viewportDidChange()
 	}
