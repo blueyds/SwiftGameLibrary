@@ -28,7 +28,9 @@ extension InputManager{
 		unlock()
 	}
 	public func get(button: Int)->Bool?{
-		iButtons[button]
+		if let result = iButtons[button]{
+			return result
+		} else { return nil}
 	}
 	public func initialzeButtons(size: Int){
 		for i in 0..<size{
@@ -47,7 +49,9 @@ extension InputManager{
 		unlock()
 	}
 	public func get(stringID: Int)->String?{
-		iStrings[stringID]
+		if let result = iStrings[stringID]{
+			return result
+		} else { return nil }
 	}
 }
 
@@ -55,13 +59,15 @@ extension InputManager{
 extension InputManager{
 	public func set(property: String, to value: String?){
 		lock()
-		if sStrings.updateValue(value: forKey: property) == nil {
+		if sStrings.updateValue(value, forKey: property) == nil {
 			print("INFO: InputManager.set(property: \(property) tried to set a key which was not already set")
 		}
 		unlock()
 	}
 	
 	public func get(property: String)->String?{
-		sStrings[property]
+		if let result = sStrings[property]{
+			return result
+		} else { return nil }
 	}
 }
