@@ -71,3 +71,27 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
      func doRender(with: MTLRenderCommandEncoder, _ : MTLRenderPipelineState){ }
 	
 }
+
+// builder extensions
+extension GameNode{
+	public func Position(x: Float = 0, y: Float = 0, z: Float = 0)->GameNode{
+		position.x = x
+		position.y = y
+		position.z = z
+		return self
+	}
+	
+	public func Scale(x: Float = 1, y: Float = 1, z: Float = 1)->GameNode{
+		scale.x = x
+		scale.y = y
+		scale.z = z
+		return self
+	}
+	
+	public func Rotation(x: Float = 0, y: Float = 0, z: Float = 0)->GameNode{
+		rotation.x = x
+		rotation.y = y
+		rotation.z = z
+		return self
+	}
+}
