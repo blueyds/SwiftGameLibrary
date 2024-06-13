@@ -26,6 +26,16 @@ public class MeshNode: GameNode{
 			super.init(prepend: "MESH")
 		}
 	}
+	public init(named name: String, mesh: Mesh, color: Color = Color.random, isLit: Bool = true, ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1), diffuse: SIMD3<Float> = .one, specular: SIMD3<Float> = .one, shininess: Float = 50, named: String? = nil){
+		self.mesh = mesh
+		self.isLit = isLit
+		self.ambient = ambient;
+		self.diffuse = diffuse
+		self.specular = specular
+		self.shininess = shininess
+		super.init(named: name)
+	}
+	
 	public init(named name: String, mesh: Mesh){
 		self.mesh = mesh
 		super.init(named: name)
