@@ -2,7 +2,7 @@ public class InputManager{
 	public static var shared: InputManager = InputManager()
 	private init(){}
 	
-	private var iButtons: [Int: Bool?] = [:]
+	private var iButtons: [Int: Bool] = [:]
 	private var iStrings: [Int:String?] = [:]
 
 	private var sStrings: [String: String?] = [:]
@@ -20,14 +20,14 @@ public class InputManager{
 
 // Buttons extensions
 extension InputManager{
-	public func set(button: Int, to value: Bool?){
+	public func set(button: Int, to value: Bool){
 		lock()
 		if iButtons.updateValue(value, forKey: button) == nil {
 			print("INFO: InputManager.set(button: \(button)) tried to set a key which was not already set")
 		}
 		unlock()
 	}
-	public func get(button: Int)->Bool?{
+	public func get(button: Int)->Bool{
 		if let result = iButtons[button]{
 			return result
 		} else { return nil}
