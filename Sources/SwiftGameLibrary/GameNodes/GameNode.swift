@@ -41,7 +41,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 		children.updateValue(child, forKey: child.name)
 	}
 	open func doUpdate(counter: TickCounter) { }
-	
+
 	final public func updateAll(counter ticks: TickCounter) {
         doUpdate(counter: ticks)
 		runActions(counter: ticks)

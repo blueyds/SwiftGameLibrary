@@ -9,6 +9,9 @@ public typealias Matrix = simd_float4x4
 // Camera could multiply with another matrix if it wants to do som3ething
 // different
 extension Matrix{
+	public var xyz: SIMD3<Float> {
+        SIMD3(self[3,0], self[3,1], self[3,2])
+    }
     public static var identity: Matrix { 
         matrix_identity_float4x4
     }
