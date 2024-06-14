@@ -14,7 +14,7 @@ public class LightNode: GameNode{
 		if name == nil {
 			super.init(prepend: "LIGHT")
 		} else {
-			super.init(name: name)
+			super.init(named: name)
 		}
 		self.brightness = brightness
 		self.ambienceIntensity = ambienceIntensity
