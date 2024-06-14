@@ -30,7 +30,7 @@ extension InputManager{
 	public func get(button: Int)->Bool{
 		if let result = iButtons[button]{
 			return result
-		} else { return nil}
+		} else { return false}
 	}
 	public func initialzeButtons(size: Int){
 		for i in 0..<size{
