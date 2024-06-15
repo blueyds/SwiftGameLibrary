@@ -1,3 +1,5 @@
+import Foundation
+import simd
 
 extension GameScene{
     public func performHitTest(x: Float, y: Float)-> HitResult?{
@@ -29,9 +31,9 @@ extension GameScene{
                 results.append(result)}
         }
         results.sort(by:  {$0.parameter < $1.parameter})
-        if let child: GameNode = findTopLevel(of: results[0].node){
-               results[0].topLevelNode = child
-        }
+      //  if let child: GameNode = findTopLevel(of: results[0].node){
+      //         results[0].topLevelNode = child
+      //  }
 		return results.first
     }
     
