@@ -1,4 +1,4 @@
-/*
+
 extension GameScene{
     public func performHitTest(x: Float, y: Float)-> HitResult{
         // From screen space to clip space
@@ -48,4 +48,3 @@ extension GameNode{
         return result
     }
 }
-*/
