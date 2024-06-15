@@ -74,7 +74,7 @@ extension GameScene{
 // camear function
 extension GameScene{
 	public func findCamera(){
-		var cameras: [String: CameraNode] = []
+		var cameras: [String: CameraNode] = [:]
 		for key in children.keys {
 			if let cam = children[key]! as? CameraNode{
 				cameras.updateValue(cam, forKey: key)
