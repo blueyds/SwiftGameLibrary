@@ -1,6 +1,6 @@
 
 extension GameScene{
-    public func performHitTest(x: Float, y: Float)-> HitResult{
+    public func performHitTest(x: Float, y: Float)-> HitResult?{
         // From screen space to clip space
         let clipX = (2 * x) / camera.viewport.width - 1
         let clipY = 1 - (2 * y) / camera.viewport.height
@@ -29,12 +29,12 @@ extension GameScene{
                 results.append(result)}
         }
         results.sort(by:  {$0.parameter < $1.parameter})
-           if let child: GameNode = findTopLevel(of: results[0].node){
+        if let child: GameNode = findTopLevel(of: results[0].node){
                results[0].topLevelNode = child
-        
         }
+		return results.first
     }
-    return results[0]
+    
 }
 
 extension GameNode{
