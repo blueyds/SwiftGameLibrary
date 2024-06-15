@@ -43,10 +43,18 @@ extension GameNode{
     public func hitTest() { }
     public func isHitTested(ray: Ray, parentScale: SIMD3<Float> = .one)-> HitResult?{
         var result: HitResult? = nil
-        let box = BoundBox(worldPos: modelMatrix.xyz, lengthOnXAxis: parentScale.x * scale.x, lengthOnYAxis: parentScale.y * scale.y, lengthOnZAxis: parentScale.z * scale.z)
+		let newScale = SIMD3<Float(parentScale.x * scale.x, parentScale.y * scale.y, parentScale.z * scale.z)
+        let box = AxisAlignedBoundingBox(worldPos: modelMatrix.xyz, lengthOnXAxis: newScale.x, lengthOnYAxis: newScale.y, lengthOnZAxis: newScale.z)
         if let parm = box.intersect(ray){
             result = HitResult(node: self, ray: ray, parameter: parm)
         }
+		if result == nil {
+			children.forEach{ node in
+				if let hit = node.isHitTested(ray: ray, parentScale: newScale){
+					return hit
+				}
+			}
+		}
         return result
     }
 }
