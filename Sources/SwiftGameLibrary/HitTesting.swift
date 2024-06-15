@@ -49,7 +49,7 @@ extension GameNode{
             result = HitResult(node: self, ray: ray, parameter: parm)
         } else{
 			for key in children.keys {
-				if let hit = children[key].isHitTested(ray: ray, parentScale: newScale){
+				if let hit = children[key]!.isHitTested(ray: ray, parentScale: newScale){
 					return hit
 				}
 			}
