@@ -74,17 +74,16 @@ extension GameScene{
 // camear function
 extension GameScene{
 	public func findCamera(){
-		var noCamera: Bool = true
-		getAllChildren().forEach(){ node in 
-			if let cam = node as? CameraNode {
-				if noCamera {
-					camera = cam
-					noCamera = false
-				}
-				
-			}}
-		if noCamera {
-			fatalError("No CameraNode defined in scene")
+		var cameras: [String: CameraNode] = []
+		for key in children.keys {
+			if let cam = children[key]! as? CameraNode{
+				cameras.updateValue(cam, forKey: key)
+			}
+		}
+		if cameras.isEmpty { fatalError("No camera")}
+		cameras.forEach{ cam in
+			camera = cam.value
+			children.removeValue(forKey: cam.key)
 		}
 	}
 	

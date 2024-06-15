@@ -27,8 +27,10 @@ extension GameScene{
         var results: [HitResult] = []
         children.sorted(by: {$0.value.position.z < $1.value.position.z}).forEach(){ key, node in
             print(node.position.z)
-            if let result = node.isHitTested(ray: ray){ 
-                results.append(result)}
+			if node.id != camera.id{ 
+            	if let result = node.isHitTested(ray: ray){ 
+                	results.append(result)}
+				}
         }
         results.sort(by:  {$0.parameter < $1.parameter})
       //  if let child: GameNode = findTopLevel(of: results[0].node){
