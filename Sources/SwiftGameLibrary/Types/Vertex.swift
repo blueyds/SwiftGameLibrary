@@ -22,7 +22,7 @@ public struct Vertex{
 		
 	}
 	
-	public init(_ pos: SIMD3<Float>, _ color: SIMD4<Float>, _ normals: SIMD3<Float>, texCoord: SIMD2<Float>){
+	public init(_ pos: SIMD3<Float>, _ color: SIMD4<Float>, _ normals: SIMD3<Float>, _ texCoord: SIMD2<Float>){
 		self.position = pos
 		self.color = color
 		self.normals = normals
