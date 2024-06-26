@@ -37,11 +37,15 @@ extension VertexCollection{
 	}
 	
 	public func add(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float, _ a: Float){
-		let v = Vertex(SIMD3<Float>(x,y,z), SIMD4<Float>(r,g,b,a))
+		let v = Vertex(x, y, z, r, g, b, a)
+		add(vertex: v)    
+	}
+	public func add(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float, _ a: Float, _ u: Float, _ v: Float){
+		let v = Vertex(x, y, z, r, g, b, a, u, v)
 		add(vertex: v)    
 	}
 	public func add(_ x: Float,_ y: Float,_ z: Float, _ color: Color){
-		let v = Vertex(SIMD3<Float>(x,y,z), color.rgba)
+		let v = Vertex(SIMD3<Float>(x,y,z), color)
 		add(vertex: v)
 	}
 	
