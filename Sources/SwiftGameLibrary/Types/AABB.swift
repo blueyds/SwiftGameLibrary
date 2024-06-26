@@ -13,7 +13,7 @@ public struct AxisAlignedBoundingBox{
 	
 	private func tMinMax(boxMin: Float, boxMax: Float, origin: Float, invertedDirection: Float)->(min: Float, max: Float){
 		var result: (min: Float, max: Float) 
-		if (invertedDirection >= 0) { 
+		if (invertedDirection <= 0) { 
 			result = (
 				min: (boxMin - origin) * invertedDirection,
 				max: (boxMax - origin) * invertedDirection)
@@ -37,14 +37,15 @@ public struct AxisAlignedBoundingBox{
 		let ty = tMinMax(boxMin: min.y, boxMax: max.y, origin: ray.origin.y, invertedDirection: ray.invertedDirection.y)
 		let tz = tMinMax(boxMin: min.z, boxMax: max.z, origin: ray.origin.z, invertedDirection: ray.invertedDirection.z)
 		if tx.min > ty.max { return nil }
-		if tx.min > tz.max { return nil }
-
-		let tmin = SIMD3(tx.min, ty.min, tz.min).min()
-		let tmax = SIMD3(tx.max, ty.max, tz.max).max()
-		if tmin < 0 { 
-			return tmax
-		} else {
-			return tmin
-		}
+		if ty.min > tx.max { return nil }
+		var tmin = SIMD2(tx.min, ty.min).min()
+		var tmax = SIMD2(tx.max, ty.max).max()
+		if tmin > tz.max { return nil}
+		if tz.min > tmax { return nil }
+		tmin = SIMD2(tmin, tz.min).min()
+		tmax = SIMD2(tmax, tz.max).max()
+		if tmin < 0 && tmax < 0 { return nil }
+		if tmin < 0 { return tmax }
+		return tmin
 	}
 }
