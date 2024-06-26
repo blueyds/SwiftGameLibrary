@@ -2,10 +2,10 @@ import Foundation
 import simd
 
 extension GameScene{
-    public func performHitTest(x: Float, y: Float)-> HitResult?{
+	public func performHitTest(x: Float, y: Float, boundX: Float, boundY: Float)-> HitResult?{
         // From screen space to clip space
-        let clipX = (2 * x) / camera.viewport.width - 1
-        let clipY = 1 - (2 * y) / camera.viewport.height
+		let clipX = (2.0 * x / boundX) - 1.0
+		let clipY = (2.0 * -y / boundY) + 1.0
         let clipCoords = SIMD4( clipX, clipY,0 ,1)
         
         // from clip space to view space
@@ -26,16 +26,20 @@ extension GameScene{
         let ray = Ray(origin: worldRayOrigin, direction: worldRayDir)
         var results: [HitResult] = []
         children.sorted(by: {$0.value.position.z < $1.value.position.z}).forEach(){ key, node in
-            print(node.position.z)
-			if node.id != camera.id{ 
-            	if let result = node.isHitTested(ray: ray){ 
-                	results.append(result)}
+            //print(node.position.z)
+			if node.id != camera.id{
+				if let result = node.isHitTested(ray: ray){
+					results.append(result)
 				}
+			}
         }
         results.sort(by:  {$0.parameter < $1.parameter})
       //  if let child: GameNode = findTopLevel(of: results[0].node){
       //         results[0].topLevelNode = child
       //  }
+		results.forEach(){
+			print("name \($0.node.name) position \($0.node.position) parm \($0.parameter)")
+		}
 		return results.first
     }
     
