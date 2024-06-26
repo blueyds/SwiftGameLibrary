@@ -8,16 +8,16 @@ public struct Vertex{
 	public var normals: SIMD3<Float> = .zero
 	public var texCoord: SIMD2<Float> = .zero
 	
-	public convenience init(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float,_ a: Float,_ u: Float = 0,_ v: Float = 0){
+	public init(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float,_ a: Float,_ u: Float = 0,_ v: Float = 0){
 		self.init(SIMD3<Float>(x, y, z), SIMD4<Float>(r, g, b, a), .zero, SIMD2<Float>(u, v))
 	}
 	
 
-	public convenience init(_ x: Float,_ y: Float, _ z: Float){
+	public init(_ x: Float,_ y: Float, _ z: Float){
 		self.init(SIMD3<Float>(x, y, z), SIMD4<Float>(0,0,0,1), .zero, .zero)
 	}
 	
-	public convenience init(_ pos: SIMD3<Float>, _ color: Color, _ normals: SIMD3<Float> = .zero, texCoord: SIMD2<Float> = .zero){
+	public init(_ pos: SIMD3<Float>, _ color: Color, _ normals: SIMD3<Float> = .zero, texCoord: SIMD2<Float> = .zero){
 		self.init(pos, color.rgba, normals, texCoord)
 		
 	}
