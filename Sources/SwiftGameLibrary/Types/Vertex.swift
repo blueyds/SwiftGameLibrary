@@ -7,19 +7,26 @@ public struct Vertex{
 	public var color: SIMD4<Float>
 	public var normals: SIMD3<Float> = .zero
 	public var texCoord: SIMD2<Float> = .zero
-	public init(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float){
-		position = SIMD3<Float>(x, y, z)
-		color = SIMD4<Float>(r, g, b, a)
-	}
-
-	public init(_ pos: SIMD3<Float>, _ color: Color){
-		self.position = pos
-		self.color = color.rgba
+	
+	public convenience init(x: Float, y: Float, z: Float, r: Float, g: Float, b: Float, a: Float, u: Float = 0, v: Float = 0){
+		self.init(SIMD3<Float>(x, y, z), SIMD4<Float>(r, g, b, a), SIMD2<Float>(u, v)
 	}
 	
-	public init(_ pos: SIMD3<Float>, _ color: SIMD4<Float>){
+
+	public convenience init(x: Float, y: Float, z: Float){
+		self.init(SIMD3<Float>(x, y, z), SIMD4<Float>(0,0,0,1), .zero, .zero)
+	}
+	
+	public convenience init(_ pos: SIMD3<Float>, _ color: Color, _ normals: SIMD3<Float> = .zero, texCoord: SIMD2<Float> = .zero){
+		self.init(pos, color.rgba, normals, texCoord)
+		
+	}
+	
+	public init(_ pos: SIMD3<Float>, _ color: SIMD4<Float>, _ normals: SIMD3<Float>, texCoord: SIMD2<Float>){
 		self.position = pos
 		self.color = color
+		self.normals = normals
+		self.texCoord = texCoord
 	}
 
 	static public var vertexDescriptor: MTLVertexDescriptor = {
