@@ -44,4 +44,17 @@ public class MeshNode: GameNode{
 		assignDefaultBuffers(to: encoder)
 		mesh.render(with: encoder, currentState)
 	}
+	
+	override public func isHitTested(ray: Ray, parentScale: SIMD3<Float> = .one)->HitResult?{
+		//let newScale = parentScale * scale
+		let box = mesh.getBoundingBox(center: position, scaledBy: parentScale * scale)
+		var result: HitResult? = nil
+		if let hit = box.intersect(ray: ray){
+			return HitResult(node: self,
+						ray: ray,
+						parameter: hit)
+		} else {
+			return hitTestAllChildren(ray: ray, parentScale: parentScale)
+		}
+	}
 }

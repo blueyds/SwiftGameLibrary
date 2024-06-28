@@ -41,7 +41,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 		children.updateValue(child, forKey: child.name)
 	}
 	open func doUpdate(counter: TickCounter) { }
-
+	
 	final public func updateAll(counter ticks: TickCounter) {
         doUpdate(counter: ticks)
 		runActions(counter: ticks)
@@ -55,19 +55,34 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
 								modelViewMatrix[1].xyz,
 								modelViewMatrix[2].xyz)
 		normalMatrix = mVM.inverse.transpose
-        updateChildMatrices(parentMatrix: modelMatrix, viewMatrix: viewMatrix)
-    }
-    
-    final public func renderAll(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
+		updateChildMatrices(parentMatrix: modelMatrix, viewMatrix: viewMatrix)
+	}
+	
+	final public func renderAll(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		encoder.pushDebugGroup("NODE \(name)")
-        doRender(with: encoder, currentState)
-        renderChildren(with: encoder, currentState)
+		doRender(with: encoder, currentState)
+		renderChildren(with: encoder, currentState)
 		encoder.popDebugGroup()
-    }
+	}
 	
 	// TODO: This is hidden and fixed. it would be hard to modify to render
 	// with different modelmatrix ie for animation
 	
-     func doRender(with: MTLRenderCommandEncoder, _ : MTLRenderPipelineState){ }
+	func doRender(with: MTLRenderCommandEncoder, _ : MTLRenderPipelineState){ }
 	
+	//public func hitTest() { }
+	public func isHitTested(ray: Ray, parentScale: SIMD3<Float> = .one)-> HitResult?{
+		hitTestAllChildren(ray: ray, parentScale: scale)
+	}
+
+	public func hitTestAllChildren(ray: Ray, parentScale: SIMD3<Float> = .one)->HitResult?{
+		for key in children.keys{
+			if let hit = children[key]!.isHitTested(ray: ray, parentScale: parentScale * scale){
+					var result = hit
+					result.changeTopLevel(to: self)
+					return result
+			}
+		}
+		return nil
+	}
 }

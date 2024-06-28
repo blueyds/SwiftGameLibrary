@@ -9,20 +9,20 @@ public struct Vertex{
 	public var texCoord: SIMD2<Float> = .zero
 	
 	public init(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float,_ a: Float,_ u: Float = 0,_ v: Float = 0){
-		self.init(SIMD3<Float>(x, y, z), SIMD4<Float>(r, g, b, a), .zero, SIMD2<Float>(u, v))
+		self.init(pos: SIMD3<Float>(x, y, z), color:  SIMD4<Float>(r, g, b, a), normals: .zero, texCoord: SIMD2<Float>(u, v))
 	}
 	
 
 	public init(_ x: Float,_ y: Float, _ z: Float){
-		self.init(SIMD3<Float>(x, y, z), SIMD4<Float>(0,0,0,1), .zero, .zero)
+		self.init(pos: SIMD3<Float>(x, y, z), color: SIMD4<Float>(0,0,0,1), normals: .zero, texCoord: .zero)
 	}
 	
 	public init(_ pos: SIMD3<Float>, _ color: Color, _ normals: SIMD3<Float> = .zero, texCoord: SIMD2<Float> = .zero){
-		self.init(pos, color.rgba, normals, texCoord)
+		self.init(pos: pos, color: color.rgba, normals: normals, texCoord: texCoord)
 		
 	}
 	
-	public init(_ pos: SIMD3<Float>, _ color: SIMD4<Float>, _ normals: SIMD3<Float>, _ texCoord: SIMD2<Float>){
+	public init( pos: SIMD3<Float>, color: SIMD4<Float>,  normals: SIMD3<Float>,  texCoord: SIMD2<Float>){
 		self.position = pos
 		self.color = color
 		self.normals = normals
