@@ -49,7 +49,7 @@ public class MeshNode: GameNode{
 		//let newScale = parentScale * scale
 		let box = mesh.getBoundingBox(center: position, scaledBy: parentScale * scale)
 		var result: HitResult? = nil
-		if let hit = box.intersect(ray: ray){
+		if let hit = box.intersect(ray){
 			return HitResult(node: self,
 						ray: ray,
 						parameter: hit)
