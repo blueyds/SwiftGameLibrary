@@ -10,7 +10,7 @@ public class Cube: VertexCollection{
     
 	public func getBoundingBox(center: SIMD3<Float>,scaledBy: SIMD3<Float>)->AABB{
 		// we can use extant version bercause the unscaled Cube is 2 X 2 X 2
-		AxisAlignedBoundingBox(worldPos: center, lengthOnX: scaledBy.x, lengthOnY: scaledBy.y, lengthOnZ: scaledBy.z)
+		AxisAlignedBoundingBox(worldPos: center, extantX: scaledBy.x, extantY: scaledBy.y, extantZ: scaledBy.z)
 	}
 	
 	public func createVertices(){
