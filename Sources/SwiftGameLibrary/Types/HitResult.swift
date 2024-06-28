@@ -6,4 +6,7 @@ public struct HitResult{
 	public var intersectionPoint: SIMD3<Float> {
 		ray.origin + parameter * ray.direction
 	}
+	public mutating changeTopLevel(to: GameNode){
+		topLevelNode = to
+	}
 }

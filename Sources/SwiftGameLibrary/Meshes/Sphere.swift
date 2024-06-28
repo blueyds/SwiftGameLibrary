@@ -10,6 +10,11 @@ public class Sphere: VertexCollection{
 		self.resolution = resolution
 		build(using: device)
 	}
+	
+	public func getBoundingBox(center: SIMD3<Float>,scaledBy: SIMD3<Float>)->AABB{
+		// we can use extant version bercause the unscaled Sphere is 2 X 2 X 2
+		AxisAlignedBoundingBox(worldPos: center, extantX: scaledBy.x, extantY: scaledBy.y, extantZ: scaledBy.z)
+	}
     public func createVertices(){
 		createSphere(.random)
     }

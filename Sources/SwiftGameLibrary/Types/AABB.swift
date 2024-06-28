@@ -1,16 +1,22 @@
 import Foundation
 import simd
 
-public struct AxisAlignedBoundingBox{
+public protocol AABB{
+	func intersect(_ : Ray)->Float?
+}
+
+public struct AxisAlignedBoundingBox:AABB{
 	var min: SIMD3<Float>
 	var max: SIMD3<Float>
 	public init(worldPos: SIMD3<Float>, lengthOnXAxis: Float, lengthOnYAxis: Float, lengthOnZAxis: Float){
-		let extants = SIMD3(lengthOnXAxis / 2, lengthOnYAxis / 2, lengthOnZAxis / 2)
-		let center = worldPos
-		min = simd_float3(center.x - extants.x, center.y - extants.y, center.z - extants.z)
-		max = simd_float3(center.x + extants.x, center.y + extants.y, center.z + extants.z)
+		self.init(worldPos: worldPos, extantX: lengthOnXAxis / 2, extantY: lenghtOnYAxis / 2, extantZ: lengthOnZAxis / 2)
 	}
-	
+	public init(worldPos: SIMD3<Float>, extantX: Float, extantY: Float, extantZ: Float){
+		//let extants = SIMD3(extantX, ex, lengthOnZAxis / 2)
+		let center = worldPos
+		min = simd_float3(worldPos.x - extantX, worldPos.y - extantY, worldPos.z - extantZ)
+		max = simd_float3(worldPos.x + extantX, worldPos.y + extantY, worldPos.z + extantZ)
+	}
 	private func tMinMax(boxMin: Float, boxMax: Float, origin: Float, invertedDirection: Float)->(min: Float, max: Float){
 		var result: (min: Float, max: Float) 
 		if (invertedDirection <= 0) { 

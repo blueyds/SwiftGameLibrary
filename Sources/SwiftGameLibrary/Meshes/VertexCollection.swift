@@ -44,6 +44,10 @@ extension VertexCollection{
 		let v = Vertex(x, y, z, r, g, b, a, u, v)
 		add(vertex: v)    
 	}
+	public func add (_ x: Float, _ y: Float, _ z: Float, _ color: Color, _ u: Float, _ v: Float){
+		let v = Vertex(SIMD3<Float>(x, y, z), color, .zero, SIMD2<Float>(u, v))
+		add(vertex: v)
+	}
 	public func add(_ x: Float,_ y: Float,_ z: Float, _ color: Color){
 		let v = Vertex(SIMD3<Float>(x,y,z), color)
 		add(vertex: v)
