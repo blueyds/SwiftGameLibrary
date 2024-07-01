@@ -13,7 +13,9 @@ public class Sphere: VertexCollection{
 	
 	public func getBoundingBox(center: SIMD3<Float>,scaledBy: SIMD3<Float>)->AABB{
 		// we can use extant version bercause the unscaled Sphere is 2 X 2 X 2
-		AxisAlignedBoundingBox(worldPos: center, extantX: scaledBy.x, extantY: scaledBy.y, extantZ: scaledBy.z)
+		let min = vertices.min()!
+		let max = vertices.max()!
+		return AxisAlignedBoundingBox(min: min.position, max: max.position)
 	}
     public func createVertices(){
 		createSphere(.random)

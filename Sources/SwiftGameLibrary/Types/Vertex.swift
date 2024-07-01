@@ -55,3 +55,13 @@ public struct Vertex{
 		return result
 	}()
 }
+
+extension Vertex: Comparable{
+	public static func < (lhs: Vertex, rhs: Vertex) -> Bool {
+		lhs.position.x < rhs.position.x &&
+		lhs.position.y < rhs.position.y &&
+		lhs.position.z < rhs.position.z
+	}
+	
+
+}

@@ -8,6 +8,10 @@ public protocol AABB{
 public struct AxisAlignedBoundingBox:AABB{
 	var min: SIMD3<Float>
 	var max: SIMD3<Float>
+	public init(min: SIMD3<Float>, max: SIMD3<Float>){
+		self.max = max
+		self.min = min
+	}
 	public init(worldPos: SIMD3<Float>, lengthOnXAxis: Float, lengthOnYAxis: Float, lengthOnZAxis: Float){
 		self.init(worldPos: worldPos, extantX: lengthOnXAxis / 2, extantY: lengthOnYAxis / 2, extantZ: lengthOnZAxis / 2)
 	}

@@ -52,7 +52,8 @@ public class MeshNode: GameNode{
 		if let hit = box.intersect(ray){
 			return HitResult(node: self,
 						ray: ray,
-						parameter: hit)
+						parameter: hit,
+						worldPos: modelMatrix.xyz)
 		} else {
 			return hitTestAllChildren(ray: ray, parentScale: parentScale)
 		}

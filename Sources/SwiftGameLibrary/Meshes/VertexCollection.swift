@@ -1,18 +1,28 @@
 import Metal
 import simd
+/// VertexCollection is a protocol tha can be used by a custom mesh that allows the class to manually
+/// create vertices. There are procedures for addeing vertex. Implementations only need to
+/// define vertices and the vertexBuffer, and implement the createVertices func.
+/// Implementations should call one of the build funcs in their initilizer. The build funcs call the createVertices
+/// func and call other procedures to ensure
 public protocol VertexCollection: Mesh{
 	var vertices: [Vertex] { get set}
 	var vertexBuffer: MTLBuffer? { get set }
 	func createVertices() 
 }
 extension VertexCollection{
+	/// Can be called in the initializer of classes to simplify the build process and ensure that normals
+	///  are created
 	public func  build(){
 		createVertices()
 		vertexBuffer = nil
 		processVertices()
 	}
+	/// Can be called in the initializer of classes to simplify the build process and ensure that normals
+	/// are created
 	public func build(using device: MTLDevice){
 		createVertices()
+		processVertices()
 		createBuffer(using: device)
 	}
 	
