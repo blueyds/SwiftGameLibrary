@@ -4,7 +4,7 @@ public class InputManager{
 	
 	private var iButtons: [Int: Bool] = [:]
 	private var iStrings: [Int:String?] = [:]
-
+	private var iFloats: [Int: Float?] = [:]
 	private var sStrings: [String: String?] = [:]
 	
 	private var isLocked: Bool = false 
@@ -67,6 +67,22 @@ extension InputManager{
 	
 	public func get(property: String)->String?{
 		if let result = sStrings[property]{
+			return result
+		} else { return nil }
+	}
+}
+// floats extensions
+extension InputManager{
+	public func set(floatID: Int, to value: Float?){
+		lock()
+		if iFloats.updateValue(value, forKey: floatID) == nil{
+			print("INFO: InputManager.set(floatId: \(floatID) ) tried to set a key that was not already set")
+		}
+		unlock()
+	}
+	
+	public func get(floatID: Int)->Float?{
+		if let result = iFloats[floatID]{
 			return result
 		} else { return nil }
 	}
