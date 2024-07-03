@@ -8,7 +8,7 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 	public var camera: CameraNode!
 	public var actions: [any Action] = []
 	public var lights: [LightNode] = []
-	public var meshes: [String: Mesh] = [:]
+	public var meshes: [String: any Mesh] = [:]
 	public let engine: MainEngine
 	public init(named: String, using engine: MainEngine){
 		self.name = named
