@@ -23,7 +23,7 @@ extension InputManager{
 	public func set(button: Int, to value: Bool){
 		lock()
 		if iButtons.updateValue(value, forKey: button) == nil {
-			Log.info("InputManager.set(button:) tried to set a key which was not already set", button, value)
+			Log.info("InputManager.set(button:) tried to set a key which was not already set", String(button), String(value))
 		}
 		unlock()
 	}
@@ -44,7 +44,7 @@ extension InputManager{
 	public func set(stringID: Int, to value: String?){
 		lock()
 		if iStrings.updateValue(value, forKey: stringID) == nil{
-			Log.info("InputManager.set(stringID: tried to set a key which was not already set", stringID, value)
+			Log.info("InputManager.set(stringID: tried to set a key which was not already set", String(stringID), String(value))
 		}
 		unlock()
 	}
@@ -60,7 +60,7 @@ extension InputManager{
 	public func set(property: String, to value: String?){
 		lock()
 		if sStrings.updateValue(value, forKey: property) == nil {
-			Log.info("InputManager.set tried to set a key which was not already set", property, value)
+			Log.info("InputManager.set tried to set a key which was not already set", property, value ?? "")
 		}
 		unlock()
 	}
@@ -76,7 +76,7 @@ extension InputManager{
 	public func set(floatID: Int, to value: Float){
 		lock()
 		if iFloats.updateValue(value, forKey: floatID) == nil{
-			Log.info("InputManager.set(floatId:) tried to set a key that was not already set", floatID, value)
+			Log.info("InputManager.set(floatId:) tried to set a key that was not already set", String(floatID), String(value))
 		}
 		unlock()
 	}
@@ -86,7 +86,7 @@ extension InputManager{
 			return result
 		}
 		set(floatID: floatID, .zero)
-		Log.info("tried to access prior key before it was set. created and set to zero", floatID, .zero)
+		Log.info("tried to access prior key before it was set. created and set to zero", String(floatID), "0")
 		return .zero
 	}
 }
