@@ -8,7 +8,12 @@ public protocol ModelIOMesh: Mesh{
 
 extension ModelIOMesh{
 	public func load(mdlMesh model: MDLMesh, using device: any MTLDevice){
-		mesh = MTKMesh(mesh: model, device: device)
+		do {
+			mesh = try MTKMesh(mesh: model, device: device)
+			} catch{
+				mesh = nil
+				Log.error("Could not load mdlMesh", model)
+			}
 	}
 	
 	public func drawPrimitives(using renderCommandEncoder: MTLRenderCommandEncoder){
