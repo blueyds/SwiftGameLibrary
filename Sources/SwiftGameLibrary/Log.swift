@@ -1,16 +1,16 @@
 public enum Log{
 	static let separator: String = ":::"
 	static func info(_ msg: String ...){
-		var message = msg.reduce("",reduce(_:_:))
+		let message = msg.reduce("",reduce(_:_:))
 		print("INFO: \(message)")
 	}
 	
 	static func error(_ msg: String ...){
-		var message = msg.reduce("",reduce(_:_:))
+		let message = msg.reduce("",reduce(_:_:))
 		print("ERROR: \(message)")
 	}
 	static func fatalError(_ msg: String ...){
-		var message = msg.reduce("",reduce(_:_:))
+		let message = msg.reduce("",reduce(_:_:))
 		fatalError("\(message)")
 	}
 	
