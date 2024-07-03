@@ -1,5 +1,6 @@
 import ModelIO
 import MetalKit
+import Metal
 
 public protocol ModelIOMesh: Mesh{
 	var mesh: MTKMesh? { get set }
@@ -10,7 +11,7 @@ extension ModelIOMesh{
 		mesh = MTKMesh(mesh: mesh, device: device)
 	}
 	
-	public func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder){
+	public func drawPrimitives(using renderCommandEncoder: MTLRenderCommandEncoder){
 		if mesh == nil {
 			return
 		}
@@ -29,7 +30,7 @@ extension ModelIOMesh{
 					indexCount: submesh.indexCount, 
 					indexType: submesh.indexType, 
 					indexBuffer: submesh.indexBuffer.buffer, 
-					indexBufferOffset: submesh.indexBuffer.offset
+					indexBufferOffset: submesh.indexBuffer.offset)
 			index += 1
 		}
 	}
