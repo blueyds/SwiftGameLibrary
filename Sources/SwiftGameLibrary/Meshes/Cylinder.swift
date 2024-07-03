@@ -1,4 +1,5 @@
 import Metal
+import MetalKit
 import ModelIO
 
 public class Cylinder: ModelIOMesh{

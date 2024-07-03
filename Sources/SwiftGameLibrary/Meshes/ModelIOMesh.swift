@@ -7,8 +7,8 @@ public protocol ModelIOMesh: Mesh{
 }
 
 extension ModelIOMesh{
-	public func load(mdlMesh mesh: MDLMesh, using device: any MTLDevice){
-		mesh = MTKMesh(mesh: mesh, device: device)
+	public func load(mdlMesh model: MDLMesh, using device: any MTLDevice){
+		mesh = MTKMesh(mesh: model, device: device)
 	}
 	
 	public func drawPrimitives(using renderCommandEncoder: MTLRenderCommandEncoder){
@@ -36,4 +36,3 @@ extension ModelIOMesh{
 	}
 }
 // then, at render time...
-D

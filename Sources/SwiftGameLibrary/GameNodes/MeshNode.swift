@@ -48,7 +48,6 @@ public class MeshNode: GameNode{
 	override public func isHitTested(ray: Ray, parentScale: SIMD3<Float> = .one)->HitResult?{
 		//let newScale = parentScale * scale
 		let box = mesh.getBoundingBox(center: modelMatrix.xyz, scaledBy: parentScale * scale)
-		var result: HitResult? = nil
 		if let hit = box.intersect(ray){
 			return HitResult(node: self,
 						ray: ray,

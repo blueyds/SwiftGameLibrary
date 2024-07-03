@@ -2,7 +2,7 @@ import Foundation
 
 public protocol InputFloatsEnum:CaseIterable, RawRepresentable where RawValue == Int{
 	var value: Float { get }
-	func set(to: Float?)
+	func set(to: Float)
 }
 extension InputFloatsEnum{
 	public var value: Float{
