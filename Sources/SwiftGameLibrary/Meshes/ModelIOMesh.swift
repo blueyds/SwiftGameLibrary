@@ -12,7 +12,7 @@ extension ModelIOMesh{
 			mesh = try MTKMesh(mesh: model, device: device)
 			} catch{
 				mesh = nil
-				Log.error("Could not load mdlMesh", model)
+				Log.error("Could not load mdlMesh")
 			}
 	}
 	
