@@ -44,7 +44,7 @@ extension InputManager{
 	public func set(stringID: Int, to value: String?){
 		lock()
 		if iStrings.updateValue(value, forKey: stringID) == nil{
-			Log.info("InputManager.set(stringID: tried to set a key which was not already set", String(stringID), String(value))
+			Log.info("InputManager.set(stringID: tried to set a key which was not already set", String(stringID), value ?? "nil")
 		}
 		unlock()
 	}
@@ -60,7 +60,7 @@ extension InputManager{
 	public func set(property: String, to value: String?){
 		lock()
 		if sStrings.updateValue(value, forKey: property) == nil {
-			Log.info("InputManager.set tried to set a key which was not already set", property, value ?? "")
+			Log.info("InputManager.set tried to set a key which was not already set", property, value ?? "nil")
 		}
 		unlock()
 	}
@@ -85,7 +85,7 @@ extension InputManager{
 		if let result = iFloats[floatID]{
 			return result
 		}
-		set(floatID: floatID, .zero)
+		set(floatID: floatID, to: .zero)
 		Log.info("tried to access prior key before it was set. created and set to zero", String(floatID), "0")
 		return .zero
 	}
