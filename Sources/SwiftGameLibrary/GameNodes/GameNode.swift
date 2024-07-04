@@ -7,9 +7,7 @@ import RegexBuilder
 open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChildren {
 	public let id: Int
 	public var name: String
-	public var position: SIMD3<Float> = .zero
-	public var rotation: SIMD3<Float> = .zero
-	public var scale: SIMD3<Float> = .one
+	public var transfroms: Transformable = Transformable()
 	//public var parent: GameNode? = nil
 	public var modelMatrix: Matrix = Matrix.identity
 	public var normalMatrix: simd_float3x3 = .identity
@@ -49,7 +47,7 @@ open class GameNode: Transformable, Identifiable, Nameable, Actionable, HasChild
     }
     
     final public func updateMatrices(parentMatrix: Matrix, viewMatrix: Matrix){
-        self.modelMatrix = calculateModelMatrix(parentMatrix)
+        self.modelMatrix = transforms.calculateModelMatrix(parentMatrix)
 		let modelViewMatrix = viewMatrix * modelMatrix
 		let mVM = simd_float3x3(modelViewMatrix[0].xyz,
 								modelViewMatrix[1].xyz,

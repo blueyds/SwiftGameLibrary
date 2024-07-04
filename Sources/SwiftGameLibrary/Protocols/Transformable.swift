@@ -1,10 +1,10 @@
 import simd
 
-public protocol Transformable: AnyObject{
-    var position: SIMD3<Float> { get set }
-    var rotation: SIMD3<Float> { get set }
-    var scale: SIMD3<Float> { get set}
-   // var modelMatrix: Matrix { get set}
+public struct Transformable{
+	public var position: SIMD3<Float> = .zero
+	public var rotation: SIMD3<Float> = .zero
+	public var scale: SIMD3<Float> = .one
+	// var modelMatrix: Matrix { get set}
 }
 
 extension Transformable{
@@ -18,48 +18,49 @@ extension Transformable{
 }
 
 extension Transformable{
-    public func moveTo(x: Float, y: Float, z: Float){
-        self.position = SIMD3<Float>(x, y, z)
-    }
-    public func move(to newPosition: SIMD3<Float>){
-        self.position = newPosition
-    }
-    public func moveX(by delta: Float){
-        self.position.x += delta
-    }
-    public func moveY(by delta: Float){
-        self.position.y += delta
-    }
-    public func moveZ(by delta: Float){
-        self.position.z += delta
-    }
+	public mutating func moveTo(x: Float, y: Float, z: Float){
+		position = SIMD3<Float>(x, y, z)
+	}
+    
+	public mutating func move(to newPosition: SIMD3<Float>){
+		position = newPosition
+	}
+    
+	public mutating func moveX(by delta: Float){ position.x += delta }
+	public mutating func moveY(by delta: Float){ position.y += delta }
+	public mutating func moveZ(by delta: Float){ position.z += delta }
 }
 
 extension Transformable{
-	public func rotateX(by angle: Float){
-        rotation.x += angle.fromDegrees   
-    }
-    public func rotateY(by angle: Float){
-        rotation.y += angle.fromDegrees
-    }
-    public func rotateZ(by angle: Float){
-        rotation.z += angle.fromDegrees
+	public mutating func rotateX(byDegrees angle: Float){
+		rotation.x += angle.fromDegrees   
+	}
+    
+	public mutating func rotateY(byDegrees angle: Float){
+		rotation.y += angle.fromDegrees
+	}
+    
+	public mutating func rotateZ(byDegrees angle: Float){
+		rotation.z += angle.fromDegrees
 	 }
 }
 
 extension Transformable {
-    public func scaleX(by delta: Float){
-        scale.x *= delta
-    }
-    public func scaleY(by delta: Float){
-        scale.y *= delta
-    }
-    public func scaleZ(by delta: Float){
-        scale.z *= delta
-    }
-    public func scaleAll(by delta: Float){
-        scaleX(by: delta)
-        scaleY(by: delta)
-        scaleZ(by: delta)
-    }
+	public mutating func scaleX(by delta: Float){
+		scale.x *= delta
+	}
+    
+	public mutating func scaleY(by delta: Float){
+		scale.y *= delta
+	}
+    
+	public mutating func scaleZ(by delta: Float){
+		scale.z *= delta
+	}
+    
+	public mutating func scaleAll(by delta: Float){
+		scaleX(by: delta)
+		scaleY(by: delta)
+		scaleZ(by: delta)
+	}
 }
