@@ -1,44 +1,31 @@
 import Metal
 import simd
 
-open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
-	public var name: String
-	public var id: Int
-	public var children: [String: GameNode] = [:]
-	public var camera: CameraNode!
-	public var actions: [any Action] = []
-	public var lights: [LightNode] = []
-	public var meshes: [String: any Mesh] = [:]
-	public let engine: MainEngine
-	public init(named: String, using engine: MainEngine){
-		self.name = named
-		self.id = Int.NextID()
-		self.engine = engine
-		children = [:]
-		actions = []
-		lights = []
-		meshes = [:]
-		buildMeshes()
-		buildScene()
-		findAllLights()
-		findCamera()
-	}
-	
-	public func add(child: GameNode){
-		children.updateValue(child, forKey: child.name)
-	}
-	
-	
-	open func buildMeshes() { }
-	open func buildScene() { }
-	
-	open func doUpdate(counter ticks: TickCounter) { }
-	
-	public func getLightData()->[LightData]{
+public protocol GameScene: Nameable, Identifiable, Actionable, HasChildren{
+	func getLightNodes()->[LightNode]
+
+	func getCamera()->CameraNode
+	func buildMeshes(engine: MainEngine)
+	func buildScene(engine: MainEngine)
+	func doUpdate(counter: TickCounter)
+}
+
+extension GameScene{
+
+	public func buildMeshes(engine: MainEngine) { }
+
+	public func buildScene(engine: MainEngine) { }
+
+	public func doUpdate(counter ticks: TickCounter) { }
+
+	public func getLightNodes()->[LightNode] { [] }
+
+	internal func getLightData()->[LightData]{
 		var result: [LightData] = []
+		let lights: [LightNode] = getLightNodes()
 		lights.forEach(){ light in
 			let data = LightData(
-				position: light.position,
+				position: light.transforms[0].position,
 				color: light.color,
 				brightness: light.brightness,
 				ambienceIntensity: light.ambienceIntensity,
@@ -54,13 +41,14 @@ open class GameScene:Nameable, Identifiable, Actionable, HasChildren{
 // Update functions
 extension GameScene{
 	
-	public func findAllLights(){
-		lights = []
+	public func findAllLights()->[LightNode]{
+		var result: [LightNode] = []
 		getAllChildren().forEach(){child in
 			if let light = child as? LightNode{
-				lights.append(light)
+				result.append(light)
 			}
 		}
+		return result
 	}
 	
 	
@@ -68,27 +56,24 @@ extension GameScene{
 		doUpdate(counter: ticks)
 		runActions(counter: ticks)
 		updateChildren(counter: ticks)
-		updateChildMatrices(parentMatrix: .identity, viewMatrix: camera.getViewMatrix() )
+		updateChildMatrices(parentMatrix: .identity, viewMatrix: getCamera().getViewMatrix() )
 	}
 }
 // camear function
 extension GameScene{
-	public func findCamera(){
-		var cameras: [String: CameraNode] = [:]
-		for key in children.keys {
-			if let cam = children[key]! as? CameraNode{
-				cameras.updateValue(cam, forKey: key)
+	public func findCamera()->CameraNode{
+		var cameras: [CameraNode] = []
+		for child in children {
+			if let cam = child as? CameraNode{
+				cameras.append(cam)
 			}
 		}
-		if cameras.isEmpty { fatalError("No camera")}
-		cameras.forEach{ cam in
-			camera = cam.value
-			children.removeValue(forKey: cam.key)
-		}
+		if cameras.isEmpty { Log.error("No camera")}
+		return cameras[0]
 	}
 	
 	public func viewPortChanged(to newSize: (width: Float, height: Float)){
-		camera.changeViewportSize(to: newSize)
+		getCamera().changeViewportSize(to: newSize)
 	}
 }
 // Render functions
@@ -112,10 +97,11 @@ extension GameScene{
 		// TODO: does cameraPOsition need to be reversed?
 		var lights = getLightData()
 		var count = UInt32(lights.count)
+		let camera = getCamera()
 		var scene = SceneConstants(
 			viewMatrix: camera.getViewMatrix(),
 			projectionMatrix: camera.getProjectionMatrix(),
-			cameraPos: camera.position,
+			cameraPos: camera.transforms[0].position,
 			light: lights.first ?? LightData.noLight
 		)
 		

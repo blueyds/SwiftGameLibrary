@@ -1,58 +1,42 @@
 import Metal
 
 public class MeshNode: GameNode{
+	public let id: Int = Int.NextID()
 	
-	let mesh: Mesh
+	public var transforms: [Transformable] = [Transformable()]
+
+	public var children: [any GameNode] = []
+
+	public var actions: [Action] = []
 	
-	public var color: Color = Color.random
-	
-	public var isLit: Bool = true
-	
-	public var ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1)
-	public var diffuse: SIMD3<Float> = .one
-	public var specular: SIMD3<Float> = .one
-	
-	public var shininess: Float = 50
-	public init(mesh: Mesh, color: Color = Color.random, isLit: Bool = true, ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1), diffuse: SIMD3<Float> = .one, specular: SIMD3<Float> = .one, shininess: Float = 50, named: String? = nil){
-		self.mesh = mesh
-		self.isLit = isLit
-		self.ambient = ambient;
-		self.diffuse = diffuse
-		self.specular = specular
-		self.shininess = shininess
-		if let name = named {
-			super.init(named: name)
-		} else {
-			super.init(prepend: "MESH")
-		}
+	var mesh: [any Mesh] = []
+
+	public var material: MaterialData
+
+
+	public init(mesh: any Mesh, color: Color = Color.random, isLit: Bool = true, ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1), diffuse: SIMD3<Float> = .one, specular: SIMD3<Float> = .one, shininess: Float = 50, named: String? = nil){
+		material = MaterialData(color: color.rgba, isLit: isLit, ambient: ambient, diffuse: diffuse, specular: specular, shininess: shininess)
+		self.mesh.append(mesh)
 	}
 	
 	func assignDefaultBuffers(to encoder: MTLRenderCommandEncoder){
-		 let material = MaterialData(
-		 	color: color.rgba,
-			isLit: isLit,
-			ambient: ambient,
-			diffuse: diffuse,
-			specular: specular,
-			shininess: shininess
-		 )
-		 var model = ModelConstants(modelMatrix: modelMatrix, normalMatrix: normalMatrix, material: material )
+		var model = ModelConstants(modelMatrix: transforms[0].modelMatrix, normalMatrix: transforms[0].normalMatrix, material: material )
 		 encoder.setVertexBytes(&model, length: ModelConstants.stride(), index: VertexParameters.ModelConstants)
 	 }
 	
-	override func doRender(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
+	public func doRender(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		assignDefaultBuffers(to: encoder)
-		mesh.render(with: encoder, currentState)
+		mesh[0].render(with: encoder, currentState)
 	}
 	
-	override public func isHitTested(ray: Ray, parentScale: SIMD3<Float> = .one)->HitResult?{
+	 public func isHitTested(ray: Ray, parentScale: SIMD3<Float> = .one)->HitResult?{
 		//let newScale = parentScale * scale
-		let box = mesh.getBoundingBox(center: modelMatrix.xyz, scaledBy: parentScale * scale)
+		 let box = mesh[0].getBoundingBox(center: transforms[0].modelMatrix.xyz, scaledBy: parentScale * transforms[0].scale)
 		if let hit = box.intersect(ray){
 			return HitResult(node: self,
 						ray: ray,
 						parameter: hit,
-						worldPos: modelMatrix.xyz)
+							 worldPos: transforms[0].worldPos)
 		} else {
 			return hitTestAllChildren(ray: ray, parentScale: parentScale)
 		}

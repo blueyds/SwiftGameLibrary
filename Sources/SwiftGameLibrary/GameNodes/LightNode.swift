@@ -1,6 +1,14 @@
 import simd
 
 public class LightNode: GameNode{
+	public let id: Int = Int.NextID()
+
+	public var transforms: [Transformable] = []
+
+	public var children: [any GameNode] = []
+
+	public var actions: [Action] = []
+
 	public var color: SIMD3<Float> = .one
 	var intensity: SIMD4<Float> = .one  
 	
@@ -11,11 +19,6 @@ public class LightNode: GameNode{
 	public init(color: Color, ambienceIntensity: Float, diffuseIntensity: Float, specularIntensity: Float, brightness: Float, named name: String? = nil){
 		self.color = color.rgb
 		self.intensity = .zero
-		if name == nil {
-			super.init(prepend: "LIGHT")
-		} else {
-			super.init(named: name!)
-		}
 		self.brightness = brightness
 		self.ambienceIntensity = ambienceIntensity
 		self.diffuseIntensity = diffuseIntensity

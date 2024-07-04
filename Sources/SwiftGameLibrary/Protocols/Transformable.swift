@@ -1,19 +1,32 @@
 import simd
 
 public struct Transformable{
+
 	public var position: SIMD3<Float> = .zero
 	public var rotation: SIMD3<Float> = .zero
 	public var scale: SIMD3<Float> = .one
-	// var modelMatrix: Matrix { get set}
+	public var modelMatrix: Matrix = .identity
+
+	public var normalMatrix: simd_float3x3 {
+		let mVM = simd_float3x3(modelMatrix[0].xyz,
+								modelMatrix[1].xyz,
+								modelMatrix[2].xyz)
+		return mVM.inverse.transpose
+	}
+
+	public var worldPos: SIMD3<Float>{
+		modelMatrix.xyz
+	}
 }
 
 extension Transformable{
-	internal func calculateModelMatrix(_ parentMatrix: Matrix = Matrix.identity)->Matrix{
+
+	internal mutating func calculateModelMatrix(_ parentMatrix: Matrix = Matrix.identity){
 		var result = Matrix.identity
 		result.translateModel(position)
 		result.rotate(rotation)
 		result.scale(scale)
-		return matrix_multiply(parentMatrix, result)
+		modelMatrix = matrix_multiply(parentMatrix, result)
 	}
 }
 

@@ -2,11 +2,18 @@ import Metal
 import simd
 
 public class CameraNode: GameNode {
+	public let id: Int = Int.NextID()
+
+	public var transforms: [Transformable] = [Transformable()]
+
+	public var actions: [Action] = []
+
+	public var children: [any GameNode] = []
+
 	public var viewport: (width: Float, height: Float)
 	
 	public init(named name: String, width: Float, height: Float){
 		self.viewport = (width: width, height: height)
-		super.init(named: name)
 	}
 	
 	open func getViewMatrix()->Matrix{ 
@@ -21,10 +28,10 @@ public class CameraNode: GameNode {
 		viewportDidChange()
 	}
 		
-	public func calculateViewMatrix()->Matrix{
+	internal func calculateViewMatrix()->Matrix{
 		var result = Matrix.identity
-		result.translateModel(-position)
-		result.rotate(-rotation)
+		result.translateModel(-transforms[0].position)
+		result.rotate(-transforms[0].rotation)
 		//result.scale(scale)
 		return result
 	}

@@ -5,9 +5,9 @@ extension GameScene{
 	public func performHitTest(x: Float, y: Float, boundX: Float, boundY: Float)-> HitResult?{
         let ray = calculateHitTestRay(x: x, y: y, boundX: boundX, boundY: boundY)
         var results: [HitResult] = []
-        children.forEach(){ key, node in
-			if node.id != camera.id{
-				if let result = node.isHitTested(ray: ray){
+		for child in children {
+			if child.id != getCamera().id{
+				if let result = child.isHitTested(ray: ray){
 					results.append(result)
 				}
 			}
@@ -22,7 +22,7 @@ extension GameScene{
 		let clipX = (2.0 * x / boundX) - 1.0
 		let clipY = (2.0 * -y / boundY) + 1.0
 		let clipCoords = SIMD4( clipX, clipY,0 ,1)
-		
+		let camera = getCamera()
 		// from clip space to view space
 		let inverseProjectionMatrix = camera.getProjectionMatrix().inverse
 		var eyeRayDir = inverseProjectionMatrix * clipCoords // ray that will intersect with our objects
