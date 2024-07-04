@@ -1,5 +1,6 @@
 import Metal
 import simd
+
 /// VertexCollection is a protocol tha can be used by a custom mesh that allows the class to manually
 /// create vertices. There are procedures for addeing vertex. Implementations only need to
 /// define vertices and the vertexBuffer, and implement the createVertices func.
@@ -10,7 +11,9 @@ public protocol VertexCollection: Mesh{
 	var vertexBuffer: MTLBuffer? { get set }
 	func createVertices() 
 }
+
 extension VertexCollection{
+	
 	/// Can be called in the initializer of classes to simplify the build process and ensure that normals
 	///  are created
 	public func  build(){
@@ -18,6 +21,7 @@ extension VertexCollection{
 		vertexBuffer = nil
 		processVertices()
 	}
+	
 	/// Can be called in the initializer of classes to simplify the build process and ensure that normals
 	/// are created
 	public func build(using device: MTLDevice){
@@ -31,6 +35,7 @@ extension VertexCollection{
 			vertexBuffer = device.makeBuffer(bytes: vertices, length: Vertex.stride(of: vertices.count), options: [])
 		}
 	}
+	
 	public func setVertices(to encoder: MTLRenderCommandEncoder){
 		if vertexBuffer == nil {
 			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: VertexParameters.Vertex)
@@ -38,8 +43,9 @@ extension VertexCollection{
 			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: VertexParameters.Vertex)
 		}
 	}
+	
 	public func drawPrimitives(using encoder: MTLRenderCommandEncoder){
-	encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
+		encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertices.count)
 	}
 
 	public func add(vertex: Vertex){
@@ -50,14 +56,17 @@ extension VertexCollection{
 		let v = Vertex(x, y, z, r, g, b, a)
 		add(vertex: v)    
 	}
+	
 	public func add(_ x: Float, _ y: Float, _ z: Float, _ r: Float, _ g: Float, _ b: Float, _ a: Float, _ u: Float, _ v: Float){
 		let v = Vertex(x, y, z, r, g, b, a, u, v)
 		add(vertex: v)    
 	}
+	
 	public func add (_ x: Float, _ y: Float, _ z: Float, _ color: Color, _ u: Float, _ v: Float){
 		let v = Vertex(x, y, z, color.r, color.g, color.b, color.a, u, v)
 		add(vertex: v)
 	}
+	
 	public func add(_ x: Float,_ y: Float,_ z: Float, _ color: Color){
 		let v = Vertex(x, y, z, color.r, color.g, color.b, color.a, 0, 0)
 		add(vertex: v)
@@ -110,13 +119,16 @@ struct Triangle{
 	var v2: SIMD3<Float>? = nil
 	var v3: SIMD3<Float>? = nil
 	var n: SIMD3<Float>? = nil
+	
 	var normal: SIMD3<Float> { 
 		if checkNormal() { return n!}
 			else { fatalError("CheckNormal failed")}
 	}
+	
 	private func checkNormal()->Bool{
 		n != nil && v1 != nil && v2 != nil && v3 != nil
 	}
+	
 	mutating func add(_ vertex: SIMD3<Float>){
 		if v1 == nil { 
 			v1 = vertex
