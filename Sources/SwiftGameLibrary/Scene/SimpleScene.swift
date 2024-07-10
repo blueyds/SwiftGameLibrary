@@ -6,7 +6,7 @@
 //
 
 import Foundation
-public class SimpleScene: GameScene{
+open class SimpleScene: GameScene{
     public let id: Int = Int.NextID()
     public var name: String
     public var children: [any GameNode] = []
@@ -20,14 +20,14 @@ public class SimpleScene: GameScene{
         buildScene(engine: engine)
     }
     
-	public func buildMeshes(engine: MainEngine) { }
+	open func buildMeshes(engine: MainEngine) { }
 
-	public func buildScene(engine: MainEngine) { }
+	open func buildScene(engine: MainEngine) { }
 
-	public func doUpdate(counter ticks: TickCounter) { }
-
-	public func getCamera() -> CameraNode {
-		camera
-	}
+	open func doUpdate(counter ticks: TickCounter) { }
+    
+    public func getCamera()->CameraNode { camera }
+    
+    public func getLightNodes()->[LightNode]{ lights }
 
 }
