@@ -7,12 +7,12 @@
 
 import Foundation
 public class SimpleScene: GameScene{
-    let id: Int = Int.NextId()
-    var name: String
-    var children: [any GameNode] = []
-    var actions: [any Action] = []
-	var lights: [LightNode] = []
-	var camera: CameraNode!
+    public let id: Int = Int.NextId()
+    public var name: String
+    public var children: [any GameNode] = []
+    public var actions: [any Action] = []
+	public var lights: [LightNode] = []
+	public var camera: CameraNode!
     
     public init(named name: String, using engine: MainEngine){
         self.name = name
