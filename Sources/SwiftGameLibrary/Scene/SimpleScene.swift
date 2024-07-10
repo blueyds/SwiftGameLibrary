@@ -7,7 +7,7 @@
 
 import Foundation
 public class SimpleScene: GameScene{
-    public let id: Int = Int.NextId()
+    public let id: Int = Int.NextID()
     public var name: String
     public var children: [any GameNode] = []
     public var actions: [any Action] = []
@@ -26,13 +26,8 @@ public class SimpleScene: GameScene{
 
 	public func doUpdate(counter ticks: TickCounter) { }
 
-	public func getLightNodes()->[LightNode] { [] }
-
 	public func getCamera() -> CameraNode {
 		camera
 	}
 
-	public func getLightNodes() -> [LightNode] {
-		lights
-	}
 }
