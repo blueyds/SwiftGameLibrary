@@ -61,7 +61,7 @@ extension GameScene{
 }
 // camear function
 extension GameScene{
-	public func findCamera()->CameraNode{
+	public func findCameraInChildren()->CameraNode{
 		var cameras: [CameraNode] = []
 		for child in children {
 			if let cam = child as? CameraNode{
