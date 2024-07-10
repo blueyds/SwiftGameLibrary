@@ -21,10 +21,9 @@ extension GameScene{
 
 	internal func getLightData()->[LightData]{
 		var result: [LightData] = []
-		let lights: [LightNode] = getLightNodes()
-		lights.forEach(){ light in
+		lightNodes.forEach(){ light in
 			let data = LightData(
-				position: light.transforms[0].position,
+				position: light.transforms.position,
 				color: light.color,
 				brightness: light.brightness,
 				ambienceIntensity: light.ambienceIntensity,
@@ -53,9 +52,9 @@ extension GameScene{
 	
 	public func updateScene(counter ticks: TickCounter){
 		doUpdate(counter: ticks)
-		runActions(counter: ticks)
+		//runActions(counter: ticks)
 		updateChildren(counter: ticks)
-		updateChildMatrices(parentMatrix: .identity, viewMatrix: getCamera().getViewMatrix() )
+		updateChildMatrices(parentMatrix: .identity, viewMatrix: camera.getViewMatrix() )
 	}
 }
 // camear function
@@ -72,7 +71,7 @@ extension GameScene{
 	}
 	
 	public func viewPortChanged(to newSize: (width: Float, height: Float)){
-		getCamera().changeViewportSize(to: newSize)
+		camera.changeViewportSize(to: newSize)
 	}
 }
 // Render functions
@@ -100,7 +99,7 @@ extension GameScene{
 		var scene = SceneConstants(
 			viewMatrix: camera.getViewMatrix(),
 			projectionMatrix: camera.getProjectionMatrix(),
-			cameraPos: camera.transforms[0].position,
+			cameraPos: camera.transforms.position,
 			light: lights.first ?? LightData.noLight
 		)
 		

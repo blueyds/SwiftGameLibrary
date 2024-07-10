@@ -20,18 +20,18 @@ public class MeshNode: GameNode{
 	}
 	
 	func assignDefaultBuffers(to encoder: MTLRenderCommandEncoder){
-		var model = ModelConstants(modelMatrix: transforms[0].modelMatrix, normalMatrix: transforms[0].normalMatrix, material: material )
+		var model = ModelConstants(modelMatrix: transforms.modelMatrix, normalMatrix: transforms.normalMatrix, material: material )
 		 encoder.setVertexBytes(&model, length: ModelConstants.stride(), index: VertexParameters.ModelConstants)
 	 }
 	
 	public func doRender(with encoder: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState){
 		assignDefaultBuffers(to: encoder)
-		mesh[0].render(with: encoder, currentState)
+		mesh.render(with: encoder, currentState)
 	}
 	
 	 public func isHitTested(ray: Ray, parentScale: SIMD3<Float> = .one)->HitResult?{
 		//let newScale = parentScale * scale
-		 let box = mesh[0].getBoundingBox(center: transforms[0].modelMatrix.xyz, scaledBy: parentScale * transforms[0].scale)
+		 let box = mesh.getBoundingBox(center: transforms.modelMatrix.xyz, scaledBy: parentScale * transforms.scale)
 		if let hit = box.intersect(ray){
 			return HitResult(node: self,
 						ray: ray,

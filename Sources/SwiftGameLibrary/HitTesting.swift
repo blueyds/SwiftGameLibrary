@@ -6,7 +6,7 @@ extension GameScene{
         let ray = calculateHitTestRay(x: x, y: y, boundX: boundX, boundY: boundY)
         var results: [HitResult] = []
 		for child in children {
-			if child.id != getCamera().id{
+			if child.id != camera.id{
 				if let result = child.isHitTested(ray: ray){
 					results.append(result)
 				}

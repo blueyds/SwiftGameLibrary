@@ -3,7 +3,7 @@ import simd
 public class LightNode: GameNode{
 	public let id: Int = Int.NextID()
 
-	public var transforms: Transformable = Tranformable()
+	public var transforms: Transformable = Transformable()
 
 	public var children: [any GameNode] = []
 

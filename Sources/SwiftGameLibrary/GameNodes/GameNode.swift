@@ -5,7 +5,7 @@ import RegexBuilder
 
 
 public protocol GameNode: AnyObject, Identifiable, HasChildren  {
-	var transforms: Transformable { get  }
+	var transforms: Transformable { get  set }
 	//public var parent: GameNode? = nil
 	//var actions: [any Action] { get set }
 
@@ -47,7 +47,7 @@ extension GameNode{
 
 	//public func hitTest() { }
 	public func isHitTested(ray: Ray, parentScale: SIMD3<Float> = .one)-> HitResult?{
-		hitTestAllChildren(ray: ray, parentScale: transforms[0].scale)
+		hitTestAllChildren(ray: ray, parentScale: transforms.scale)
 	}
 
 	internal func hitTestAllChildren(ray: Ray, parentScale: SIMD3<Float> = .one)->HitResult?{
