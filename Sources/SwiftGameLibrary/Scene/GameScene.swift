@@ -1,10 +1,9 @@
 import Metal
 import simd
 
-public protocol GameScene: Nameable, Identifiable, Actionable, HasChildren{
-	func getLightNodes()->[LightNode]
-
-	func getCamera()->CameraNode
+public protocol GameScene: Nameable, Identifiable, HasChildren{
+	var lightNodes: [LightNodes] { get}
+    var camera: CameraNode! { get }
 	func buildMeshes(engine: MainEngine)
 	func buildScene(engine: MainEngine)
 	func doUpdate(counter: TickCounter)
@@ -18,7 +17,7 @@ extension GameScene{
 
 	public func doUpdate(counter ticks: TickCounter) { }
 
-	public func getLightNodes()->[LightNode] { [] }
+	
 
 	internal func getLightData()->[LightData]{
 		var result: [LightData] = []

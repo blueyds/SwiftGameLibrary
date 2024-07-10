@@ -18,7 +18,7 @@ public class PerspectiveCamera: CameraNode{
 
 		super.init(named: named, width: 1, height: 1)
 
-		transforms[0].position = origin
+		transforms.position = origin
 	}
 	override public func  viewportDidChange(){
 		self.aspectRatio = viewport.width / viewport.height

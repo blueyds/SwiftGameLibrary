@@ -10,7 +10,6 @@ open class SimpleScene: GameScene{
     public let id: Int = Int.NextID()
     public var name: String
     public var children: [any GameNode] = []
-    public var actions: [any Action] = []
 	public var lights: [LightNode] = []
 	public var camera: CameraNode!
     
@@ -26,8 +25,4 @@ open class SimpleScene: GameScene{
 
 	open func doUpdate(counter ticks: TickCounter) { }
     
-    public func getCamera()->CameraNode { camera }
-    
-    public func getLightNodes()->[LightNode]{ lights }
-
 }

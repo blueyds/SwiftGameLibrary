@@ -3,20 +3,20 @@ import Metal
 public class MeshNode: GameNode{
 	public let id: Int = Int.NextID()
 	
-	public var transforms: [Transformable] = [Transformable()]
+	public var transforms: Transformable = Transformable()
 
 	public var children: [any GameNode] = []
 
 	public var actions: [Action] = []
 	
-	var mesh: [any Mesh] = []
+	var mesh: any Mesh
 
 	public var material: MaterialData
 
 
 	public init(mesh: any Mesh, color: Color = Color.random, isLit: Bool = true, ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1), diffuse: SIMD3<Float> = .one, specular: SIMD3<Float> = .one, shininess: Float = 50, named: String? = nil){
 		material = MaterialData(color: color.rgba, isLit: isLit, ambient: ambient, diffuse: diffuse, specular: specular, shininess: shininess)
-		self.mesh.append(mesh)
+	    self.mesh = mesh
 	}
 	
 	func assignDefaultBuffers(to encoder: MTLRenderCommandEncoder){

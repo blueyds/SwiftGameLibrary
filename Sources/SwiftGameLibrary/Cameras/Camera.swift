@@ -4,9 +4,7 @@ import simd
 public class CameraNode: GameNode {
 	public let id: Int = Int.NextID()
 
-	public var transforms: [Transformable] = [Transformable()]
-
-	public var actions: [Action] = []
+	public var transforms: Transformable = Transformable()
 
 	public var children: [any GameNode] = []
 
@@ -30,8 +28,8 @@ public class CameraNode: GameNode {
 		
 	internal func calculateViewMatrix()->Matrix{
 		var result = Matrix.identity
-		result.translateModel(-transforms[0].position)
-		result.rotate(-transforms[0].rotation)
+		result.translateModel(-transforms.position)
+		result.rotate(-transforms.rotation)
 		//result.scale(scale)
 		return result
 	}
