@@ -1,4 +1,5 @@
 import simd
+import SwiftGameTypes
 
 public class PerspectiveCamera: CameraNode{
 	var fov: Float

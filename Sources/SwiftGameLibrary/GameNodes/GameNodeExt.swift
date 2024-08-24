@@ -7,6 +7,7 @@
 
 import Foundation
 import simd
+import SwiftGameTypes
 
 extension GameNode {
 	public func PositionAt(x: Float, y: Float, z: Float)->any GameNode{

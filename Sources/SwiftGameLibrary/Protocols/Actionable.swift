@@ -1,3 +1,5 @@
+import SwiftGameTypes
+
 public protocol Actionable: AnyObject{
 	var actions: [any Action] { get set }
 }

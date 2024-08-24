@@ -1,4 +1,6 @@
 import Metal
+import SwiftGameMeshes
+import SwiftGameTypes
 
 public class MeshNode: GameNode{
 	public let id: Int = Int.NextID()

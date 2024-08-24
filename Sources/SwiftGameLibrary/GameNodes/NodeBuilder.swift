@@ -1,3 +1,4 @@
+import SwiftGameTypes
 
 @resultBuilder
 public enum GameNodesBuilder{

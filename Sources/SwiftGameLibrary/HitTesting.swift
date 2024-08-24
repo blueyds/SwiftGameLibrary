@@ -1,5 +1,6 @@
 import Foundation
 import simd
+import SwiftGameTypes
 
 extension GameScene{
 	public func performHitTest(x: Float, y: Float, boundX: Float, boundY: Float)-> HitResult?{

@@ -1,4 +1,5 @@
 import Metal
+import SwiftGameTypes
 
 public protocol HasChildren: AnyObject{
 	var children: [any GameNode] { get set }

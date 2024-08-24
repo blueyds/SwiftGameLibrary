@@ -1,4 +1,5 @@
 import Metal
+import SwiftGameTypes
 
 public protocol Mesh: AnyObject{
 	func render(with: MTLRenderCommandEncoder, _ currentState: MTLRenderPipelineState)

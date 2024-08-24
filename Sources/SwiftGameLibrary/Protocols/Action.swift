@@ -1,3 +1,4 @@
+import SwiftGameTypes
 
 public protocol Action {
 	var frequency: CounterInterval { get set }

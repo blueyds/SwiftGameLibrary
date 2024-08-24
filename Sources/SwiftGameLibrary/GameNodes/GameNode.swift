@@ -2,6 +2,7 @@ import Foundation
 import simd
 import Metal
 import RegexBuilder
+import SwiftGameTypes
 
 
 public protocol GameNode: AnyObject, Identifiable, HasChildren  {

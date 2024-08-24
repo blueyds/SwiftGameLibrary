@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import SwiftGameTypes
+
 open class SimpleScene: GameScene{
     public let id: Int = Int.NextID()
     public var name: String

@@ -1,7 +1,7 @@
 import simd
 import Metal
 
-public struct Color{
+public struct GameColor{
 	public let r: Float
 	public let g: Float
 	public let b: Float

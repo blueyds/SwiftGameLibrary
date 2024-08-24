@@ -1,5 +1,6 @@
 import Metal
 import simd
+import SwiftGameTypes
 
 public class CameraNode: GameNode {
 	public let id: Int = Int.NextID()

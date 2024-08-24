@@ -1,5 +1,7 @@
 import Metal
 import simd
+import SwiftGameTypes
+
 
 public protocol GameScene: Nameable, Identifiable, HasChildren{
 	var lightNodes: [LightNodes] { get}

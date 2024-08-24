@@ -29,7 +29,7 @@ public class MainEngine{
 		}
 	}
 	
-	public func setupLibrary(){
+	public func setupLibrary(){ 
 		library = device?.makeDefaultLibrary()
 		if library == nil {
 			fatalError("library failed to init")

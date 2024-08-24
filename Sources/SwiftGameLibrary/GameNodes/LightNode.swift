@@ -1,4 +1,5 @@
 import simd
+import SwiftGameTypes
 
 public class LightNode: GameNode{
 	public let id: Int = Int.NextID()
