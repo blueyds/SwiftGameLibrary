@@ -17,7 +17,7 @@ public class LightNode: GameNode{
 	// 	super.init(named: name)
 	// }
 	
-	public init(color: Color, ambienceIntensity: Float, diffuseIntensity: Float, specularIntensity: Float, brightness: Float, named name: String? = nil){
+	public init(color: GameColor, ambienceIntensity: Float, diffuseIntensity: Float, specularIntensity: Float, brightness: Float, named name: String? = nil){
 		self.color = color.rgb
 		self.intensity = .zero
 		self.brightness = brightness

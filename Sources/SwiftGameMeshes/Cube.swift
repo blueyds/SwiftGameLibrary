@@ -14,7 +14,7 @@ public class Cube: VertexCollection{
 		createVertices(.random)
 	}
 	
-	public  func createVertices(_ color: Color) {
+	public  func createVertices(_ color: GameColor) {
 		createLeft(color)
 		createRight(color)
 		createTop(color)
@@ -23,7 +23,7 @@ public class Cube: VertexCollection{
 		createFront(color)
 	}
 	
-	private func createLeft(_ color: Color){
+	private func createLeft(_ color: GameColor){
 		// Left
 		add( -1, -1, -1, color)
 		add( -1, -1,  1, color)
@@ -43,7 +43,7 @@ public class Cube: VertexCollection{
 		add( 1, -1,  1, color)
 	}
 	
-	private func createTop(_ color: Color){
+	private func createTop(_ color: GameColor){
 		//top
 		add(  1, 1,  1, color)
 		add(  1, 1, -1, color)
@@ -53,7 +53,7 @@ public class Cube: VertexCollection{
 		add( -1, 1,  1, color)
 	}
 	
-	private func createBottom(_ color: Color){
+	private func createBottom(_ color: GameColor){
 		//bottom
 		add(  1, -1,  1, color)
 		add( -1, -1, -1, color)
@@ -63,7 +63,7 @@ public class Cube: VertexCollection{
 		add( -1, -1, -1, color)
 	}
 	
-	private func createBack(_ color: Color){
+	private func createBack(_ color: GameColor){
 		//back
 		add(  1,  1, -1, color)
 		add( -1, -1, -1, color)
@@ -73,7 +73,7 @@ public class Cube: VertexCollection{
 		add( -1, -1, -1, color)
 	}
 	
-	private func createFront(_ color: Color){
+	private func createFront(_ color: GameColor){
 		//front
 		add( -1,  1, 1, color)
 		add( -1, -1, 1, color)

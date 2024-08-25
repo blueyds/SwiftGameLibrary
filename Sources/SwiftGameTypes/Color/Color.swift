@@ -36,17 +36,17 @@ public struct GameColor{
 }
 
 
-extension Color: CustomStringConvertible{
+extension GameColor: CustomStringConvertible{
 	public var description: String {
 		"R" + r.description + "_G" + g.description + "_B" + b.description + "_A" + a.description
 	} 
 }
-extension Color{
-	static public var random: Color{
+extension GameColor{
+	static public var random: GameColor{
 		let r: Float = .random(in: 0...1)
 		let g: Float = .random(in: 0...1)
 		let b: Float = .random(in: 0...1)
-		return Color(r,g,b,1)
+		return GameColor(r,g,b,1)
 	}
 	
 }

@@ -13,7 +13,7 @@ public class Pyramid: VertexCollection{
 		createVertices(.random)
     }
     
-    public  func createVertices(_ color: Color) {
+    public  func createVertices(_ color: GameColor) {
         
         createLeft(color)
         createRight(color)
@@ -22,38 +22,38 @@ public class Pyramid: VertexCollection{
         createBottom(color)
     }
 	
-	private func addTop(_ color: Color){
+	private func addTop(_ color: GameColor){
 		add(0, 1, 0, color)
 	}
     
-    private func createLeft(_ color: Color){
+    private func createLeft(_ color: GameColor){
         add(-1, -1, -1, color)
         addTop(color)
         add( -1, -1, 1, color)
     }
     
-    private func createRight(_ color: Color){
+    private func createRight(_ color: GameColor){
         // Right
         add(1, -1, -1, color)
         addTop(color)
         add(1, -1, 1, color)
     }
     
-    private func createBack(_ color: Color){
+    private func createBack(_ color: GameColor){
         //back
         add(-1, -1, -1, color)
         addTop(color)
         add(1, -1, -1, color)
     }
     
-    private func createFront(_ color: Color){
+    private func createFront(_ color: GameColor){
         //front
         add(-1, -1, 1, color)
         addTop(color)
         add(1, -1, 1, color)
     }
     
-    private func createBottom(_ color: Color){
+    private func createBottom(_ color: GameColor){
         //bottom
         add(  1, -1,  1, color)
         add( -1, -1, -1, color)

@@ -17,7 +17,7 @@ public struct Vertex{
 		self.init(pos: SIMD3<Float>(x, y, z), color: SIMD4<Float>(0,0,0,1), normals: .zero, texCoord: .zero)
 	}
 	
-	public init(_ pos: SIMD3<Float>, _ color: Color, _ normals: SIMD3<Float> = .zero, texCoord: SIMD2<Float> = .zero){
+	public init(_ pos: SIMD3<Float>, _ color: GameColor, _ normals: SIMD3<Float> = .zero, texCoord: SIMD2<Float> = .zero){
 		self.init(pos: pos, color: color.rgba, normals: normals, texCoord: texCoord)
 		
 	}

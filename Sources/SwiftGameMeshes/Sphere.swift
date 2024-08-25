@@ -24,7 +24,7 @@ public class Sphere: VertexCollection{
 		createSphere(.random)
     }
     
-    private func createSphere(_ color: Color){
+    private func createSphere(_ color: GameColor){
 		var vectors: [SIMD3<Float>] = []
 		for stack in 0...resolution{
 			let phi:Float = (Float(stack) / Float(resolution)) * Float.pi
