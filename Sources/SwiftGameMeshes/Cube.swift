@@ -34,7 +34,7 @@ public class Cube: VertexCollection{
 		add( -1,  1, -1, color)
 	}
 	
-	private func createRight(_ color: Color){
+	private func createRight(_ color: GameColor){
 		// Right
 		add( 1,  1,  1, color)
 		add( 1, -1, -1, color)
