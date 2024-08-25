@@ -6,7 +6,7 @@ public protocol InputFloatsEnum:CaseIterable, RawRepresentable where RawValue ==
 }
 extension InputFloatsEnum{
 	public var value: Float{
-		InputManager.shared.get(floatID: self.rawValue)
+		InputManager.shared.get(floatID: self.rawValue)!
 	}
 	public func set(to value: Float){
 		InputManager.shared.set(floatID: self.rawValue, to: value)

@@ -3,9 +3,9 @@ public class InputManager{
 	private init(){}
 	
 	private var iButtons: [Int: Bool] = [:]
-	private var iStrings: [Int:String?] = [:]
+	private var iStrings: [Int:String] = [:]
 	private var iFloats: [Int: Float] = [:]
-	private var sStrings: [String: String?] = [:]
+	private var sStrings: [String: String] = [:]
 	
 	private var isLocked: Bool = false 
 	private func waitUnlocked(){
@@ -23,7 +23,7 @@ extension InputManager{
 	public func set(button: Int, to value: Bool){
 		lock()
 		if iButtons.updateValue(value, forKey: button) == nil {
-			print("InputManager.set(button: \(button), to: \(value)) tried to set a key which was not already set")
+			print("InputManager.set(button: \(button), to: \(value)) set a key which was not already set")
 		}
 		unlock()
 	}
@@ -41,10 +41,10 @@ extension InputManager{
 
 // Int Strings extensions
 extension InputManager{
-	public func set(stringID: Int, to value: String?){
+	public func set(stringID: Int, to value: String){
 		lock()
 		if iStrings.updateValue(value, forKey: stringID) == nil{
-			print("InputManager.set(stringID: \(stringID), to: \(value)) tried to set a key which was not already set")
+			print("InputManager.set(stringID: \(stringID), to: \(value)) set a key which was not already set")
 		}
 		unlock()
 	}
@@ -55,10 +55,10 @@ extension InputManager{
 
 // String Strings extensions
 extension InputManager{
-	public func set(property: String, to value: String?){
+	public func set(property: String, to value: String){
 		lock()
 		if sStrings.updateValue(value, forKey: property) == nil {
-			print("InputManager.set(property: \(property), to: \(value)) tried to set a key which was not already set")
+			print("InputManager.set(property: \(property), to: \(value)) set a key which was not already set")
 		}
 		unlock()
 	}
@@ -72,7 +72,7 @@ extension InputManager{
 	public func set(floatID: Int, to value: Float){
 		lock()
 		if iFloats.updateValue(value, forKey: floatID) == nil{
-			Log.info("InputManager.set(floatId: \(floatID), to: \(value)) tried to set a key that was not already set")
+			print("InputManager.set(floatId: \(floatID), to: \(value))  set a key that was not already set")
 		}
 		unlock()
 	}
