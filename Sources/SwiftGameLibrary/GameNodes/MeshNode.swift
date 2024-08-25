@@ -17,7 +17,7 @@ public class MeshNode: GameNode{
 
 
 	public init(mesh: any Mesh, color: GameColor = GameColor.random, isLit: Bool = true, ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1), diffuse: SIMD3<Float> = .one, specular: SIMD3<Float> = .one, shininess: Float = 50, named: String? = nil){
-		material = MaterialData(color: color.rgba, isLit: isLit, ambient: ambient, diffuse: diffuse, specular: specular, shininess: shininess)
+		material = MaterialData(color: color.rgba, isLit: isLit, ambience: ambient, diffuse: diffuse, specular: specular, shininess: shininess)
 	    self.mesh = mesh
 	}
 	

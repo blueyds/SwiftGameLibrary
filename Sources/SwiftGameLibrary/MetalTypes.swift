@@ -22,8 +22,10 @@ public struct LightData: sizeable {
 public struct MaterialData: sizeable {
 	public let color: SIMD4<Float>
 	public let isLit: Bool
-	public let ambient: SIMD3<Float>
-	
+	public let ambience: SIMD3<Float>
+    public let diffuse: SIMD3<Float>
+    public let specular: SIMD3<Float>
+    public let shininess: Float
 }
 public struct ModelConstants: sizeable {
 	public let modelMatrix: Matrix

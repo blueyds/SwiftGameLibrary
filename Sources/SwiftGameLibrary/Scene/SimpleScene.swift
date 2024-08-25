@@ -13,7 +13,7 @@ open class SimpleScene: GameScene{
     public let id: Int = Int.NextID()
     public var name: String
     public var children: [any GameNode] = []
-	public var lights: [LightNode] = []
+	public var lightNodes: [LightNode] = []
 	public var camera: CameraNode!
     
     public init(named name: String, using engine: MainEngine){
