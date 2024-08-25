@@ -1,4 +1,5 @@
 import Metal
+import SwiftGameTypes
 
 public class Cube: VertexCollection{
 	

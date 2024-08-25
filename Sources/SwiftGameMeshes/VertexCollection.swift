@@ -1,5 +1,7 @@
 import Metal
 import simd
+import SwiftGameTypes
+
 
 /// VertexCollection is a protocol tha can be used by a custom mesh that allows the class to manually
 /// create vertices. There are procedures for addeing vertex. Implementations only need to

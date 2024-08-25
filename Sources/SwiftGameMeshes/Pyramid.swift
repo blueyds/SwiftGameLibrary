@@ -1,4 +1,6 @@
 import Metal
+import SwiftGameTypes
+
 public class Pyramid: VertexCollection{
     public var vertices: [Vertex] = []
 	public var vertexBuffer: MTLBuffer? = nil

@@ -1,5 +1,6 @@
 import Foundation
 import Metal
+import SwiftGameTypes
 
 public class MainEngine{
 	// public static var shared: MainEngine = MainEngine()

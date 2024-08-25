@@ -1,6 +1,8 @@
 
 import simd
 import Metal
+import SwiftGameTypes
+
 
 public class Sphere: VertexCollection{
 	public var vertices: [Vertex] = []
