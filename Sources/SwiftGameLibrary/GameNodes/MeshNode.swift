@@ -16,7 +16,7 @@ public class MeshNode: GameNode{
 	public var material: MaterialData
 
 
-	public init(mesh: any Mesh, color: GameColor = Color.random, isLit: Bool = true, ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1), diffuse: SIMD3<Float> = .one, specular: SIMD3<Float> = .one, shininess: Float = 50, named: String? = nil){
+	public init(mesh: any Mesh, color: GameColor = GameColor.random, isLit: Bool = true, ambient: SIMD3<Float> = SIMD3<Float>(repeating: 0.1), diffuse: SIMD3<Float> = .one, specular: SIMD3<Float> = .one, shininess: Float = 50, named: String? = nil){
 		material = MaterialData(color: color.rgba, isLit: isLit, ambient: ambient, diffuse: diffuse, specular: specular, shininess: shininess)
 	    self.mesh = mesh
 	}
@@ -38,7 +38,7 @@ public class MeshNode: GameNode{
 			return HitResult(node: self,
 						ray: ray,
 						parameter: hit,
-							 worldPos: transforms[0].worldPos)
+							 worldPos: transforms.worldPos)
 		} else {
 			return hitTestAllChildren(ray: ray, parentScale: parentScale)
 		}

@@ -1,5 +1,6 @@
 import MetalKit
 import SwiftGameTypes
+import SwiftGameEngine
 
 public protocol SceneManager: AnyObject{
 	var currentScene: any GameScene { get }

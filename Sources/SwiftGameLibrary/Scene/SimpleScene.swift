@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftGameTypes
+import SwiftGameEngine
 
 open class SimpleScene: GameScene{
     public let id: Int = Int.NextID()

@@ -23,7 +23,7 @@ extension GameScene{
 		let clipX = (2.0 * x / boundX) - 1.0
 		let clipY = (2.0 * -y / boundY) + 1.0
 		let clipCoords = SIMD4( clipX, clipY,0 ,1)
-		let camera = getCamera()
+		//let camera = getCamera()
 		// from clip space to view space
 		let inverseProjectionMatrix = camera.getProjectionMatrix().inverse
 		var eyeRayDir = inverseProjectionMatrix * clipCoords // ray that will intersect with our objects

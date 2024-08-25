@@ -1,10 +1,11 @@
 import Metal
 import simd
 import SwiftGameTypes
-
+import SwiftGameMeshes
+import SwiftGameEngine
 
 public protocol GameScene: Nameable, Identifiable, HasChildren{
-	var lightNodes: [LightNodes] { get}
+	var lightNodes: [LightNode] { get}
     var camera: CameraNode! { get }
 	func buildMeshes(engine: MainEngine)
 	func buildScene(engine: MainEngine)
@@ -97,7 +98,7 @@ extension GameScene{
 		// TODO: does cameraPOsition need to be reversed?
 		var lights = getLightData()
 		var count = UInt32(lights.count)
-		let camera = getCamera()
+		//let camera = getCamera()
 		var scene = SceneConstants(
 			viewMatrix: camera.getViewMatrix(),
 			projectionMatrix: camera.getProjectionMatrix(),

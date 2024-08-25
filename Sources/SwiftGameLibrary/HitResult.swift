@@ -1,4 +1,5 @@
 import simd
+import SwiftGameTypes
 
 public struct HitResult{
 	public var node: any GameNode
