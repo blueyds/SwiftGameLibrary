@@ -43,9 +43,9 @@ extension VertexCollection{
 	
 	public func setVertices(to encoder: MTLRenderCommandEncoder){
 		if vertexBuffer == nil {
-			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: VertexParameters.Vertex)
+			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: getVertexBufferIndex())
 		} else {
-			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: VertexParameters.Vertex)
+			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: getVertexBufferIndex() )
 		}
 	}
 	
