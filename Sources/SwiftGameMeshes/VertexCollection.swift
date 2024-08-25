@@ -12,10 +12,13 @@ public protocol VertexCollection: Mesh{
 	var vertices: [Vertex] { get set}
 	var vertexBuffer: MTLBuffer? { get set }
 	func createVertices() 
+    /// Implement this or even do an extension to provede the index into tthe Metal Shder language for the vertex
+    func getVertexBufferIndex()->Int
 }
 
 extension VertexCollection{
-	
+	public func getVertexBufferIndex()->Int{ 1 }
+    
 	/// Can be called in the initializer of classes to simplify the build process and ensure that normals
 	///  are created
 	public func  build(){
