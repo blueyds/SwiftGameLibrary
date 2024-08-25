@@ -23,7 +23,7 @@ extension InputManager{
 	public func set(button: Int, to value: Bool){
 		lock()
 		if iButtons.updateValue(value, forKey: button) == nil {
-			Log.info("InputManager.set(button:) tried to set a key which was not already set", String(button), String(value))
+			print("InputManager.set(button: \(button), to: \(value)) tried to set a key which was not already set")
 		}
 		unlock()
 	}
@@ -44,14 +44,12 @@ extension InputManager{
 	public func set(stringID: Int, to value: String?){
 		lock()
 		if iStrings.updateValue(value, forKey: stringID) == nil{
-			Log.info("InputManager.set(stringID: tried to set a key which was not already set", String(stringID), value ?? "nil")
+			print("InputManager.set(stringID: \(stringID), to: \(value)) tried to set a key which was not already set")
 		}
 		unlock()
 	}
 	public func get(stringID: Int)->String?{
-		if let result = iStrings[stringID]{
-			return result
-		} else { return nil }
+		iStrings[stringID]
 	}
 }
 
@@ -60,15 +58,13 @@ extension InputManager{
 	public func set(property: String, to value: String?){
 		lock()
 		if sStrings.updateValue(value, forKey: property) == nil {
-			Log.info("InputManager.set tried to set a key which was not already set", property, value ?? "nil")
+			print("InputManager.set(property: \(property), to: \(value)) tried to set a key which was not already set")
 		}
 		unlock()
 	}
 	
 	public func get(property: String)->String?{
-		if let result = sStrings[property]{
-			return result
-		} else { return nil }
+		sStrings[property]
 	}
 }
 // floats extensions
@@ -76,17 +72,12 @@ extension InputManager{
 	public func set(floatID: Int, to value: Float){
 		lock()
 		if iFloats.updateValue(value, forKey: floatID) == nil{
-			Log.info("InputManager.set(floatId:) tried to set a key that was not already set", String(floatID), String(value))
+			Log.info("InputManager.set(floatId: \(floatID), to: \(value)) tried to set a key that was not already set")
 		}
 		unlock()
 	}
 	
-	public func get(floatID: Int)->Float{
-		if let result = iFloats[floatID]{
-			return result
-		}
-		set(floatID: floatID, to: .zero)
-		Log.info("tried to access prior key before it was set. created and set to zero", String(floatID), "0")
-		return .zero
+	public func get(floatID: Int)->Float?{
+	    iFloats[floatID]
 	}
 }
