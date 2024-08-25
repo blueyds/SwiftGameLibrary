@@ -25,33 +25,26 @@ let package = Package(
                 .target(name: "SwiftGameTypes"),
                 .target(name: "SwiftGameMeshes"),
                 .target(name: "SwiftGameInputs"),
-                .target(name: "SwiftGameEngine"),
+                .target(name: "SwiftGameEngine")
             ]
-        )
+        ),
         .target(
-        name: "SwiftGameMeshes",
-            dependencies: [ 
-                .target(name: "SwiftGameTypes"),
-            ]
-        )
+            name: "SwiftGameMeshes",
+            dependencies: [ .target(name: "SwiftGameTypes")]
+        ),
         .target(
             name: "SwiftGameInputs",
-            dependencies: [ 
-                .target(name: "SwiftGameTypes"),
-            ]
-        )
-        .target(
-            name: "SwiftGameTypes")
+            dependencies: [ .target(name: "SwiftGameTypes")]
+        ),
+        .target( name: "SwiftGameTypes"),
         .target(
             name: "SwiftGameEngine",
-            dependencies: [ 
-                .target(name: "SwiftGameTypes"),
-                ]
-        )
+            dependencies: [ .target(name: "SwiftGameTypes")]
+        ),
 
         .testTarget(
             name: "SwiftGameLibraryTests",
-            dependencies: ["SwiftGameLibrary"]),
+            dependencies: ["SwiftGameLibrary"])
     ]
 )
 
