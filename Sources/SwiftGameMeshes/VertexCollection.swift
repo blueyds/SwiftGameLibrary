@@ -13,11 +13,10 @@ public protocol VertexCollection: Mesh{
 	var vertexBuffer: MTLBuffer? { get set }
 	func createVertices() 
     /// Implement this or even do an extension to provede the index into tthe Metal Shder language for the vertex
-    func getVertexBufferIndex()->Int
+  
 }
 
 extension VertexCollection{
-	public func getVertexBufferIndex()->Int{ 1 }
     
 	/// Can be called in the initializer of classes to simplify the build process and ensure that normals
 	///  are created
@@ -43,9 +42,9 @@ extension VertexCollection{
 	
 	public func setVertices(to encoder: MTLRenderCommandEncoder){
 		if vertexBuffer == nil {
-			encoder.setVertexBytes(vertices, length: Vertex.stride(of: vertices.count), index: getVertexBufferIndex())
+			encoder.setVertexBytes(&vertices, length: Vertex.stride(of: vertices.count), index: 0)
 		} else {
-			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: getVertexBufferIndex() )
+			encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0 )
 		}
 	}
 	
