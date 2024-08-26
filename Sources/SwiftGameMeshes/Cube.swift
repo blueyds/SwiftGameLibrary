@@ -6,13 +6,32 @@ public class Cube: VertexCollection{
 	public var vertices: [Vertex] = []
 	public var vertexBuffer: MTLBuffer? = nil
 	//public var name: String = "CUBE"
+	private let colors: [GameColor]
+	public init() { 
+        colors = [GameColor.random]
+        build()
+    }
+    public init(color: GameColor){
+        colors = [color]
+        build()
+    }
 	
-	public init() { build() }
-	
-	public init(using device: MTLDevice){ build(using: device)}
+	public init(using device: MTLDevice){ 
+        colors = [GameColor.random]
+        build(using: device)
+    }
 	
 	public func createVertices(){
-		createVertices(.random)
+        if colors.count < 6{
+		    createVertices(colors[0])
+        } else{
+            createLeft(colors[0])
+		    createRight(colors[1])
+		    createTop(colors[2])
+		    createBottom(colors[3])
+		    createBack(colors[4])
+		    createFront(colors[5])
+        }
 	}
 	
 	public  func createVertices(_ color: GameColor) {
